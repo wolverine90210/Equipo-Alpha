@@ -11,12 +11,19 @@ body {	font-family:Verdana, Geneva, sans-serif;
 	padding:10px;
 	}
 	
+#wrapper {
+	width:880px;
+	margin:10px auto 10px auto;
+	padding:10px;
+	}	
+	
 #site-name {display:inline-block;
 			font-size: 1.3em;
 			}
 			
 .image{text-align:center}
 
+#contenido{clear: both;}
 #menu {
 	font-size:.9em;
 	font-weight: bold;
@@ -35,7 +42,22 @@ body {	font-family:Verdana, Geneva, sans-serif;
 	
 	
 #menu li:hover{ border-style: outset;}
-	
+#menuContenido {
+	font-size:10px;
+	display:inline-block; 
+	margin:20px 0 0 0px;
+	float:right;
+}
+#menuContenido li{
+	list-style:none;
+	display:inline-block;
+	padding:3px;
+}
+
+.topicCategoria{
+font-weight: bold;	
+}
+
 	
 .articulo { font-family: Verdana, Helvetica, Arial; }
 	
@@ -89,3 +111,101 @@ body {	font-family:Verdana, Geneva, sans-serif;
 #anterior {float:left;}
 
 #siguiente {float:right;}
+
+
+
+#menuCaracteristicas{
+	font-size:10px;
+	display:inline-block; 
+	margin:20px 0 0 0px;
+	float:right;
+}
+#menuCaracteristicas li{
+	list-style:none;
+	display:inline-block;
+	padding:3px;
+}
+
+
+header{
+margin-bottom: 10px;	
+}
+
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}	
+
+a#enviarEntrada:hover{
+	background:green;
+}
+a#enviarEntrada:visited:hover{ 
+background:yellowgreen;
+}	
+
+.datos-articulo{
+width:70%;
+font-size: 10px;
+margin-top: 30px;
+float:right;	
+}
+
+#TituloConcurso{
+font-size: 30px;
+font-weight: bold; 	
+}
+#hashtagTwitter{
+float:right;
+font-size: 30px;
+font-weight: bold; 
+}
+.articulo {
+	padding:10px;
+	border: 1px solid #333;
+	margin-bottom:10px;
+	font-size:12px;
+	text-align: justify;
+	float:right;
+	
+}
+
+.Panel{
+	height: 120px;
+	border: 1px solid #333;
+	padding-top: 0;
+	margin-top:0;
+	margin-bottom:20px;
+	padding: 10px;	
+	}
+	
+.comentarioEntrada{
+	width: 80%;
+	margin: 0px;
+	text-align: justify;
+	padding:10px;
+	text-align: left;
+	float:left;
+	}	
+
+.imageDeAroba{
+width:80px;
+height:80px;
+float:left;	
+margin: 10px;
+}
+
+.aroba{
+display: inline;
+font-weight: bold;
+padding-left: 10px;	
+}
+.tituloEnvio{
+display: inline;
+font-weight: bold;
+}
+.fechaEnvio{float:right;display:inline}
+
+.titleGanador{font-weight: bold;display: inline;}
