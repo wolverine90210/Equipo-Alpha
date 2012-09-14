@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+body {	font-family:Verdana, Geneva, sans-serif; 
+		margin:0;
+	}
+
+/* CONTENIDO */
+#container {
+	width:1000px;
+	margin:-21px auto 10px auto;
+	padding:10px;
+	}
+	
+#site-name {display:inline-block;
+			font-size: 1.3em;
+			}
+			
+.image{text-align:center}
+
+#menu {
+	font-size:.9em;
+	font-weight: bold;
+	display:inline-block;
+	margin-top: 25px;
+	float:right;
+	}
+
+#menu li{
+	list-style:none;
+	display:inline-block;
+	background:#CCC;
+	padding:7px;
+	border-style: inset;
+	}
+	
+	
+#menu li:hover{ border-style: outset;}
+	
+	
+.articulo { font-family: Verdana, Helvetica, Arial; }
+	
+	
+.seccion {
+	padding:10px;
+	border: 3px solid #333;
+	margin-bottom:15px;
+	font-size:.9em;
+}
+
+
+
+.spec { font-weight: bold; display: inline; }
+
+
+.spec_content { display:inline-block; }
+
+
+
+.features {
+	display:inline-block;
+	float:right;
+	margin:10px;
+	}
+
+
+.ver_mas {
+	display: inline-block; 
+	float: right;
+	}
+
+
+.entrada {
+	display: inline-block;
+	float: left;
+}
+
+
+.concurso {
+	font-weight: bold;
+	font-size: 2em;
+	float:left;
+	display:inline-block;
+	}
+
+#paginacion a{display:inline-block; background:#CCC; padding:10px; text-decoration:none;  border-style: inset}
+
+#paginacion a:hover{border-style:outset;}
+
+#anterior {float:left;}
+
+#siguiente {float:right;}
