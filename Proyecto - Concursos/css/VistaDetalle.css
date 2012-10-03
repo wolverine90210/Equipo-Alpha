@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+body{font-family:Verdana, Geneva, sans-serif; margin:0;}
+
+/* CONTENIDO */
+#wrapper {
+	width:880px;
+	margin:10px auto 10px auto;
+	padding:10px;
+	}
+#site-name {display:inline-block;}
+#contenido{clear: both;}
+#menu {
+	font-size:10px;
+	display:inline-block; 
+	margin:20px 0 0 0px;
+	float:right;
+}
+#menu li{
+	list-style:none;
+	display:inline-block;
+	padding:3px;
+}
+
+#topicCategoria{
+font-weight: bold;	
+}
+#topicDificultad{
+font-weight: bold;
+}
+#topicInicio{
+font-weight: bold;
+}
+#topicFin{
+font-weight: bold;
+}
+
+header{
+margin-bottom: 10px;	
+}
+
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}	
+
+a#enviarEntrada:hover{
+	background:green;
+}
+a#enviarEntrada:visited:hover{ 
+background:yellowgreen;
+}	
+
+.datos-articulo{
+width:70%;
+font-size: 10px;
+margin-top: 30px;
+float:right;	
+}
+
+#TituloConcurso{
+font-size: 30px;
+font-weight: bold; 	
+}
+#hashtagTwitter{
+float:right;
+font-size: 30px;
+font-weight: bold; 
+}
+.articulo {
+	padding:10px;
+	border: 1px solid #333;
+	margin-bottom:10px;
+	font-size:12px;
+	text-align: justify;
+	float:right;
+	
+}
+
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}
+
+#ganador-entradas, #ganador-entradas1,#ganador-entradas2,#ganador-entradas3{
+	height: 120px;
+	border: 1px solid #333;
+	padding-top: 0;
+	margin-top:0;
+	margin-bottom:20px;
+	padding: 10px;	
+	}
+	
+#comentarioEntrada,#comentarioEntrada1,#comentarioEntrada2,#comentarioEntrada3{
+	width: 80%;
+	margin: 0px;
+	text-align: justify;
+	padding:10px;
+	text-align: left;
+	float:left;
+	}	
+
+#imageDeAroba, #imageDeAroba1, #imageDeAroba2, #imageDeAroba3{
+width:80px;
+height:80px;
+float:left;	
+margin: 10px;
+}
+
+#aroba,#aroba1,#aroba2,#aroba3{
+display: inline;
+font-weight: bold;
+padding-left: 10px;	
+}
+#tituloEnvio,#tituloEnvio1,#tituloEnvio2,#tituloEnvio3{
+display: inline;
+font-weight: bold;
+}
+#fechaEnvio,#fechaEnvio1,#fechaEnvio2,#fechaEnvio3{float:right;display:inline}
+
+#titleGanador{font-weight: bold;display: inline;}
+
+#titleEntrada{font-weight: bold;display: inline;}

@@ -1,63 +1,57 @@
 @charset "utf-8";
 
-body {	font-family:Verdana, Geneva, sans-serif; 
-		margin:0;
-	}
+body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../images/template/background.png);}
 
 /* CONTENIDO */
 #container {
-	width:1000px;
+	width:880px;
 	margin:-21px auto 10px auto;
 	padding:10px;
 	}
 	
-#wrapper {
-	width:880px;
-	margin:10px auto 10px auto;
-	padding:10px;
-	}	
-	
-#site-name {display:inline-block;
-			font-size: 1.3em;
-			}
+#site-name {display:inline-block; width:238px;} 
+#site-name {
+	font-family:'Bitter', serif;
+	font-size:30px;
+	}			
+#site-name h1{margin:0;}
 			
 .image{text-align:center}
 
-#contenido{clear: both;}
-#menu {
-	font-size:.9em;
-	font-weight: bold;
-	display:inline-block;
-	margin-top: 25px;
-	float:right;
-	}
 
-#menu li{
+
+#menu-r {
+	font-size:12px;
+	display:inline-block; 
+	vertical-align:top;
+	margin:24px 0 0 150px;
+	float:right;
+
+}
+	
+#menu-r li{
 	list-style:none;
 	display:inline-block;
 	background:#CCC;
 	padding:7px;
-	border-style: inset;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
 	}
-	
-	
-#menu li:hover{ border-style: outset;}
-#menuContenido {
-	font-size:10px;
-	display:inline-block; 
-	margin:20px 0 0 0px;
-	float:right;
-}
-#menuContenido li{
-	list-style:none;
-	display:inline-block;
-	padding:3px;
-}
+#menu-r a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#FFF;
+	}
 
-.topicCategoria{
-font-weight: bold;	
-}
-
+#menu-r a:active{
+	color:#000;
+	}
+#menu-r .seleccionado{
+	text-decoration:underline;
+	color:#FFF;
+}	
+	
 	
 .articulo { font-family: Verdana, Helvetica, Arial; }
 	
@@ -65,11 +59,22 @@ font-weight: bold;
 .seccion {
 	padding:10px;
 	border: 3px solid #333;
+	border-right-color:#CCC;
+	border-bottom-color:#CCC;
+	font-size:12px;
+	color:#FFF;
+	background:url(../images/template/bg_contenido.png);
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+		}
+.sombra_seccion{
+	background:url(../images/template/sombra_modulo.png) no-repeat center top;
+	width:900px;
+	height:23px;
 	margin-bottom:15px;
-	font-size:.9em;
-}
-
-
+	}
+.articulo a{color:#790000;}	
 
 .spec { font-weight: bold; display: inline; }
 
@@ -104,28 +109,81 @@ font-weight: bold;
 	display:inline-block;
 	}
 
-#paginacion a{display:inline-block; background:#CCC; padding:10px; text-decoration:none;  border-style: inset}
 
-#paginacion a:hover{border-style:outset;}
-
-#anterior {float:left;}
-
+#paginacion a{
+	font-family: 'Capriola', sans-serif;
+	display:inline-block; 
+	background:#CCC; 
+	padding:10px;
+	text-decoration:none;
+	color:#000;
+	border:1px solid #666;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	}
+#paginacion a:hover{
+	background:#4D4D4D;
+	color:#FFF;
+	}
+#paginacion a:hover{
+	background:#4D4D4D;
+	color:#FFF;
+	}
+#paginacion a:active{
+	background:#000;
+	}
+#anterior {}
 #siguiente {float:right;}
 
-
-
-#menuCaracteristicas{
-	font-size:10px;
+/*Tipo Vistas */
+#menu-l {
+	font-size:12px;
 	display:inline-block; 
-	margin:20px 0 0 0px;
+	vertical-align:top;
+	margin:24px 0 0 0;
+	float:left;
+
+}
+	
+#menu-l li{
+	list-style:none;
+	display:inline-block;
+	background:#CCC;
+	padding:7px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	}
+#menu-l a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#FFF;
+	}
+
+#menu-l a:active{
+	color:#000;
+	}
+#menu-l .seleccionado{
+	text-decoration:underline;
+	color:#FFF;
+}	
+
+#letras {
+	font-size:12px; color:#fff;
+	display:inline-block; 
+	margin:24px 0 0 110px;
 	float:right;
 }
-#menuCaracteristicas li{
+#letras li{
 	list-style:none;
 	display:inline-block;
 	padding:3px;
 }
 
+#topic{
+font-weight: bold;	
+}
 
 header{
 margin-bottom: 10px;	
@@ -163,16 +221,19 @@ font-size: 30px;
 font-weight: bold; 
 }
 .articulo {
-	padding:10px;
-	border: 1px solid #333;
-	margin-bottom:10px;
-	font-size:12px;
-	text-align: justify;
 	float:right;
 	
 }
 
-.Panel{
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}
+
+.seccion-g{
 	height: 120px;
 	border: 1px solid #333;
 	padding-top: 0;
@@ -206,6 +267,8 @@ padding-left: 10px;
 display: inline;
 font-weight: bold;
 }
-.fechaEnvio{float:right;display:inline}
+.fechaEnvio {float:right;display:inline}
 
-.titleGanador{font-weight: bold;display: inline;}
+#titleGanador{font-weight: bold;display: inline;}
+
+#titleEntrada{font-weight: bold;display: inline;}
