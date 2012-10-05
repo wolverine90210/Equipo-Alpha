@@ -54,7 +54,7 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 .cont{text-align:right; height:60px;}
 
 .boton1 { background:url(../images/template/boton_enviar.png) no-repeat top right;
-		  margin:10px 200px 0 0;
+		  margin:10px 0px 0 10px;
 		  display:block;
           width:116px;
           height:52px}
@@ -162,6 +162,8 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 
 .topic{
 font-weight: bold;
+ margin:0px 0px 0px 10px;
+ display:block;
 	
 }
 
