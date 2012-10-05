@@ -4,7 +4,7 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 
 /* CONTENIDO */
 #container {
-	width:880px;
+	width:900px;
 	margin:-21px auto 10px auto;
 	padding:10px;
 	}
@@ -16,7 +16,7 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 	}			
 #site-name h1{margin:0;}
 			
-.image{text-align:center}
+.image{text-align:center; }
 
 
 
@@ -51,8 +51,18 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 	text-decoration:underline;
 	color:#FFF;
 }	
-	
-	
+.cont{text-align:right; height:60px;}
+
+.boton1 { background:url(../images/template/boton_enviar.png) no-repeat top right;
+		  margin:10px 200px 0 0;
+		  display:block;
+          width:116px;
+          height:52px}
+.boton1:hover {background-position:top center }
+.boton1:active {background-position:top center;}
+.boton1 span{display:none;}
+
+
 .articulo { font-family: Verdana, Helvetica, Arial; }
 	
 	
@@ -133,47 +143,16 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 #paginacion a:active{
 	background:#000;
 	}
-#anterior {}
+#anterior {float:left;}
 #siguiente {float:right;}
 
 /*Tipo Vistas */
-#menu-l {
-	font-size:12px;
-	display:inline-block; 
-	vertical-align:top;
-	margin:24px 0 0 0;
-	float:left;
-
-}
-	
-#menu-l li{
-	list-style:none;
-	display:inline-block;
-	background:#CCC;
-	padding:7px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	}
-#menu-l a{
-	text-decoration:none;
-	font-weight:bold;
-	color:#FFF;
-	}
-
-#menu-l a:active{
-	color:#000;
-	}
-#menu-l .seleccionado{
-	text-decoration:underline;
-	color:#FFF;
-}	
 
 #letras {
 	font-size:12px; color:#fff;
 	display:inline-block; 
-	margin:24px 0 0 110px;
-	float:right;
+	margin:-40px 0 0 -30px;
+	float:left;
 }
 #letras li{
 	list-style:none;
@@ -182,11 +161,13 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 }
 
 .topic{
-font-weight: bold;	
+font-weight: bold;
+	
 }
 
+
 header{
-margin-bottom: 10px;	
+margin-bottom:  10px;	
 }
 
 #enviarEntrada{
