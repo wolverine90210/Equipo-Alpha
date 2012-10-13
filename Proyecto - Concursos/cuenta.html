@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+	
+<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Index - Maquetado Vista de Blog" />
+		<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
+		<meta name="author" content="Equipo Alpha" />
+		<meta http-equiv="refresh" content="160" />
+		<link href="css/general.css" type="text/css" rel="stylesheet" />
+		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+		<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
+		<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
+		<script type="text/javascript" language="javascript">
+			$(document).ready(function(e) {
+				$('#site-name h1').show('slow')
+			$('#menu-l li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
+			});
+		</script>	
+		<script type="text/javascript">
+    		 var disqus_developer = 1; // this would set it to developer mode
+     	</script>
+     	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'equipoalpha'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        </script>
+         
+   		<title>Vista de Detalle</title>
+</head>
+
+<body id="container">
+		
+		<header id="header">
+		<!--	<nav id="menu-l">
+				  	<ul>
+				  		<li class="boton"><a href="" target="_self">Enviar Entrada</a></li>
+						<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
+					</ul>	
+  				</nav> -->
+  
+  				 <nav id="menu-r">
+					<ul>
+						<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
+						<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
+						<li class="boton"><a href="enviar_evento.html" target="_self">RSS</a></li>
+						<li class="boton"><a href="cuenta.html" target="_self">Cuenta</a></li>
+				
+					</ul>
+					
+	   			</nav>
+	   	
+   		</header>	
+	
+	 	<article class="articulo">
+    			
+	  			<h2>Aceptados</h2>
+	  			<div id="aceptados">
+    			<section id="evento1" class="seccion">
+    				<div id="letras1" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				</div>	
+    				<a id="TituloConcurso">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter">#XKCDMX</a>
+   					<p id="textIntroduccion">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    			<input id="eliminar1" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("aceptados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento1.style.display='none';
+    				sombra1.style.display='none';
+    				count++;
+					};
+	
+					document.getElementById("eliminar1").onclick = addInput;
+				</script>
+    			<input id="editar1" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("aceptados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar1").onclick = addInput;
+				</script>
+    			</section>
+    			<div id="sombra1" class="sombra_seccion"></div>
+    			 				
+    			<section id="evento2" class="seccion"><br />
+    				<div id="letras2" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				 </div>	
+    				<a id="TituloConcurso2">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter2">#XKCDMX</a>
+   					<p id="textIntroduccion2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    			+	<input id="eliminar2" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("aceptados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento2.style.display='none';
+    				sombra2.style.display='none';
+    				count++;
+					};
+	
+					document.getElementById("eliminar2").onclick = addInput;
+				</script>
+			<input id="editar2" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("aceptados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar2").onclick = addInput;
+				</script>
+    			
+    			</section>
+    			<div id="sombra2" class="sombra_seccion"></div>
+    			
+			</div>
+		<h2>Rechazados</h2>
+	  			<div id="rechazados">
+	  				
+    			<section id="evento3" class="seccion">
+    				<div id="letras3" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				 </div>	
+    				<a id="TituloConcurso3">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter3">#XKCDMX</a>
+   					<p id="textIntroduccion3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    				<input id="eliminar3" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("rechazados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento3.style.display='none';
+    				sombra3.style.display='none';
+    				count++;
+					};
+	
+					document.getElementById("eliminar3").onclick = addInput;
+				</script>
+    			<input id="editar3" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("rechazados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar3").onclick = addInput;
+				</script>
+    			</section>
+    			<div id="sombra3" class="sombra_seccion"></div>
+    			
+    		
+    			<section id="evento4" class="seccion">
+    				<div id="letras4" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				 </div>	
+    				<a id="TituloConcurso4">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter4">#XKCDMX</a>
+   					<p id="textIntroduccion4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    				<input id="eliminar4" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("rechazados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento4.style.display='none';
+    				sombra4.style.display='none';
+    				count++;
+					};
+	
+					document.getElementById("eliminar4").onclick = addInput;
+				</script>
+    			<input id="editar4" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("rechazados"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar4").onclick = addInput;
+				</script>
+    			</section>
+    			<div id="sombra4" class="sombra_seccion"></div>
+    			
+		</div>
+		<h2>Pendientes</h2>
+		<div id="pendientes">
+    			<section id="evento5" class="seccion">
+    				<div id="letras5" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				 </div>	
+    				<a id="TituloConcurso5">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter5">#XKCDMX</a>
+   					<p id="textIntroduccion5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    				<input id="eliminar5" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("pendientes"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento5.style.display='none';
+    				sombra5.style.display='none';
+    				count++;
+					};
+	
+					document.getElementById("eliminar5").onclick = addInput;
+				</script>
+    			<input id="editar5" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("pendientes"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar5").onclick = addInput;
+				</script>
+    			</section>
+    			<div id="sombra5" class="sombra_seccion"></div>
+    			
+    		
+    			<section id="evento6" class="seccion">
+    				<div id="letras6" class="letras">
+	   					<ul>
+   	   						<li class="topic">Categoría:</li>
+      	   					<li>PHP</li>
+         					<li class="topic">Dificultad:</li>
+	         				<li>Avanzada</li>
+	        				<li class="topic">Inicia:</li>
+	         				<li>20-05-12</li>
+	         				<li class="topic">Termina:</li>
+	         				<li>20-07-12</li>
+   	  					 </ul>
+	  				 </div>	
+    				<a id="TituloConcurso6">Grafos XKCDMX</a>
+   					<a href="http://www.google.com" id="hashtagTwitter6">#XKCDMX</a>
+   					<p id="textIntroduccion6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
+    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    			<input id="eliminar6" type="button" value="Eliminar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("pendientes"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+    				evento6.style.display='none';
+    				sombra6.style.display='none';
+    				
+    				count++;
+					};
+	
+					document.getElementById("eliminar6").onclick = addInput;
+				</script>
+    			<input id="editar6" type="button" value="Editar" class="boton"/><br />
+				<script type="text/javascript">
+					var target = document.getElementById("pendientes"), count = 1, addInput = function() {
+  		    		var input = document.createElement("input");
+  		    		input.setAttribute("type", "tel");
+    				input.setAttribute("name", "phone"+count);
+    				input.setAttribute("id", "phone"+count);
+    				input.setAttribute("requiered", "requiered");
+    				input.setAttribute("placeholder", "Ingrese su telefono");
+    				target.appendChild(input);
+    				count++;
+					};
+	
+					document.getElementById("editar6").onclick = addInput;
+				</script>
+    			</section>
+    			<div id="sombra6" class="sombra_seccion"></div>
+    			
+		</div>
+   		</article>
+    	
+</body>
+</html>
