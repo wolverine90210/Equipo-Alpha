@@ -44,7 +44,3 @@ Para conectar esa librería con los datos de la base de datos se hace por medio 
 Para el manejo de comentarios se utiliza el recurso Disqus
 Para que los usuarios almacenen su código se usa codepad.org
 
-
-LINK DEL SITIO:
-
-http://equipo-alpha.mimostudios.com
