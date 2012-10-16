@@ -105,7 +105,7 @@ function valida_envia() {
 		//si numero_dias < 0 --> se selecciono una fecha anterior como inicio
 		//si numero_dias = 0 --> se selecciono la fecha actual como inicio
 		//si numero_dias > 0 --> se selecciono una fecha posterior como inicio	
-		
+		console.log(numero_dias);
 		 if (numero_dias>0) {
 			ocultaEtiqueta("adv_fechaInicioMal");
 		} else {
@@ -139,11 +139,11 @@ function valida_envia() {
 		//si numero_dias < 0 --> se selecciono una fecha anterior como fin
 		//si numero_dias = 0 --> se selecciono la fecha actual como fin
 		//si numero_dias > 0 --> se selecciono una fecha posterior como fin	
-		
+		console.log(numero_dias);
 		 if (numero_dias>0) {
-			ocultaEtiqueta("adv_fechaInicioMal");
+			ocultaEtiqueta("adv_fechaFinMal");
 		} else {
-			muestraEtiqueta("adv_fechaInicioMal");
+			muestraEtiqueta("adv_fechaFinMal");
 		}
 	}
 
@@ -211,8 +211,8 @@ function crearCampos(obj) {
 	//su respectivo boton para agregarla
 	elementoBoton = document.createElement('input');
 	elementoBoton.type = 'file';
-	elementoBoton.setAttribute('accept','image/*');
 	elementoBoton.value = 'AgregarImagen';
+	elementoBoton.setAttribute('accept','image/*');
 	elementoBoton.name = 'boton' + contador;
 	elementoContenedor.appendChild(elementoBoton);
 
