@@ -211,6 +211,7 @@ function crearCampos(obj) {
 	//su respectivo boton para agregarla
 	elementoBoton = document.createElement('input');
 	elementoBoton.type = 'file';
+	elementoBoton.setAttribute('accept','image/*');
 	elementoBoton.value = 'AgregarImagen';
 	elementoBoton.name = 'boton' + contador;
 	elementoContenedor.appendChild(elementoBoton);
