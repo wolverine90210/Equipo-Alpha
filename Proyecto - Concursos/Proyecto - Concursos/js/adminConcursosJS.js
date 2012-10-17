@@ -1,6 +1,9 @@
 
 function acceptContest(){
 
+	document.getElementById("bCancelDec").style.display = "block";
+
+	
 	if(document.getElementById("mensaje_rechazado").style.display == "block"){
 		document.getElementById("mensaje_rechazado").style.display="none";
 		document.getElementById("bRechazado").style.display="block";
@@ -16,16 +19,20 @@ function acceptContest(){
 	document.getElementById("bAceptado").style.display="none";
 	document.getElementById("comments").style.display = "none";
 	
-	/*var array = document.getElementsByTagName("fieldset");
-	var f = array[0];
-	f.parentNode.removeChild(f);*/
-	var reason = document.getElementById(fieldser);
+	
+	var reason = document.getElementById("reason");
 	reason.parentNode.removeChild(reason);
 	
 }
 
 
 function cancelContest(){
+
+	if(document.getElementById("div_edit").style.display == "block")
+		document.getElementById("div_edit").style.display = "none";
+
+	document.getElementById("bCancelDec").style.display = "block";
+
 
 	if(document.getElementById("mensaje_aceptado").style.display == "block")
 		document.getElementById("mensaje_aceptado").style.display="none"
@@ -40,10 +47,25 @@ function cancelContest(){
 	
 }
 
+
+
 function sendReasons(){
 
 	document.getElementById("error_comment").style.display = "none";
 
+	var reasons = document.getElementsByTagName("fieldset");
+	
+	var k = 0;
+	if(reasons != null)
+	for(i in reasons){
+		if(reasons[i].id == "reason"){
+			k++;
+			}
+		}
+		
+	if(k != 0)
+		reasons[0].parentNode.removeChild(reasons[0]);
+	
 	if(!(document.getElementById("textarea").value.length <= 10)){
 	
 		var fieldset = document.createElement("fieldset");
@@ -86,9 +108,53 @@ function sendReasons(){
 	
 }
 
+
+
+var cancel;
 var bID = 0;
 
+function cancelDecision(){
+
+	document.getElementById("bCancelDec").style.display = "none";
+
+	if(document.getElementById("mensaje_aceptado").style.display == "block"){
+		document.getElementById("mensaje_aceptado").style.display = "none";
+		document.getElementById("bAceptado").style.display = "block";
+		}
+	else	
+		if(document.getElementById("mensaje_rechazado").style.display == "block"){
+			document.getElementById("textarea").value = "";
+			document.getElementById("comments").style.display = "none";
+			document.getElementById("mensaje_rechazado").style.display = "none";
+			document.getElementById("div_r").style.display = "none";
+			document.getElementById("bRechazado").style.display = "block";
+			}
+		else
+			if(document.getElementById("comments").style.display == "block"){
+				document.getElementById("comments").style.display = "none";
+				
+				}
+		
+		if(document.getElementById("div_edit").style.display == "block"){
+			document.getElementById("div_edit").style.display = "none";
+			var del = document.getElementById("bID"+bID);
+			del.parentNode.removeChild(del.previousSibling);
+			del.parentNode.removeChild(del);
+			cancel = true;
+			}
+
+}
+
+
+
+
+
 function editContest(){
+
+	if(document.getElementById("div_edit").style.display != "block"){
+	
+	document.getElementById("bCancelDec").style.display = "block";
+	
 
 	document.getElementById("div_edit").style.display = "block";
 	
@@ -105,16 +171,16 @@ function editContest(){
 	
 	for(i in arrayOpt){
 		if(arrayOpt[i].innerHTML == optText){
-			arrayOpt[i].setAttribute('selected','selected');
+			//arrayOpt[i].setAttribute('selected','selected');
 						
 			var cat = document.createTextNode(optText);
 			var opt = document.createElement("option");
 			
 			opt.appendChild(cat);
 			opt.setAttribute('value',arrayOpt[i].value);
-			opt.setAttribute('selected', 'selected')
+			//opt.setAttribute('selected', 'selected')
 	
-			var list = document.getElementById("list_cat");
+			var list = document.getElementById("e1");
 			list.appendChild(opt);
 			
 			arrayOpt[i].parentNode.removeChild(arrayOpt[i]);			
@@ -122,28 +188,6 @@ function editContest(){
 			}
 	}
 	
-	
-	optText = document.getElementById("pDif").innerHTML;
-	arrayOpt = document.getElementsByTagName("option");
-	
-	for(i in arrayOpt){
-		if(arrayOpt[i].innerHTML == optText){
-			arrayOpt[i].setAttribute('selected','selected');
-						
-			var cat = document.createTextNode(optText);
-			var opt = document.createElement("option");
-			
-			opt.appendChild(cat);
-			opt.setAttribute('value',arrayOpt[i].value);
-			opt.setAttribute('selected', 'selected')
-	
-			var list = document.getElementById("list_dif");
-			list.appendChild(opt);
-			
-			arrayOpt[i].parentNode.removeChild(arrayOpt[i]);			
-			break;
-			}
-	}
 	
 	var div_imgs = document.getElementById("images");
 	var p = document.createElement("p");
@@ -159,7 +203,7 @@ function editContest(){
 		
 				bDelete = document.createElement("input");
 				bDelete.setAttribute('type','button');
-				bDelete.setAttribute('id',++bID);
+				bDelete.setAttribute('id','bID' + (++bID));
 				bDelete.setAttribute('value','Borrar');
 				bDelete.setAttribute('onClick','deleteImage()');
 				div_imgs.appendChild(bDelete);
@@ -167,7 +211,10 @@ function editContest(){
 		}
 	}
 	
+	}
 }
+
+
 
 
 function deleteImage(){
@@ -221,15 +268,15 @@ function makeChanges(){
 			return 0;
 		}
 		
-	if(document.getElementById("list_cat").selectedIndex == 0){
+	if(document.getElementById("e1").selectedIndex == 0 ){
 		document.getElementById("error_categoria").style.display='block';
-		document.form_edit.list_cat.focus();
+		document.form_edit.e1.focus();
 		return 0;
 	}
 	
-	if(document.getElementById("list_dif").selectedIndex == 0){
+	if(!(document.form_edit.dificultad[0].checked || document.form_edit.dificultad[1].checked || document.form_edit.dificultad[2].checked)){
 		document.getElementById("error_dificultad").style.display='block';
-		document.form_edit.list_dif.focus();
+		document.form_edit.dificultad[0].focus();
 		return 0;
 	}
 	
@@ -259,26 +306,26 @@ function makeChanges(){
 	
 	/*Validación de fechas*/
 	
-	if(document.getElementById("fini").value == ""){
+	if(document.getElementById("datepicker").value == ""){
 		document.getElementById("error_fechas").style.display='block';
-		document.form_edit.fini.focus();
+		document.form_edit.datepicker.focus();
 		return 0;
 	}
 	
-	if(document.getElementById("ffinal").value == ""){
+	if(document.getElementById("datepicker2").value == ""){
 		document.getElementById("error_fechas").style.display='block';
-		document.form_edit.ffinal.focus();
+		document.form_edit.datepicker2.focus();
 		return 0;
 	}
 	
 	
-	var fecha_inic = document.getElementById("fini").value;
-	var fecha_fin = document.getElementById("ffinal").value;
+	var fecha_inic = document.getElementById("datepicker").value;
+	var fecha_fin = document.getElementById("datepicker2").value;
 	var fecha_crea = document.getElementById("fcreacion").value;
 	
-	var arrayi = fecha_inic.split("/");
-	var arrayf = fecha_fin.split("/");
-	var arrayc = fecha_crea.split("/");
+	var arrayi = fecha_inic.split("-");
+	var arrayf = fecha_fin.split("-");
+	var arrayc = fecha_crea.split("-");
 	
 	var fecha_actual = new Date();
 	var dia = fecha_actual.getDate();
@@ -362,7 +409,7 @@ function makeChanges(){
 	
 	/******************/
 	
-	text = document.createTextNode(document.getElementById("list_cat")[document.getElementById("list_cat").selectedIndex].innerHTML);
+	text = document.createTextNode(document.getElementById("e1")[document.getElementById("e1").selectedIndex].innerHTML);
 	name = document.getElementById("pCat");
 	name.parentNode.removeChild(name);
 	
@@ -374,7 +421,7 @@ function makeChanges(){
 	
 	/******************/
 	
-	text = document.createTextNode(document.getElementById("list_dif")[document.getElementById("list_dif").selectedIndex].innerHTML);
+	text = document.createTextNode(document.getElementById("e1")[document.getElementById("e1").selectedIndex].innerHTML);
 	name = document.getElementById("pDif");
 	name.parentNode.removeChild(name);
 	
@@ -398,7 +445,7 @@ function makeChanges(){
 	
 	/******************/
 	
-	text = document.createTextNode(document.getElementById("fini").value);
+	text = document.createTextNode(document.getElementById("datepicker").value);
 	name = document.getElementById("pFinic");
 	name.parentNode.removeChild(name);
 	
@@ -410,7 +457,7 @@ function makeChanges(){
 	
 	/******************/
 	
-	text = document.createTextNode(document.getElementById("ffinal").value);
+	text = document.createTextNode(document.getElementById("datepicker2").value);
 	name = document.getElementById("pFfin");
 	name.parentNode.removeChild(name);
 	
@@ -429,7 +476,7 @@ function makeChanges(){
 
 
 
-var listValue = 10;
+var listValue = 18;
 
 function addCategory(){
 
@@ -461,8 +508,9 @@ function addCategory(){
 		opt.setAttribute('value',++listValue);
 		opt.setAttribute('selected', 'selected')
 	
-		var list = document.getElementById("list_cat");
+		var list = document.getElementById("e1");
 		list.appendChild(opt);
+		document.getElementById("new_cat").value = "";
 	}
 	else{
 		document.getElementById("error_nueva_categoria").style.display='block';

@@ -25,32 +25,96 @@
 			});
 		
 	</script>	
-
 	
-	<!-- Scripts de JQuery y el plugin del calendario -->
-	<script type="text/javascript" src="calendario_dw/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="calendario_dw/calendario_dw.js"></script> 
-	
-	<!-- Hoja de estilos del calendario -->
-	<link rel="stylesheet" href="calendario_dw/calendario_dw-estilos.css" type="text/css"/>
-
-	<meta charset="UTF-8" />
-	<meta name="description" content="Practica 11 - Calendario con JS o JQuery" />
-	<meta name="keywords" content="correo, usuario, avatar, contraseña, dirección, teléfono, fecha de nacimiento, sexo, enviar, limpiar" />
-	<meta name="author" content="Iván Antonio Corona Zárate" />
-	<meta http-equiv="refresh" content="300" />
 	
 	<!-- Script Javascript que invoca el plugin jQuery para hacer que el campo de texto se convierta en un calendario.  -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".campofecha").calendarioDW();
-		})
-	</script>
+	
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+    <link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.purr.js"></script>
+	
+	 	<script type="text/javascript" >
+	 jQuery(function($) {
+		$.datepicker.regional['es'] = {
+			closeText : 'Cerrar',
+			prevText : 'Anterior',
+			nextText : 'Siguiente',
+			currentText : 'Hoy',
+			monthNames : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			monthNamesShort : ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+			dayNames : ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort : ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+			dayNamesMin : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+			weekHeader : 'Sm',
+			dateFormat : 'dd-mm-yy',
+			firstDay : 1,
+			numberOfMonths : 1,
+			isRTL : false,
+			yearSuffix : ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['es']);
+	});
+	$(document).ready(function(e) {
+		$("#e1").select2();
+		$('.show-example').click( function (){
+						var notice = '<div class="notice">'
+								  + '<div class="notice-body">' 
+									  + '<img src="images/purr-example/info.png" alt="" />'
+									  + '<h3>Purr Example</h3>'
+									  + '<p>This a normal Purr. It will fade out on its own.</p>'
+								  + '</div>'
+								  + '<div class="notice-bottom">'
+								  + '</div>'
+							  + '</div>';
+							  
+						$( notice ).purr(
+							{
+								usingTransparentPNG: true
+							}
+						);
+						 
+						return false;
+						
+					}
+				);
+		$(function() {
+			$("#datepicker").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				onSelect : function(dateText, inst) {
+					var lockDate = new Date($('#txtStartDate').datepicker('getDate'));
+					lockDate.setDate(lockDate.getDate() + 1);
+				}
+			});
+			$("#datepicker2").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				onSelect : function(dateText, inst) {
+				}
+			});
+
+		});
+	});
+		</script>
 	
 	<!-- Para el Cross-Browser Rich Text Editor -->
 	
 	<script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
+	
+	<!-- Para el select2 3.2 -->
+	
+	<script src="js/select2.js"></script>
+    <script src="js/select2.min.js"></script>
+	
+	<link href="css/select2.css" rel="stylesheet"/>
+	
+	<script>
+		$(document).ready(function() { $("#e1").select2(); });
+	</script>
+	
+
 	
 	<title>Concursos de Programación</title>		
 </head>
@@ -68,7 +132,6 @@
 				<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
 				<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
 				<li class="boton"><a href="404.shtml" target="_self">RSS</a></li>
-				<li class="boton"><a href="cuenta.html" target="_self">Cuenta</a></li>
 				
 			</ul>
 		
@@ -85,7 +148,7 @@
 			
 			<div class="concurso" id="div_name"><p id="concurso_name">Grafos XKCDMX</p></div>
 
-			<div class="features"><div class="spec">Categoría: </div><div class="spec_content" id="div_cat"><p id="pCat">PHP</p></div> <div class="spec"> Dificultad: </div> <div class="spec_content" id="div_dif"><p id="pDif">Avanzado</p></div><div class="spec"> Inicia: </div> <div class="spec_content" id="div_Finic"><p id="pFinic">12/09/12</p></div> <div class="spec"> Termina: </div> <div class="spec_content" id="div_Ffin"><p id="pFfin">20/09/12</p></div> </div>
+			<div class="features"><div class="spec">Categoría: </div><div class="spec_content" id="div_cat"><p id="pCat">PHP</p></div> <div class="spec"> Dificultad: </div> <div class="spec_content" id="div_dif"><p id="pDif">Alta</p></div><div class="spec"> Inicia: </div> <div class="spec_content" id="div_Finic"><p id="pFinic">12/09/12</p></div> <div class="spec"> Termina: </div> <div class="spec_content" id="div_Ffin"><p id="pFfin">20/09/12</p></div> </div>
 			<div class="clear"></div>
 			<a href="http://www.google.com" id="hashtag"><p id="pHash">#XKCDMX</p></a>
 			
@@ -114,6 +177,8 @@
 			<input type="button" id="bAceptado" name="aceptado" value="Aceptar concurso" onClick="acceptContest()" class="button"/>
 			
 			<input type="button" id="bRechazado" name="rechazado" value="Cancelar concurso" onClick="cancelContest()" class="button"/>
+			
+			<input type="button" id="bCancelDec" name="cancelado" value="Cancelar decisión" onClick="cancelDecision()" class="button"/>
 			
 			<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
 
@@ -179,24 +244,36 @@
 				
 				<br /><br /><br />
 				
+				<div style="width:350px;">
 				<label for="categoria">Categoría: </label>				
-				<select id="list_cat">
-					<option selected value="0"> <strong>Eliga una opción: </strong></option>
-					<option value="1">Java</option> 
-					<option value="2">JavaScript</option> 
-					<option value="3">PHP</option>
-					<option value="4">C</option>
-					<option value="5">C++</option>
-					<option value="6">C#</option>
-					<option value="7">Python</option>
-					<option value="8">Pearl</option>
-					<option value="9">Ruby</option>
-					<option value="10">Abierto</option>
+				<select id="e1">
+					<option value="0" selected="selected"> <strong>Seleccione una categoría:</strong></option>
+					<option value="1">Libre</option>
+        			<option value="2">C</option>
+        			<option value="3">C++</option>
+        			<option value="4">ENSAMBLADOR</option>
+        			<option value="5">Haskell</option>
+					<option value="6">HTML5</option>
+        			<option value="7">Java</option>
+        			<option value="8">JavaScript</option>
+        			<option value="9">Libre</option>
+        			<option value="10">Lisp</option>
+        			<option value="11">Pascal</option>
+        			<option value="12">Perl</option>
+        			<option value="13">PHP</option>
+					<option value="14">Prolog</option>
+        			<option value="15">XML</option>
+					<option value="16">Phyton</option>
+					<option value="17">Ruby</option>
+					<option value="18">Phyton</option>
 				</select>
+				</div>
 				&nbsp &nbsp &nbsp &nbsp
+				<div style="float:right">
 				<label for="nueva_cat">Nueva categoría: </label>
 				<input type="text" id="new_cat" name="nueva_cat" />
 				<input type="button" id="acceptCat" name="acceptCat" value="Aceptar" onClick="addCategory()" />
+				</div>
 				
 				<div id="error_categoria" class="div_error">
 					<p>¡Seleccione una categoría para el concurso!</p>
@@ -206,15 +283,20 @@
 					<p>¡Escriba una categoría nueva para el concurso (menor a 20 caracteres)! Procure no repetirlas. </p>
 				</div>
 				
-				<br /><br />
+				<br /><br /><br />
 				
-				<label for="diff">Dificultad: </label>
-				<select id="list_dif">
-					<option selected value="0"> Eliga una opción: </option>
-					<option value="1">Básico</option> 
-					<option value="2">Intermedio</option> 
-					<option value="3">Avanzado</option>
-				</select>
+				<label for="diff">Dificultad: </label><br /><br />
+				<div id="radios">
+					<input type="radio" id="radio-1-1" name="dificultad" class="regular-radio" />
+					<label for="radio-1-1"> </label><label class="labelRadios"> Básica</label>
+					<br />
+					<input type="radio" id="radio-1-2" name="dificultad" class="regular-radio" />
+					<label for="radio-1-2"> </label><label class="labelRadios"> Intermedia</label>
+					<br />
+					<input type="radio" id="radio-1-3" name="dificultad" class="regular-radio" />
+					<label for="radio-1-3"> </label><label class="labelRadios"> Alta</label>
+					<br />
+				</div>
 				
 				<div id="error_dificultad" class="div_error">
 					<p>¡Seleccione una dificultad para el concurso!</p>
@@ -274,6 +356,7 @@
 					//build new richTextEditor
 					var rte1 = new richTextEditor('rte1');
 					rte1.html = document.getElementById("pCont").innerHTML;
+						
 		
 					//enable all commands 
 					rte1.cmdFormatBlock = true;
@@ -329,18 +412,18 @@
 				
 				<br /><br />
 				
-				<label for="fini" >Fecha de inicio: </label>
-				<input type="text" id="fini" name="fini" class="campofecha" size="12" required>
+				<label for="datepicker" >Fecha de inicio: </label>
+				<input type="text" id="datepicker" name="fini" class="campofecha" size="12" required>
 				
 				&nbsp &nbsp &nbsp &nbsp
 				
-				<label for="ffinal" >Fecha de finalización: </label>
-				<input type="text" id="ffinal" name="ffinal" class="campofecha" size="12" required>
+				<label for="datepicker2" >Fecha de finalización: </label>
+				<input type="text" id="datepicker2" name="ffinal" class="campofecha" size="12" required>
 				
 				<br /><br /><br />
 					
 				<label for="fcreacion" >Fecha de creación: </label>
-				<input type="text" id="fcreacion" name="fcreacion" size="12" value="13/10/2012" disabled />
+				<input type="text" id="fcreacion" name="fcreacion" size="12" value="13-10-2012" disabled />
 				
 				
 				<div id="error_fechas" class="div_error">
@@ -386,8 +469,8 @@
 	<footer id="paginacion">
 		
 		<br />
-		<a id="anterior" href="antDoc.html">Anterior</a>
-		<a id="siguiente" href="sigDoc.html">Siguiente</a>
+		<a id="anterior" href="pagAnt.html">Anterior</a>
+		<a id="siguiente" href="pagSig.html">Siguiente</a>
 		<div class="clear"></div>
 		
 	</footer>

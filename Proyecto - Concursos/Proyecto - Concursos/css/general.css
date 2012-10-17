@@ -253,6 +253,7 @@ font-weight: bold;
 
 #titleEntrada{font-weight: bold;display: inline;}
 
+
 /* RADIO */
 
 .regular-radio {
@@ -295,24 +296,21 @@ font-weight: bold;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
 
-.big-radio + label {
-	padding: 16px;
-}
-
-.big-radio:checked + label:after {
-	width: 24px;
-	height: 24px;
-	left: 4px;
-	top: 4px;
-}
-
 
 /****** Admnistración de concursos ******/
 
-fieldset input[type="text"], select {
-	border-radius:5px;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
+fieldset input[type="text"] {
+	background-color: #ececec;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #454545;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid transparent;
+    border-radius: 5px; 
 	}
 
 #hashtag { 
@@ -330,6 +328,10 @@ fieldset input[type="text"], select {
 	float:left; 
 	height:35px;
 	}
+	
+#bCancelDec { display: none; }
+
+#bEditar{ float: right; }
 
 .div_mensaje{
 	clear:both;
