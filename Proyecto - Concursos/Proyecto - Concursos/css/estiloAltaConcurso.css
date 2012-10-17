@@ -75,7 +75,7 @@ font-size: 25px;
 
 #datosBasicos{
 width: 100%;
-height: 220px;
+height: 260px;
 margin: 20px 0px 0px 10px;
 border-radius: 10px;
 border-top: 2px solid black;
@@ -112,7 +112,7 @@ padding: 5px;
 margin-top: 15px;
 }
 
-#organizador{
+#organizadorConcurso{
 display: block;
 width:650px; 
 max-width:100%;
@@ -225,12 +225,18 @@ text-align: left;
 font-size: 20px;
 }
 
-.labError{
-color:red;
-font-weight:bold;
-font-size:12px;
-width: 100%;
-background-color:yellow;
+.div_error{
+background-color: #FFFF99;
+color: red;
+font-weight: bold;
+font-size: 1em;
+border-style: solid;
+margin-top: 20px;
+padding-left: 10px;
+border-radius:5px;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+display: none;
 
 }
 .calendario{

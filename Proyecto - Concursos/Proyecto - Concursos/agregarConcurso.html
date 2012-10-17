@@ -106,18 +106,18 @@
 		<section class="seccion">
 			<form name="addConcurso" method="post" action="agregarConcurso.html">			
 			<div id="nombre-concurso">
-					<label class="labError" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
+					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
 					<input  type="text"  id="nombreConcurso" name=""/>
 			</div>
 			<div id='hashtagDiv'>
-					<label class="labError" id="adv_hashtag" style="display: none">Teclee un hashtag para Twitter(#mihashtag)</label>
+					<label class="div_error" id="adv_hashtag" style="display: none">Teclee un hashtag para Twitter(#mihashtag)</label>
 					<label id="hashtagLabel">hashtag:</label>
 					<input  type="text" id="hashTwitter" placeholder="#nombreConcurso"onfocus="this.value='';"/>
 			</div>
 			<section id="datosBasicos"> 
 			<div id="radiosWrapper">
-				<label class="labError" id="adv_radio" style="display: none">No se ha seleccionado dificultad</label>
+				<label class="div_error" id="adv_radio" style="display: none">No se ha seleccionado dificultad</label>
 				<label class="subtitulos" id="dificultad">Seleccione un nivel de dificultad</label>
 				<div id="radios"class="button-holder">
 					<input type="radio" id="radio-1-1" name="dificultad" class="regular-radio" />
@@ -132,8 +132,8 @@
 				</div>
 			</div>
 			<div id="categoriaWrapper">
-				<label class="labError" id="adv_categoria" style="display: none">Seleccione una categoria</label>
-				<label  class="subtitulos" id="categoria">Seleccione una categoria</label>
+				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
+				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
 				 <select id="e1" selected="selected">
         				<option value="vw">Seleccione una</option>
         				<option value="vw">Libre</option>
@@ -158,14 +158,14 @@
 			</div>
 			
 			<div id="fechaInicial">
-				<label class="labError" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
-				<p class="subtitulos">Fecha Inicio:</p>			
+				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
+				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
+				<p class="subtitulos">Fecha Inicio:</p>	
     			<input type="text" id="datepicker" class="calendario">
-				<label class="labError" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
-		    	<label class="labError" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
  				<p class="subtitulos">Fecha Fin:</p>
+				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
+				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
  				<input type="text" id="datepicker2"  class="calendario">
- 				<label class="labError" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>
  				<!--Fecha de creacion hidden -->
  				<input type="text" id="datepicker3" style="display: none">
 			</div>
@@ -175,7 +175,7 @@
 			<div style="clear:both;height:50px;"> </div>
 			
 		    <p class = "titulos">Este concurso es organizado por: </p>
-		    <div id="organizador">
+		    <div class="organizadorConcurso">
 		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
 		    	<a href="http://www.google.com" id="aroba">@levhita</a>  
 		    	<div style="clear:both"> </div>
@@ -184,7 +184,7 @@
 			<div style="clear:both"> </div>	
 			
 			<p class="titulos">Agregar imagen(es)</p>
-			<label class="labError" id="adv_imagen" style="display: none">Seleccione almenos una imagen</label>
+			<label class="div_error" id="adv_imagen" style="display: none">Seleccione almenos una imagen</label>
 			<fieldset id="campoField">
 				<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
 				<input id="imagen" name="cargarImagen" type="file" accept="image/*" required="required" />
@@ -196,7 +196,7 @@
 			
 			<p class="titulos">Agregue una descripción para el concurso</p>
 			<p id="tit-proposito"class="subtitulos" style="text-align: center">(de que se va a tratar)</p>
-			<label class="labError" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
+			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
 			<div id="richText">
 			<form name="RTEDemo" action="vistaDetalle.html" method="post" onsubmit="return submitForm();">
 				<script  type="text/javascript">
