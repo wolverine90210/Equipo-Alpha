@@ -145,6 +145,22 @@ function cancelDecision(){
 
 }
 
+function cancelEdit(){
+
+	if(document.getElementById("div_edit").style.display == "block"){
+			document.getElementById("div_edit").style.display = "none";
+			var del = document.getElementById("bID"+bID);
+			del.parentNode.removeChild(del.previousSibling);
+			del.parentNode.removeChild(del);
+			cancel = true;
+			
+			var del = document.getElementById("bCancelDec");
+			del.style.display = "none";
+			
+			}
+
+}
+
 
 
 
