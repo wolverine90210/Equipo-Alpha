@@ -1,3 +1,82 @@
+//Agregar inputs para subir mas imagenes
+			
+contador = 1;
+function crearCampos(obj) {
+	contador++;
+	field = document.getElementById('campoField');
+	elementoContenedor = document.createElement('div');
+	elementoContenedor.id = 'div' + contador;
+	field.appendChild(elementoContenedor);
+
+	//crea una etiqueta no visible de error
+	//por cada input de imagen que se agregue
+	elementoEtiqueta = document.createElement('label' + contador);
+	elementoEtiqueta.name = 'adv_imagen' + contador;
+	elementoEtiqueta.id = 'adv_imagen' + contador;
+	elementoEtiqueta.className = 'div_error';
+	elementoEtiqueta.style.display = 'none';
+	var texto = document.createTextNode("Suba una archivo de imagen");
+	elementoEtiqueta.appendChild(texto);
+	elementoContenedor.appendChild(elementoEtiqueta);
+
+	//labels para los input de nueva imagen
+
+	elementoEtiqueta = document.createElement('label');
+	elementoEtiqueta.className = 'subtitulos';
+	texto = document.createTextNode("Imagen # " + contador + " ");
+	elementoEtiqueta.appendChild(texto);
+	elementoContenedor.appendChild(elementoEtiqueta);
+
+	//su respectivo boton para agregarla
+	elementoBoton = document.createElement('input');
+	elementoBoton.id = 'imagenUp'+contador;
+	elementoBoton.type = 'file';
+	elementoBoton.value = 'Agregar otra Imagen';
+	elementoBoton.setAttribute('accept','image/*');
+	elementoBoton.name = 'boton' + contador;
+	elementoContenedor.appendChild(elementoBoton);
+
+	//su respectivo boton para borrarlo
+	elementoBoton = document.createElement('input');
+	elementoBoton.type = 'button';
+	elementoBoton.value = 'borrar';
+	elementoBoton.name = 'div' + contador;
+	elementoBoton.onclick = function() {
+		borrarCampo(this.name)
+
+	}
+	elementoContenedor.appendChild(elementoBoton);
+}
+
+function borrarCampo(obj) {
+	field = document.getElementById('campoField');
+	field.removeChild(document.getElementById(obj));
+	contador--;
+}
+
+function borrarResultados(){
+	
+}
+
+function agregarResultados(datosEditor) {
+
+	field = document.getElementById('richText');
+	elementoContenedor = document.createElement('div');
+	elementoContenedor.id = 'div' + contador;
+	elementoContenedor.style.background = 'red';
+	elementoContenedor.style.width = '774px';
+	elementoContenedor.style.height = '286px';
+	elementoContenedor = document.createElement('pre');
+	var texto = document.createTextNode(datosEditor);
+	elementoEtiqueta.appendChild(texto);
+	field.appendChild(elementoContenedor); 
+
+}
+	
+
+
+
+
 //borrar todas las etiquetas
 function clearAll(){
 	//adv -> advertencia
@@ -153,15 +232,37 @@ function valida_envia() {
 	
 	
 	
+	
 	//input file
-			
-	if (document.addConcurso.imagen.value.length == 0) {
-		muestraEtiqueta("adv_imagen");
-	} else {
-		ocultaEtiqueta("adv_imagen");
-	}
+	
+	var extensiones_permitidas = new Array(".gif", ".jpg", ".png", ".bmp",".dib",".tga",".tif",".tiff",".pcx",".pic",".emf",".ico",".raw",".xcf",".eps",".pcx",".wmp",".jp2");
 
+//validar todos los campos de imagen generados
+	
+	var inputsImage = document.getElementsByTagName("input");
+	var extension;
+	var imgPermitida = false;
+	var numero_para_etiqueta = 0;
 
+		for(elemento in inputsImage){
+			if(inputsImage[elemento].type == "file"){
+				numero_para_etiqueta =inputsImage[elemento].id.substring(8,inputsImage[elemento].length);
+				extension = (inputsImage[elemento].value.substring(inputsImage[elemento].value.lastIndexOf("."))).toLowerCase();
+				for(var i=0; i<extensiones_permitidas.length; i++){
+					if(extensiones_permitidas[i] == extension){
+						imgPermitida = true;
+						break;
+					}
+				}
+				if(inputsImage[elemento].value == 0 || imgPermitida == false)
+					muestraEtiqueta("adv_imagen"+numero_para_etiqueta);
+				else{
+					imgPermitida = false;
+					ocultaEtiqueta("adv_imagen"+numero_para_etiqueta);
+				}
+			}
+		}
+		
  //validar editor
  document.RTEDemo.rte1.value;
  
@@ -173,92 +274,6 @@ function valida_envia() {
 	}
 
 document.addConcurso.submit(); 
-//document.getElementById("algo").submit();
-
-
 }
-
-
-//Agregar inputs para subir mas imagenes
 			
-contador = 1;
-function crearCampos(obj) {
-	contador++;
-	field = document.getElementById('campoField');
-	elementoContenedor = document.createElement('div');
-	elementoContenedor.id = 'div' + contador;
-	field.appendChild(elementoContenedor);
-
-	//crea una etiqueta no visible de error
-	//por cada input de imagen que se agregue
-	elementoEtiqueta = document.createElement('label' + contador);
-	elementoEtiqueta.name = 'advError' + contador;
-	elementoEtiqueta.id = 'advError' + contador;
-	elementoEtiqueta.className = 'error';
-	elementoEtiqueta.style.display = 'none';
-	var texto = document.createTextNode("Teclea un telefono valido");
-	elementoEtiqueta.appendChild(texto);
-	elementoContenedor.appendChild(elementoEtiqueta);
-
-	//labels para los input de nueva imagen
-
-	elementoEtiqueta = document.createElement('label');
-	elementoEtiqueta.id = 'imagen' + contador;
-	texto = document.createTextNode("IMAGEN " + contador + " ");
-	elementoEtiqueta.appendChild(texto);
-	elementoContenedor.appendChild(elementoEtiqueta);
-
-	//su respectivo boton para agregarla
-	elementoBoton = document.createElement('input');
-	elementoBoton.type = 'file';
-	elementoBoton.value = 'AgregarImagen';
-	elementoBoton.setAttribute('accept','image/*');
-	elementoBoton.name = 'boton' + contador;
-	elementoContenedor.appendChild(elementoBoton);
-
-	//su respectivo boton para borrarlo
-	elementoBoton = document.createElement('input');
-	elementoBoton.type = 'button';
-	elementoBoton.value = 'borrar';
-	elementoBoton.name = 'div' + contador;
-	elementoBoton.onclick = function() {
-		borrarCampo(this.name)
-
-	}
-	elementoContenedor.appendChild(elementoBoton);
-}
-
-function borrarCampo(obj) {
-	field = document.getElementById('campoField');
-	field.removeChild(document.getElementById(obj));
-	contador--;
-}
-
-function borrarResultados(){
 	
-}
-
-function agregarResultados(datosEditor) {
-
-	field = document.getElementById('richText');
-	elementoContenedor = document.createElement('div');
-	elementoContenedor.id = 'div' + contador;
-	elementoContenedor.style.background = 'red';
-	elementoContenedor.style.width = '774px';
-	elementoContenedor.style.height = '286px';
-	elementoContenedor = document.createElement('pre');
-	var texto = document.createTextNode(datosEditor);
-	elementoEtiqueta.appendChild(texto);
-	field.appendChild(elementoContenedor); 
-
-}
-
-
-			
-			
-			
-			
-			
-			
-
-			
