@@ -1,0 +1,397 @@
+@charset "utf-8";
+
+body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../images/template/background.png);}
+
+/* CONTENIDO */
+#container {
+	width:900px;
+	margin:-21px auto 10px auto;
+	padding:10px;
+	}
+	
+#site-name {display:inline-block; width:238px;} 
+#site-name {
+	font-family:'Bitter', serif;
+	font-size:30px;
+	}			
+#site-name h1{margin:0;}
+			
+.image{text-align:center; }
+
+
+
+#menu-r {
+	font-size:12px;
+	display:inline-block; 
+	vertical-align:top;
+	margin:24px 0 0 150px;
+	float:right;
+
+}
+	
+#menu-r li{
+	list-style:none;
+	display:inline-block;
+	background:#CCC;
+	padding:7px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	}
+#menu-r a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#FFF;
+	}
+
+#menu-r a:active{
+	color:#000;
+	}
+#menu-r .seleccionado{
+	text-decoration:underline;
+	color:#FFF;
+}	
+.cont{text-align:right; height:60px;}
+
+.boton1 { background:url(../images/template/boton_enviar.png) no-repeat top right;
+		  margin:10px 0px 0 10px;
+		  display:block;
+          width:116px;
+          height:52px}
+.boton1:hover {background-position:top center }
+.boton1:active {background-position:top center;}
+.boton1 span{display:none;}
+
+
+.articulo { font-family: Verdana, Helvetica, Arial; }
+	
+	
+.seccion {
+	padding:10px;
+	border: 3px solid #333;
+	border-right-color:#CCC;
+	border-bottom-color:#CCC;
+	font-size:12px;
+	color:#FFF;
+	background:url(../images/template/bg_contenido.png);
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+		}
+.sombra_seccion{
+	background:url(../images/template/sombra_modulo.png) no-repeat center top;
+	width:900px;
+	height:23px;
+	margin-bottom:15px;
+	}
+.articulo a{color:#790000;}	
+
+.spec { font-weight: bold; display: inline; }
+
+
+.spec_content { display:inline-block; }
+
+
+
+.features {
+	display:inline-block;
+	float:right;
+	margin:10px;
+	}
+
+
+.ver_mas {
+	display: inline-block; 
+	float: right;
+	}
+
+
+.entrada {
+	display: inline-block;
+	float: left;
+}
+
+
+.concurso {
+	font-weight: bold;
+	font-size: 2em;
+	float:left;
+	display:inline-block;
+	}
+
+
+#paginacion a{
+	font-family: 'Capriola', sans-serif;
+	display:inline-block; 
+	background:#CCC; 
+	padding:10px;
+	text-decoration:none;
+	color:#000;
+	border:1px solid #666;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	}
+
+#paginacion a:hover{
+	background:#4D4D4D;
+	color:#FFF;
+	}
+#paginacion a:active{
+	background:#000;
+	}
+#anterior {float:left;}
+#siguiente {float:right;}
+
+/*Tipo Vistas */
+
+#letras {
+	font-size:12px; color:#fff;
+	display:inline-block; 
+	margin:-40px 0 0 -30px;
+	float:right;
+}
+#letras li{
+	list-style:none;
+	display:inline-block;
+	padding:3px;
+}
+
+.topic{
+font-weight: bold;
+ margin:0px 0px 0px 10px;
+ display:block;
+	
+}
+
+
+header{
+margin-bottom:  10px;	
+}
+
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}	
+
+a#enviarEntrada:hover{
+	background:green;
+}
+a#enviarEntrada:visited:hover{ 
+background:yellowgreen;
+}	
+
+.datos-articulo{
+width:70%;
+font-size: 10px;
+margin-top: 30px;
+float:right;	
+}
+
+#TituloConcurso{
+font-size: 30px;
+font-weight: bold; 	
+}
+#hashtagTwitter{
+float:right;
+font-size: 30px;
+font-weight: bold; 
+}
+.articulo {
+	float:right;
+	
+}
+
+#enviarEntrada{
+display:inline-block;
+background:#CCC; 
+padding:10px; 
+text-decoration:none;
+border: 5px inset black;
+}
+
+.seccion-g{
+	height: 120px;
+	border: 1px solid #333;
+	padding-top: 0;
+	margin-top:0;
+	margin-bottom:20px;
+	padding: 10px;	
+	}
+	
+.comentarioEntrada{
+	width: 80%;
+	margin: 0px;
+	text-align: justify;
+	padding:10px;
+	text-align: left;
+	float:left;
+	}	
+
+.imageDeAroba{
+width:80px;
+height:80px;
+float:left;	
+margin: 10px;
+}
+
+.aroba{
+display: inline;
+font-weight: bold;
+padding-left: 10px;	
+}
+.tituloEnvio{
+display: inline;
+font-weight: bold;
+}
+.fechaEnvio {float:right;display:inline}
+
+#titleGanador{font-weight: bold;display: inline;}
+
+#titleEntrada{font-weight: bold;display: inline;}
+
+
+/* RADIO */
+
+.regular-radio {
+	display: none;
+}
+
+.regular-radio + label {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 50px;
+	display: inline-block;
+	position: relative;
+}
+
+.regular-radio:checked + label:after {
+	content: ' ';
+	width: 12px;
+	height: 12px;
+	border-radius: 50px;
+	position: absolute;
+	top: 3px;
+	background: #99a1a7;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+	text-shadow: 0px;
+	left: 3px;
+	font-size: 32px;
+}
+
+.regular-radio:checked + label {
+	background-color: #e9ecee;
+	color: #99a1a7;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.regular-radio + label:active, .regular-radio:checked + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+
+/****** Admnistración de concursos ******/
+
+fieldset input[type="text"] {
+	background-color: #ececec;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #454545;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid transparent;
+    border-radius: 5px; 
+	}
+
+#hashtag { 
+	float:left; 
+	font-weight: bold;
+	font-size: 2em;
+	}
+	
+#pCont { white-space: pre-wrap; }
+
+.button {
+	font-family: 'Capriola', sans-serif; 
+	font-weight:500; 
+	font-size:1.5em; 
+	float:left; 
+	height:35px;
+	}
+	
+#bCancelDec { display: none; }
+
+#bEditar{ float: right; }
+
+.div_mensaje{
+	clear:both;
+	background-color: #D5D7C6;
+	color: #1739AB;
+	font-weight: bold;
+	font-size: 1.7em;
+	text-align: center;
+	border-style: solid;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-radius:7px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	display: none;
+}
+
+#mensaje_rechazado { color: red; }
+ 
+.div_comments{
+	display: none;
+}
+
+textarea {resize:none;}
+
+.msg { margin-bottom: 5px; }
+
+#error_comment { background-color: #FFFF99; color: red; font-size: 1em; padding-bottom:0px;}
+
+.spec_envia { font-size: 1.5em; font-weight: bold; display: inline; }
+
+.remitente { font-size: 1.5em; display:inline-block; }
+
+div.clear{ clear: both;}
+
+#div_edit { 
+	display:none; 
+	margin-top: 30px;
+	}
+
+legend strong{ font-weight: bold; font-size: 1.5em;}
+
+form label { font-weight: bold; font-size: 1.25em; }
+	
+#concurso_name,#pHash, #pCat, #pDif, #pFinic, #pFfin, #pEnvia{display:inline;}
+
+
+.div_error{
+	background-color: #FFFF99;
+	color: red;
+	font-weight: bold;
+	font-size: 1em;
+	border-style: solid;
+	margin-top: 20px;
+	padding-left: 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	display: none;
+}
+
+
+/*****************/

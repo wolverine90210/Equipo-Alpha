@@ -1,0 +1,297 @@
+#site-name2{
+	display:inline-block; width:550px;
+	font-family:'Bitter', serif;
+	font-size:30px;
+	margin:0;
+}
+
+#menu-r {
+	font-size:12px;
+	display:inline-block; 
+	vertical-align:top;
+	margin:24px 0 0 80px;
+	float:right;
+
+}
+	
+#menu-r li{
+	list-style:none;
+	display:inline-block;
+	background:#CCC;
+	padding:7px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	}
+#menu-r a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#FFF;
+	}
+
+#menu-r a:active{
+	color:#000;
+	}
+#menu-r .seleccionado{
+	text-decoration:underline;
+	color:#FFF;
+}
+
+#titulo-nombre{
+	margin:30px 0px 30px 0px;
+	
+}
+#nombre-concurso{
+width: 100%;
+margin: 10px;
+padding-top: 20px;
+height: 70px;
+
+
+}
+#nombreConcurso{
+width: 55%;
+font-size:30px;
+}
+
+
+#hashTwitter{
+margin: 10px;
+font-size: 20px;
+width: 180px;
+}
+#hashtagDiv{
+height: 50px;
+width: 40%;
+
+}
+
+#hashtagLabel{
+margin: 10px;
+float: left;
+font-size: 25px;
+}
+
+
+#datosBasicos{
+width: 100%;
+height: 260px;
+margin: 20px 0px 0px 10px;
+border-radius: 10px;
+border-top: 2px solid black;
+border-bottom: 2px solid black;
+
+}
+
+#fechaInicial{
+float: left;
+/*margin: 10px 0px 10px 20px;*/
+padding-left:20px;
+width: 30%;
+height: 200px;
+
+}
+#fechaFin{
+float: left;
+margin: 10px;
+width: 30%;
+height: 100px;	
+}
+
+.labelRadios{
+font-size: 1.5em;
+padding: 5px;
+}
+#radiosWrapper{
+	width:30%;
+	height:200px;
+	margin-right: 30px;
+	float:left;
+}
+#radios{
+margin-top: 15px;
+}
+
+#organizadorConcurso{
+display: block;
+width:650px; 
+max-width:100%;
+height: 120px;
+margin: 10px;
+margin-bottom: 5em;
+border-radius: 10px;
+border-bottom: double 2px black;
+}
+
+#imgAroba{
+display: inline;
+float: left;
+width:120px;
+height:120px;
+}
+#aroba{
+margin: 30px;
+font-size: 30px;
+float: left;
+font-weight:bold;
+text-decoration:none;
+}
+
+#titleDesc{
+text-align: center;
+font-size: 18px;
+}
+
+
+#titleTip{
+text-align: center;
+font-size: 12px;
+}
+
+#categoriaWrapper{
+width: 30%;
+height: 200px;
+float:left;
+/*margin:20px;*/
+
+}
+#richText{
+margin-left: 5em;	
+}
+#descConcurso{
+width: 750px;
+margin-left: 5em;
+border: 1px solid red;
+resize:none;
+/*overflow:scroll;*/
+
+}
+
+.botonGuardar {
+   float:right;
+   margin-right:5em;
+   border-top: 1px solid #120f0f;
+   background: #e0d736;
+   background: -webkit-gradient(linear, left top, left bottom, from(#540c0c), to(#e0d736));
+   background: -webkit-linear-gradient(top, #540c0c, #e0d736);
+   background: -moz-linear-gradient(top, #540c0c, #e0d736);
+   background: -ms-linear-gradient(top, #540c0c, #e0d736);
+   background: -o-linear-gradient(top, #540c0c, #e0d736);
+   padding: 6px 12px;
+   -webkit-border-radius: 7px;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 12px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.botonGuardar:hover {
+   border-top-color: #2ab074;
+   background: #2ab074;
+   color: #ccc;
+   }
+.botonGuardar:active {
+   border-top-color: #5c1b1b;
+   background: #5c1b1b;
+   }
+   
+   
+input[type=text]{ 
+    background-color: #ececec;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #454545;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid transparent;
+    border-radius: 5px;  
+}
+
+.subtitulos{
+font-size:16px;
+
+}
+.titulos{
+text-align: left;
+font-size: 20px;
+}
+
+.div_error{
+background-color: #FFFF99;
+color: red;
+font-weight: bold;
+font-size: 1em;
+border-style: solid;
+margin-top: 20px;
+padding-left: 10px;
+border-radius:5px;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+display: none;
+
+}
+.calendario{
+ 	background-color: #ececec;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #454545;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+width: 100px;
+
+	
+
+}
+.botonSubmit{
+float:right;
+background: url(../images/template/boton_enviar.png) no-repeat top right;
+margin: 10px 0px 0 10px;
+display: block;
+width: 116px;
+height: 52px;
+color: rgb(121, 0, 0);
+}
+
+.botonSubmit:hover {background-position:top center }
+.botonSubmit:active {background-position:top center;}
+
+#purr-container {
+			position: fixed;
+			top: 0;
+			right: 0;
+		}
+		
+		.notice {
+			position: relative;
+			width: 324px;
+		}
+			.notice .close	{position: absolute; top: 12px; right: 12px; display: block; width: 18px; height: 17px; text-indent: -9999px; background: url(../images/purr-example/purrClose.png) no-repeat 0 10px;}
+		
+		.notice-body {
+			min-height: 50px;
+			padding: 22px 22px 0 22px;
+			background: url(../images/purr-example/purrTop.png) no-repeat left top;
+			color: #f9f9f9;
+		}
+			.notice-body img	{width: 50px; margin: 0 10px 0 0; float: left;}
+			.notice-body h3	{margin: 0; font-size: 1.1em;}
+			.notice-body p		{margin: 5px 0 0 60px; font-size: 0.8em; line-height: 1.4em;}
+		
+		.notice-bottom {
+			height: 22px;
+			background: url(../images/purr-example/purrBottom.png) no-repeat left top;
+		}
