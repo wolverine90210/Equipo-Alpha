@@ -48,21 +48,18 @@
   				</nav> -->
   
   				 <nav id="menu-r">
-					<ul>
-						<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-						<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
-						<li class="boton"><a href="enviar_evento.html" target="_self">RSS</a></li>
-						<li class="boton"><a href="cuenta.html" target="_self">Cuenta</a></li>
-				
-					</ul>
-					
+				<?php
+						include('php/secciones/menu.html');
+				?>
 	   			</nav>
 	   	
    		</header>	
 	
 	 	<article class="articulo">
     			
-	  			<div class="cont"><a class="boton1" href="404.shtml"><span>enviar</span></a></div>
+	  			<?php
+						include('php/secciones/enviar.html');
+				?>
 	  			<div id="letras">
 	   					<ul>
    	   						<li class="topic">Categoría:</li>
