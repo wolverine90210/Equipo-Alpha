@@ -155,17 +155,6 @@ body {	font-family:Verdana, Geneva, sans-serif; margin:0; background:url(../imag
 	list-style:none;
 	display:inline-block;
 	padding:3px;
-}	
-#letras1 {
-	font-size:12px; color:#fff;
-	display:inline-block; 
-	margin:-20px 0 0 -30px;
-	float:right;
-}
-#letras1 li{
-	list-style:none;
-	display:inline-block;
-	padding:3px;	
 }
 
 .topic{
@@ -308,7 +297,7 @@ font-weight: bold;
 }
 
 
-/****** Admnistraciï¿½n de concursos ******/
+/****** Admnistración de concursos ******/
 
 fieldset input[type="text"] {
 	background-color: #ececec;
@@ -403,6 +392,12 @@ form label { font-weight: bold; font-size: 1.25em; }
 	-webkit-border-radius:5px;
 	display: none;
 }
+
+#div_ganador { display:none; }
+
+/*#regGanador { display:none; }*/
+
+#div_eval { display: none; }
 
 
 /*****************/

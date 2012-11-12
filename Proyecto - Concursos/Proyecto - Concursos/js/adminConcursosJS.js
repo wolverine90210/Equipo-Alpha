@@ -1,3 +1,4 @@
+
 function acceptContest(){
 
 	document.getElementById("bCancelDec").style.display = "block";
@@ -17,7 +18,7 @@ function acceptContest(){
 	document.getElementById("mensaje_aceptado").style.display="block";
 	document.getElementById("bAceptado").style.display="none";
 	document.getElementById("comments").style.display = "none";
-
+	document.getElementById("regGanador").style.display = "block";
 
 	var reason = document.getElementById("reason");
 	reason.parentNode.removeChild(reason);
@@ -29,12 +30,15 @@ function cancelContest(){
 
 	if(document.getElementById("div_edit").style.display == "block")
 		document.getElementById("div_edit").style.display = "none";
+		
+	if(document.getElementById("regGanador").style.display == "block")
+			document.getElementById("regGanador").style.display = "none";
 
 	document.getElementById("bCancelDec").style.display = "block";
 
 
 	if(document.getElementById("mensaje_aceptado").style.display == "block")
-		document.getElementById("mensaje_aceptado").style.display="none"
+		document.getElementById("mensaje_aceptado").style.display="none";
 
 	document.getElementById("bRechazado").style.display="none";
 
@@ -65,7 +69,6 @@ function sendReasons(){
 	if(k != 0)
 		reasons[0].parentNode.removeChild(reasons[0]);
 
-	if(!(document.getElementById("textarea").value.length <= 10)){
 
 		var fieldset = document.createElement("fieldset");
 		fieldset.setAttribute('id','reason');
@@ -76,8 +79,28 @@ function sendReasons(){
 		legend.appendChild(content);
 
 		var comment = document.createElement("p");
-
-		var text = document.createTextNode(document.getElementById("textarea").value);
+		
+		var text, textR;
+		if(document.getElementById("textarea").value.length == 0){
+			text = document.createTextNode("No hay razon de cancelacion registrada por el administrador.");
+			textR = "No hay razon de cancelacion registrada por el administrador.";
+			}
+		else{
+			text = document.createTextNode(document.getElementById("textarea").value);
+			textR = document.getElementById("textarea").value;
+			}
+			
+		var razones = document.createElement('input');
+		razones.setAttribute('type','hidden');
+		razones.setAttribute('name','razones');
+		razones.setAttribute('id','razones');
+		razones.value = textR;
+		
+		var nombreConcC = document.createElement('input');
+		nombreConcC.setAttribute('type','hidden');
+		nombreConcC.setAttribute('name','nombreConcC');
+		nombreConcC.setAttribute('id','nombreConcC');
+		nombreConcC.value = document.getElementById('concurso_name').innerHTML;
 
 		comment.appendChild(text);
 
@@ -90,20 +113,32 @@ function sendReasons(){
 		comment.style.overflow = "scroll";
 
 		fieldset.appendChild(legend);
-		fieldset.appendChild(comment);
+		
+		var form = document.createElement('form');
+		form.setAttribute('method','GET');
+		form.setAttribute('action','php/cancelarConcurso.php');
+		
+		form.appendChild(comment);
+		form.appendChild(razones);
+		form.appendChild(nombreConcC);
+		
+		var send = document.createElement('input');
+		send.setAttribute('type','submit');
+		send.setAttribute('value','Cancelar concurso');
+		send.setAttribute('class','button');
+		
+		form.appendChild(send);
+		
+		fieldset.appendChild(form);
 
 		fieldset.style.padding = "10px";
 
-		var div = document.getElementById("div_r");
-		div.appendChild(fieldset);
-		div.style.marginTop = "20px";
+		var div_r = document.getElementById("div_r");
+		div_r.appendChild(fieldset);
+		div_r.style.marginTop = "20px";
 
 		document.getElementById("comments").style.display = "none";
 		document.getElementById("div_r").style.display="block";
-	}
-	else{
-		document.getElementById("error_comment").style.display = "block";
-	}
 
 }
 
@@ -141,6 +176,9 @@ function cancelDecision(){
 			del.parentNode.removeChild(del);
 			cancel = true;
 			}
+			
+		if(document.getElementById("regGanador").style.display == "block")
+			document.getElementById("regGanador").style.display = "none";
 
 }
 
@@ -466,8 +504,16 @@ function makeChanges(){
 	document.getElementById("div_cat").appendChild(node);
 
 	/******************/
-
-	text = document.createTextNode(document.getElementById("e1")[document.getElementById("e1").selectedIndex].innerHTML);
+	
+	var valuesDif = document.form_edit.dificultad;
+	
+	for (i=0; i<valuesDif.length; i++) {
+		if (valuesDif[i].checked==true) {
+			text = document.createTextNode(valuesDif[i].value);
+			break;
+		}
+	}
+	
 	name = document.getElementById("pDif");
 	name.parentNode.removeChild(name);
 
@@ -516,7 +562,10 @@ function makeChanges(){
 	/******************/
 
 	document.getElementById("div_edit").style.display = "none";
+	document.getElementById("bCancelDec").style.display = "none";
 	document.getElementById("div_editado").style.display = "block";
+	
+	document.form_edit.submit();
 
 }
 
@@ -610,5 +659,14 @@ function deleteField(obj){
 	obj.next().remove();
 	obj.next().remove();
 	obj.remove();
+
+}
+
+
+function registrarGanador(){
+
+	document.getElementById("div_ganador").style.display = "block";
+	
+	document.getElementById('nombreConcurso').value = document.getElementById('concurso_name').innerHTML;
 
 }

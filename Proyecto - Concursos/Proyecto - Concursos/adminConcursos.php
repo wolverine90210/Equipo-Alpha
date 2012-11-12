@@ -1,3 +1,22 @@
+
+<?php
+
+//Porque la maestra dijo
+session_start();
+
+
+$nombreConcurso = $_SESSION["dato"];
+//var_dump($_SESSION["dato"]);
+//var_dump($nombreConcurso);
+
+//echo $nombreConcurso;
+
+//Borrar los datos para que no esten en la sesión
+unset($_SESSION["dato"]);
+
+?>
+
+
 ﻿<!DOCTYPE html>
 <html lang="es">
 
@@ -137,6 +156,16 @@
 	
 	<article class="articulo">
 		<div class="cont"><a class="boton1" href="agregarConcurso.html"><span>enviar</span></a></div>
+		
+		<form method="GET" action="php/mostrarConcursosCancelados.php" style="float:right;">
+		<input type="submit" value="Listar concursos cancelados" class="button" style="font-size:1.2em;"/>
+		</form>
+		<form method="GET" action="php/mostrarConcursosSinAceptar.php" style="float:right;">
+		<input type="submit" value="Listar concursos sin aceptar" class="button" style="font-size:1.2em;"/>
+		</form>
+		
+		<div class="clear"></div><br />
+		
 		<section class="seccion">
 			
 			<div class="concurso" id="div_name"><p id="concurso_name">Grafos XKCDMX</p></div>
@@ -165,22 +194,214 @@
 
 			<br />
 			
+			<form name="form_evaluar" method="GET" action="php/evaluarConcurso.php">
+			
+				<input type="submit" id="botonEval" name="botonEval" value="Evaluar concurso" class="button" />
+			
+			
+				<input type="hidden" id="nombreConc" name="nombreConc" />
+			
+				<script type="text/javascript">
+			
+					document.getElementById('nombreConc').value = document.getElementById('concurso_name').innerHTML;
+				
+				</script>
+			
+			</form>
+			
+			<?php
+			
+				//Nos conectamos a la base de datos y obtenemos el usuario
+				require_once('php/BD_Concursos.inc');
+				$conexion = new mysqli($host, $user, $pass, $bd);
+
+				if($conexion->connect_error){
+
+					die("Por el momento no se puede acceder al gestor de la BD");
+
+				}
+				
+				
+				$query = "select status from concurso where nombreConcurso='$nombreConcurso'";
+				
+				$result = $conexion -> query($query);
+				
+				if($result -> num_rows == 1){
+
+					$datos = $result -> fetch_array(MYSQLI_ASSOC);
+	
+				}
+						
+			?>
+			
+			<!-- Si el status del concurso es "pendiente" ( igual a 1 ) -->
+			<?php if ($datos["status"] == '1'): ?>
+			<fieldset><legend>Evaluación del concurso: </legend>
+			<div>
+				<div style="float:left;">
+				<form name="fuck" method="GET" action="php/aceptarConcurso.php">
+					<input type="hidden" id="nombreConcA" name="nombreConcA" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcA').value = document.getElementById('concurso_name').innerHTML;	
+					</script>
+					<input type="submit" id="bAceptar" name="aceptado" value="Aceptar concurso" class="button"/>
+				</form>
+				</div>
+				
+				<div style="float:left;">
+				<form method="GET" action="php/cancelarConcurso.php">
+					<input type="hidden" id="nombreConcC" name="nombreConcC" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcC').value = document.getElementById('concurso_name').innerHTML;	
+					</script>
+					<input type="button" id="bCancelar" name="rechazado" value="Cancelar concurso" onClick="cancelContest()"
+					 class="button"/>
+				</form>
+				</div>
+				
+				<div style="float:left;">
+				<form method="GET" action="php/concursoPendiente.php">
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
+					</script>				
+					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+				</form>
+				</div>
+				
+				<script type="text/javascript">			
+				document.getElementById('botonEval').style.display = "none";
+				</script>
+			
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+			</div>
+			<div class="clear"></div>
+			</fieldset>
+			<?php endif; ?>
+			
+			
+			<!-- Si el status del concurso es "aceptado" ( igual a 2 ) -->
+			<?php if ($datos["status"] == '2'): ?>
+			<fieldset><legend>Evaluación del concurso: </legend>
+			<div>
+				<div style="float:left;">
+				<form method="GET" action="php/cancelarConcurso.php">
+					<input type="hidden" id="nombreConcC" name="nombreConcC" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcC').value = document.getElementById('concurso_name').innerHTML;		
+					</script>				
+					<input type="button" id="bCancelar" name="rechazado" value="Cancelar concurso" onClick="cancelContest()" 
+					class="button"/>
+				</form>
+				</div>
+				
+				<div style="float:left;">
+				<form method="GET" action="php/concursoPendiente.php">
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
+					</script>				
+					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+				</form>
+				</div>
+				
+				<script type="text/javascript">			
+				document.getElementById('botonEval').style.display = "none";
+				</script>
+			
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+				
+				
+				<!-- Formulario para registrar ganador -->
+			
+				<input type="button"id="regGanador"name="regGanador"value="Registrar ganador"onClick="registrarGanador()" class="button"/>
+				
+				<div class="clear"></div>
+				
+				<div id="div_ganador"><br /><br />
+				<fieldset><legend>Registrar ganador</legend>
+					<form name="form_ganador" method="GET" action="php/registroGanador.php"><br />
+			
+						<input type="hidden" id="nombreConcurso" name="nombreConcurso" />
+
+						<label for="idGanador">ID del usuario ganador: </label>
+						<input type="number" id="idGanador" name="idGanador" />
+					
+						<input type="submit" value="Registrar" /><br /><br />
+			
+					</form>
+				</fieldset>
+				</div>
+				
+			</div>
+
+			
+			<div class="clear"></div>
+			</fieldset>
+			<?php endif; ?>
+			
+			
+			<!-- Si el status del concurso es "pendiente" ( igual a 3 ) -->
+			<?php if ($datos["status"] == '3'): ?>
+			<fieldset><legend>Evaluación del concurso: </legend>
+			<div>
+				<div style="float:left;">
+				<form method="GET" action="php/aceptarConcurso.php">
+					<input type="hidden" id="nombreConcA" name="nombreConcA" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcA').value = document.getElementById('concurso_name').innerHTML;		
+					</script>				
+					<input type="submit" id="bAceptar" name="aceptado" value="Aceptar concurso" class="button"/>
+				</form>
+				</div>
+				
+				<div style="float:left;">
+				<form method="GET" action="php/concursoPendiente.php">
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />
+					<script type="text/javascript">
+						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
+					</script>				
+					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+				</form>
+				</div>
+				
+				<script type="text/javascript">			
+				document.getElementById('botonEval').style.display = "none";
+				</script>
+			
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+			</div>
+			<div class="clear"></div>
+			</fieldset>
+			<?php endif; ?>
+			
+			
 			<!-- Botones de administrador -->
 			
-			<input type="button" id="bAceptado" name="aceptado" value="Aceptar concurso" onClick="acceptContest()" class="button"/>
+			<div class="clear"></div>
 			
-			<input type="button" id="bRechazado" name="rechazado" value="Cancelar concurso" onClick="cancelContest()" class="button"/>
+			<div id="div_eval">
+				<input type="button" id="bAceptado" name="aceptado" value="Aceptar concurso" onClick="acceptContest()" class="button"/>
 			
-			<input type="button" id="bCancelDec" name="cancelado" value="Cancelar decisión" onClick="cancelDecision()" class="button"/>
+				<input type="button" id="bRechazado" name="rechazado" value="Cancelar concurso" onClick="cancelContest()" class="button"/>
 			
-			<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+				<input type="button" id="bCancelDec" name="cancelado" value="Cancelar decisión" onClick="cancelDecision()"class="button"/>
+			
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+			
+				
+			</div>
+			
+			</form>
 
 			
 			<div class="clear"></div>
 			
+			
+			
 			<!-- Mensajes y divs de aprobación o rechazo -->
 			
-			<form name="validacion" method="POST" action="">
+			<form name="validacion" method="GET" action="">
 			
 				<div id="mensaje_aceptado" class="div_mensaje">
 					<p class="msg">¡Concurso aceptado!</p>
@@ -188,7 +409,7 @@
 				</div>
 				
 				<div id="mensaje_rechazado" class="div_mensaje">
-					<p class="msg">¡Concurso cancelado!</p>
+					<p class="msg">¡Está por cancelar el concurso!</p>
 					<img src="images/rechazar.png" alt="cancelar_icon" />
 				</div>
 			
@@ -210,17 +431,17 @@
 			
 			<div id="div_edit">
 			
-				<form name="form_edit" method="POST" action="">
+				<form name="form_edit" method="GET" action="php/editarConcurso.php">
 				<fieldset>
 				<legend><strong>Editar concurso</strong></legend><br />
 				
 				<label for="user">Enviado por: </label>
-				<input type="text" id="user" name="user" disabled/>
+				<input type="text" id="user" name="user"/>
 				
 				<br /><br />
 				
 				<label for="nombre">Nombre del concurso: </label>
-				<input type="text" id="inNombre" name="nombre" required />
+				<input type="text" id="inNombre" name="inNombre" required />
 				
 				<div id="error_nombre" class="div_error">
 					<p>¡Introduzca un nombre para el concurso y que sea válido (entre 5 y 20 caracteres)!</p>
@@ -232,33 +453,33 @@
 				<input type="text" id="field_hashtag" name="field_hashtag" required />
 				
 				<div id="error_hashtag" class="div_error">
-					<p>¡Introduzca un hashtag del concurso para Twitter y que sea válido (entre 5 y 20 caracteres)! Comienza con '#'.</p>
+				<p>¡Introduzca un hashtag del concurso para Twitter y que sea válido (entre 5 y 20 caracteres)! Comienza con '#'.</p>
 				</div>
 				
 				<br /><br /><br />
 				
 				<div style="width:350px;">
 				<label for="categoria">Categoría: </label>				
-				<select id="e1">
-					<option value="0" selected="selected"> <strong>Seleccione una categoría:</strong></option>
-					<option value="1">Libre</option>
-        			<option value="2">C</option>
-        			<option value="3">C++</option>
-        			<option value="4">ENSAMBLADOR</option>
+				<select name="categoria" id="e1">
+				<option value="0" selected="selected"> <strong>Seleccione una categoría:</strong></option>
+				<option value="1">C++</option>
+        			<option value="2">Java</option>
+        			<option value="3">Prolog</option>
+        			<option value="4">Ruby</option>
         			<option value="5">Haskell</option>
-					<option value="6">HTML5</option>
-        			<option value="7">Java</option>
+				<option value="6">HTML5</option>
+        			<option value="7">C</option>
         			<option value="8">JavaScript</option>
         			<option value="9">Libre</option>
         			<option value="10">Lisp</option>
         			<option value="11">Pascal</option>
         			<option value="12">Perl</option>
         			<option value="13">PHP</option>
-					<option value="14">Prolog</option>
+				<option value="14">Libre</option>
         			<option value="15">XML</option>
-					<option value="16">Phyton</option>
-					<option value="17">Ruby</option>
-					<option value="18">Phyton</option>
+				<option value="16">Phyton</option>
+				<option value="17">Ensamblador</option>
+				<option value="18">Phyton</option>
 				</select>
 				</div>
 				&nbsp &nbsp &nbsp &nbsp
@@ -280,13 +501,13 @@
 				
 				<label for="diff">Dificultad: </label><br /><br />
 				<div id="radios">
-					<input type="radio" id="radio-1-1" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-1" name="dificultad" value="Basica" class="regular-radio" />
 					<label for="radio-1-1"> </label><label class="labelRadios"> Básica</label>
 					<br />
-					<input type="radio" id="radio-1-2" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-2" name="dificultad" value="Intermedia" class="regular-radio" />
 					<label for="radio-1-2"> </label><label class="labelRadios"> Intermedia</label>
 					<br />
-					<input type="radio" id="radio-1-3" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-3" name="dificultad" value="Alta" class="regular-radio" />
 					<label for="radio-1-3"> </label><label class="labelRadios"> Alta</label>
 					<br />
 				</div>
@@ -331,7 +552,7 @@
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
 						updateRTEs();
-						//var datosEditor = document.RTEDemo.rte1.value;
+						var datosEditor = document.RTEDemo.rte1.value;
 						//document.RTEDemo.style.display = 'none';
 						/******/
 
@@ -349,6 +570,9 @@
 					//build new richTextEditor
 					var rte1 = new richTextEditor('rte1');
 					rte1.html = document.getElementById("pCont").innerHTML;
+					
+					document.write("<input type='hidden' id='richContent' name='richContent' / >");
+					document.write("<script type='text/javascript'>document.getElementById('richContent').value = rte1.html" + "</" + "script>");
 						
 		
 					//enable all commands 
@@ -417,7 +641,7 @@
 				<br /><br /><br />
 					
 				<label for="fcreacion" >Fecha de creación: </label>
-				<input type="text" id="fcreacion" name="fcreacion" size="12" value="13-10-2012" disabled />
+				<input type="text" id="fcreacion" name="fcreacion" size="12" value="13-10-2012" />
 				
 				
 				<div id="error_fechas" class="div_error">
