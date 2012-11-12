@@ -132,27 +132,25 @@
 			<div id="categoriaWrapper">
 				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
 				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
-				 <select id="e1" selected="selected">
-        				<option value="vw">Seleccione una</option>
-        				<option value="vw">Libre</option>
-        				<option value="vw">C</option>
-        				<option value="vw">C++</option>
-        				<option value="vw">ENSAMBLADOR</option>
-        				<option value="vw">Haskell</option>
-						<option value="vw">HTML5</option>
-        				<option value="vw">Java</option>
-        				<option value="vw">JavaScript</option>
-        				<option value="vw">Libre</option>
-        				<option value="vw">Lisp</option>
-        				<option value="vw">Pascal</option>
-        				<option value="vw">Perl</option>
-        				<option value="vw">PHP</option>
-						<option value="vw">Prolog</option>
-        				<option value="vw">XML</option>
-						<option value="vw">Phyton</option>
-						<option value="vw">Ruby</option>
-						<option value="vw">Phyton</option>
-    			 </select>
+				<select id="e1" selected="selected" name="categoria[]">
+				<option value="SeleccioneUna">Seleccione una</option>
+				
+				<?php
+				//Cargar el archivo de funciones
+				require_once("php/funciones.php");
+				$categorias = buscarCategorias();
+				$fila = $categorias[0];
+				foreach($categorias as $fila => $arr){
+					//Todos los campos de cada fila
+				    foreach($arr as $campo => $valor){
+					if($campo == 'idCategoria')
+					$cad1 = "<option value=".$valor.">";
+					else if($campo == 'nom_Categoria')
+					echo $cad1.$valor.'</option>';
+					}
+				     }
+				?>
+				</select>
 			</div>
 			
 			<div id="fechaInicial">
