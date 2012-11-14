@@ -60,6 +60,7 @@
    		</header>	
 	
 	 	<article class="articulo">
+			<div class="cont"><a class="boton1" href="404.shtml"><span>enviar</span></a></div>
     			<h2>Aceptados</h2>
 	  			<div id="aceptados">
     			<section id="evento1" class="seccion">

@@ -54,6 +54,7 @@
 	   </nav>
 	 </header>
 	 <article class="articulo">
+			<div class="cont"><a class="boton1" href="404.shtml"><span>enviar</span></a></div>
 	 		<section class="seccion">
 				<div id='calendar'></div>
 			</section>	
