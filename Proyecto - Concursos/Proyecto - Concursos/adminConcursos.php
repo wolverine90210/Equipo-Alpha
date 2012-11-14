@@ -143,9 +143,9 @@ unset($_SESSION["dato"]);
 		</div>
 		
 	   <nav id="menu-r">
-			<?php
-						include('php/secciones/menu.html');
-			?>
+		<?php
+		include('php/secciones/menu.html');
+		?>	
 		
 	   </nav>
 	   
@@ -465,27 +465,24 @@ unset($_SESSION["dato"]);
 				<option value="1">C++</option>
         			<option value="2">Java</option>
         			<option value="3">Prolog</option>
-        			<option value="4">Ruby</option>
-        			<option value="5">Haskell</option>
-				<option value="6">HTML5</option>
-        			<option value="7">C</option>
-        			<option value="8">JavaScript</option>
-        			<option value="9">Libre</option>
-        			<option value="10">Lisp</option>
-        			<option value="11">Pascal</option>
-        			<option value="12">Perl</option>
-        			<option value="13">PHP</option>
-				<option value="14">Libre</option>
+        			<option value="5">C</option>
+				<option value="6">Libre</option>
+        			<option value="7">ENSAMBLADOR</option>
+        			<option value="8">Haskell</option>
+        			<option value="9">HTML5</option>
+        			<option value="10">Javascript</option>
+        			<option value="11">Lisp</option>
+        			<option value="12">Pascal</option>
+        			<option value="13">Perl</option>
+				<option value="14">PHP</option>
         			<option value="15">XML</option>
 				<option value="16">Phyton</option>
-				<option value="17">Ensamblador</option>
-				<option value="18">Phyton</option>
 				</select>
 				</div>
 				&nbsp &nbsp &nbsp &nbsp
 				<div style="float:right">
 				<label for="nueva_cat">Nueva categoría: </label>
-				<input type="text" id="new_cat" name="nueva_cat" />
+				<input type="text" id="new_cat" name="new_cat" />
 				<input type="button" id="acceptCat" name="acceptCat" value="Aceptar" onClick="addCategory()" />
 				</div>
 				
@@ -686,9 +683,9 @@ unset($_SESSION["dato"]);
 	
 	<footer id="paginacion">
 		
-		<?php
-						include('php/secciones/antSig.html');
-		?>
+			<?php
+				include('php/secciones/antSig.html');
+			?>
 		<div class="clear"></div>
 		
 	</footer>

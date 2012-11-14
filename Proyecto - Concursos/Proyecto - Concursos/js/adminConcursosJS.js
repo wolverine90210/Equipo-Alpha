@@ -30,9 +30,11 @@ function cancelContest(){
 
 	if(document.getElementById("div_edit").style.display == "block")
 		document.getElementById("div_edit").style.display = "none";
-		
-	if(document.getElementById("regGanador").style.display == "block")
-			document.getElementById("regGanador").style.display = "none";
+			
+	var regGanador = document.getElementById("regGanador");
+	if(regGanador != null)
+		if(regGanador.style.display == "block")
+			regGanador.style.display = "none";
 
 	document.getElementById("bCancelDec").style.display = "block";
 
@@ -219,28 +221,7 @@ function editContest(){
 
 	//document.getElementById("content_area").value = document.getElementById("pCont").innerHTML;
 
-	var optText = document.getElementById("pCat").innerHTML;
-	var arrayOpt = document.getElementsByTagName("option");
-
-	for(i in arrayOpt){
-		if(arrayOpt[i].innerHTML == optText){
-			//arrayOpt[i].setAttribute('selected','selected');
-
-			var cat = document.createTextNode(optText);
-			var opt = document.createElement("option");
-
-			opt.appendChild(cat);
-			opt.setAttribute('value',arrayOpt[i].value);
-			//opt.setAttribute('selected', 'selected')
-
-			var list = document.getElementById("e1");
-			list.appendChild(opt);
-
-			arrayOpt[i].parentNode.removeChild(arrayOpt[i]);			
-			break;
-			}
-	}
-
+	
 
 	var div_imgs = document.getElementById("images");
 	var p = document.createElement("p");
