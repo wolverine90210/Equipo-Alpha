@@ -51,7 +51,7 @@
 		</html>
 		";
 		
-		header('refresh: 7; url=javascript: history.go(-1)');
+		header('refresh: 4; url=javascript: history.go(-1)');
 	
 	
 	$conexion -> close();

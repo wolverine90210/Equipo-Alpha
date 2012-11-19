@@ -300,7 +300,7 @@ font-weight: bold;
 /****** Admnistración de concursos ******/
 
 fieldset input[type="text"] {
-	background-color: #ececec;
+    background-color: #ececec;
     border: none;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -395,7 +395,6 @@ form label { font-weight: bold; font-size: 1.25em; }
 
 #div_ganador { display:none; }
 
-/*#regGanador { display:none; }*/
 
 #div_eval { display: none; }
 

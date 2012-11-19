@@ -23,27 +23,6 @@
 	$img = $_REQUEST["imagen"];
 	$contenido = $_REQUEST['richContent'];
 	
-	$query = "select idCategoria from categoria";
-	$resultados = $conexion -> query($query);
-	
-	if($resultados -> num_rows >= 1){
-		//Por cada fila obtengo un arreglo
-		while($fila = $resultados -> fetch_assoc())
-			$datos[] = $fila;
-	}
-	
-	$flag = false; //var_dump($datos);
-	
-	for($i=0; $i<count($datos); $i++){
-	
-		if($datos[$i]['idCategoria'] == $categoria){
-			$flag = true;
-			break;
-			}
-	
-	}
-	
-	if($flag != false){
 	
 	$fechaInicial = date('Y-m-d', strtotime($fechaInicial));
 	$fechaFinal = date('Y-m-d', strtotime($fechaFinal));
@@ -110,40 +89,8 @@
 		</html>
 		";
 		
-		header('refresh: 7; url=javascript: history.go(-1)');
-	
-	
-	}
-	else{
-		
-		echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
-		<head>
-		<meta charset='UTF-8' />
-		</head>
-		﻿<br /><br /><br /><br />
-		<h1><strong><p style='color: white; text-align:center;'>Ha ocurrido un error: </p></strong></h1>
-		<div style='clear:both;
-		background-color: #D5D7C6;
-		color: #BA1111;
-		font-weight: bold;
-		font-size: 1.7em;
-		text-align: center;
-		border-style: solid;
-		margin-top: 20px;
-		border-radius:7px;
-		-moz-border-radius:7px;
-		-webkit-border-radius:7px;'>
-	
-		<h3><strong><p style='text-align:center'>La categoría que seleccionó no está disponible en este momento.</p></strong></h3>
-		</div>
-		<br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
-		</body>
-		</html>
-		";
-		
-		header('refresh: 7; url=javascript: history.go(-1)');
-	
-	}
+		header('refresh: 4; url=javascript: history.go(-1)');
+
 	
 	$conexion -> close();
 

@@ -1,8 +1,4 @@
 <?php
-
-	//Porque la maestra dijo :P
-	session_start();
-	
 	
 	//Nos conectamos a la base de datos y obtenemos el usuario
 	require_once('BD_Concursos.inc');
@@ -15,13 +11,25 @@
 	}
 	
 	
-	$nombreConcurso = $_REQUEST["nombreConc"];
+	$nombreConcurso = $_REQUEST["nombreCon"];
 	
-	$_SESSION["dato"] = $nombreConcurso;
+	$query = "select status from concurso where nombreConcurso='$nombreConcurso'";
+				
+	$result = $conexion -> query($query);
+				
+	if($result -> num_rows == 1){
+
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
 	
-	var_dump($_SESSION["dato"]);
+	}
 	
-	header('Location: ../adminConcursos.php');
+	echo $datos['status'];
+	
+	//$_SESSION["dato"] = $nombreConcurso;
+	
+	//var_dump($_SESSION["dato"]);
+	
+	//header('Location: ../adminConcursos.php');
 	//header('refresh: 5; url=javascript: history.go(-1)');
 
 ?>

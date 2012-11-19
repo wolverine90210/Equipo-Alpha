@@ -1,23 +1,4 @@
-
-<?php
-
-//Porque la maestra dijo
-session_start();
-
-
-$nombreConcurso = $_SESSION["dato"];
-//var_dump($_SESSION["dato"]);
-//var_dump($nombreConcurso);
-
-//echo $nombreConcurso;
-
-//Borrar los datos para que no esten en la sesión
-unset($_SESSION["dato"]);
-
-?>
-
-
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -125,9 +106,12 @@ unset($_SESSION["dato"]);
 	<!-- Para el select2 3.2 -->
 	
 	<script src="js/select2.js"></script>
-    <script src="js/select2.min.js"></script>
+    	<script src="js/select2.min.js"></script>
 	
 	<link href="css/select2.css" rel="stylesheet"/>
+	
+	<!-- AJAX -->
+	<script type="text/Javascript" src="js/ajax.js"></script>
 	
 
 	
@@ -193,121 +177,60 @@ unset($_SESSION["dato"]);
 			<div class="clear"></div>
 
 			<br />
-			
-			<form name="form_evaluar" method="GET" action="php/evaluarConcurso.php">
-			
-				<input type="submit" id="botonEval" name="botonEval" value="Evaluar concurso" class="button" />
-			
-			
-				<input type="hidden" id="nombreConc" name="nombreConc" />
-			
-				<script type="text/javascript">
-			
-					document.getElementById('nombreConc').value = document.getElementById('concurso_name').innerHTML;
-				
-				</script>
-			
-			</form>
-			
-			<?php
-			
-				//Nos conectamos a la base de datos y obtenemos el usuario
-				require_once('php/BD_Concursos.inc');
-				$conexion = new mysqli($host, $user, $pass, $bd);
-
-				if($conexion->connect_error){
-
-					die("Por el momento no se puede acceder al gestor de la BD");
-
-				}
-				
-				
-				$query = "select status from concurso where nombreConcurso='$nombreConcurso'";
-				
-				$result = $conexion -> query($query);
-				
-				if($result -> num_rows == 1){
-
-					$datos = $result -> fetch_array(MYSQLI_ASSOC);
 	
-				}
-						
-			?>
+
 			
 			<!-- Si el status del concurso es "pendiente" ( igual a 1 ) -->
-			<?php if ($datos["status"] == '1'): ?>
-			<fieldset><legend>Evaluación del concurso: </legend>
+			
+			<fieldset id="fpendiente" style="display:none;"><legend>Evaluación del concurso: </legend>
 			<div>
 				<div style="float:left;">
-				<form name="fuck" method="GET" action="php/aceptarConcurso.php">
+				<form method="GET" action="php/aceptarConcurso.php">
 					<input type="hidden" id="nombreConcA" name="nombreConcA" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcA').value = document.getElementById('concurso_name').innerHTML;	
-					</script>
-					<input type="submit" id="bAceptar" name="aceptado" value="Aceptar concurso" class="button"/>
+					<input type="submit" id="bAceptar" name="bAceptar" value="Aceptar concurso" class="button"/>
 				</form>
 				</div>
 				
 				<div style="float:left;">
 				<form method="GET" action="php/cancelarConcurso.php">
 					<input type="hidden" id="nombreConcC" name="nombreConcC" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcC').value = document.getElementById('concurso_name').innerHTML;	
-					</script>
-					<input type="button" id="bCancelar" name="rechazado" value="Cancelar concurso" onClick="cancelContest()"
+					<input type="button" id="bCancelar" name="bCancelar" value="Cancelar concurso" onClick="cancelContest()"
 					 class="button"/>
 				</form>
 				</div>
 				
 				<div style="float:left;">
 				<form method="GET" action="php/concursoPendiente.php">
-					<input type="hidden" id="nombreConcP" name="nombreConcP" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
-					</script>				
-					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />			
+					<input type="submit" id="bPendiente" name="bPendiente" value="Dejar pendiente" class="button"/>
 				</form>
 				</div>
-				
-				<script type="text/javascript">			
-				document.getElementById('botonEval').style.display = "none";
-				</script>
 			
-				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+				<input type="button" id="bEditar" name="bEditar" value="Editar" onClick="editContest()" class="button"/>
 			</div>
 			<div class="clear"></div>
 			</fieldset>
-			<?php endif; ?>
 			
+					
 			
 			<!-- Si el status del concurso es "aceptado" ( igual a 2 ) -->
-			<?php if ($datos["status"] == '2'): ?>
-			<fieldset><legend>Evaluación del concurso: </legend>
+			
+			<fieldset id="faceptado" style="display:none;"><legend>Evaluación del concurso: </legend>
 			<div>
 				<div style="float:left;">
 				<form method="GET" action="php/cancelarConcurso.php">
-					<input type="hidden" id="nombreConcC" name="nombreConcC" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcC').value = document.getElementById('concurso_name').innerHTML;		
-					</script>				
-					<input type="button" id="bCancelar" name="rechazado" value="Cancelar concurso" onClick="cancelContest()" 
+					<input type="hidden" id="nombreConcC" name="nombreConcC" />				
+					<input type="button" id="bCancelar" name="bCancelar" value="Cancelar concurso" onClick="cancelContest()" 
 					class="button"/>
 				</form>
 				</div>
 				
 				<div style="float:left;">
 				<form method="GET" action="php/concursoPendiente.php">
-					<input type="hidden" id="nombreConcP" name="nombreConcP" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
-					</script>				
-					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />				
+					<input type="submit" id="bPendiente" name="bPendiente" value="Dejar pendiente" class="button"/>
 				</form>
 				</div>
-				
-				<script type="text/javascript">			
-				document.getElementById('botonEval').style.display = "none";
-				</script>
 			
 				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
 				
@@ -338,43 +261,56 @@ unset($_SESSION["dato"]);
 			
 			<div class="clear"></div>
 			</fieldset>
-			<?php endif; ?>
 			
 			
-			<!-- Si el status del concurso es "pendiente" ( igual a 3 ) -->
-			<?php if ($datos["status"] == '3'): ?>
-			<fieldset><legend>Evaluación del concurso: </legend>
+			
+			<!-- Si el status del concurso es "cancelado" ( igual a 3 ) -->
+			
+			<fieldset id="fcancelado" style="display:none;"><legend>Evaluación del concurso: </legend>
 			<div>
 				<div style="float:left;">
 				<form method="GET" action="php/aceptarConcurso.php">
-					<input type="hidden" id="nombreConcA" name="nombreConcA" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcA').value = document.getElementById('concurso_name').innerHTML;		
-					</script>				
-					<input type="submit" id="bAceptar" name="aceptado" value="Aceptar concurso" class="button"/>
+					<input type="hidden" id="nombreConcA" name="nombreConcA" />			
+					<input type="submit" id="bAceptar" name="bAceptar" value="Aceptar concurso" class="button"/>
 				</form>
 				</div>
 				
 				<div style="float:left;">
 				<form method="GET" action="php/concursoPendiente.php">
-					<input type="hidden" id="nombreConcP" name="nombreConcP" />
-					<script type="text/javascript">
-						document.getElementById('nombreConcP').value = document.getElementById('concurso_name').innerHTML;		
-					</script>				
-					<input type="submit" id="bPendiente" name="cancelado" value="Dejar pendiente" class="button"/>
+					<input type="hidden" id="nombreConcP" name="nombreConcP" />				
+					<input type="submit" id="bPendiente" name="bPendiente" value="Dejar pendiente" class="button"/>
 				</form>
 				</div>
-				
-				<script type="text/javascript">			
-				document.getElementById('botonEval').style.display = "none";
-				</script>
 			
 				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
 			</div>
 			<div class="clear"></div>
 			</fieldset>
-			<?php endif; ?>
+
+
+
+			<!-- Botón para evaluar concurso -->
+			<input type="hidden" id="nombreCon" name="nombreCon" />
 			
+			<script type="text/javascript">
+				document.getElementById('nombreCon').value = document.getElementById('concurso_name').innerHTML;
+			</script>
+			
+			<input type="button" id="botonEval" name="botonEval" value="Evaluar concurso" class="button" onClick="checkStatus()" />
+
+			
+			<script type="text/javascript">
+						var pending = document.getElementsByName('nombreConcP');
+						for(i in pending)
+							pending[i].value = document.getElementById('concurso_name').innerHTML;
+						var accepted = document.getElementsByName('nombreConcA');
+						for(i in accepted)
+							accepted[i].value = document.getElementById('concurso_name').innerHTML;	
+						var canceled = document.getElementsByName('nombreConcC');
+						for(i in canceled)
+							canceled[i].value = document.getElementById('concurso_name').innerHTML;			
+			</script>	
+					
 			
 			<!-- Botones de administrador -->
 			
@@ -458,32 +394,21 @@ unset($_SESSION["dato"]);
 				
 				<br /><br /><br />
 				
-				<div style="width:350px;">
-				<label for="categoria">Categoría: </label>				
-				<select name="categoria" id="e1">
-				<option value="0" selected="selected"> <strong>Seleccione una categoría:</strong></option>
-				<option value="1">C++</option>
-        			<option value="2">Java</option>
-        			<option value="3">Prolog</option>
-        			<option value="5">C</option>
-				<option value="6">Libre</option>
-        			<option value="7">ENSAMBLADOR</option>
-        			<option value="8">Haskell</option>
-        			<option value="9">HTML5</option>
-        			<option value="10">Javascript</option>
-        			<option value="11">Lisp</option>
-        			<option value="12">Pascal</option>
-        			<option value="13">Perl</option>
-				<option value="14">PHP</option>
-        			<option value="15">XML</option>
-				<option value="16">Phyton</option>
-				</select>
+				<div style="width:350px;float:left;">
+					<label for="categoria">Categoría: </label>
+					<select id="sel" style="background-color: #ececec;border: none;box-sizing: border-box;-moz-box-sizing: border-box;
+					-webkit-box-sizing: border-box;color: #454545;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-weight: bold;font-size: 18px;border: 2px solid transparent;border-radius: 5px; " onChange="fillSelect()">
+					<option value=0>Selecciona una opción</option>
+					<option>Cargar categorías</option>
+					</select>				
+				<div id="catego"></div>
 				</div>
 				&nbsp &nbsp &nbsp &nbsp
 				<div style="float:right">
 				<label for="nueva_cat">Nueva categoría: </label>
 				<input type="text" id="new_cat" name="new_cat" />
-				<input type="button" id="acceptCat" name="acceptCat" value="Aceptar" onClick="addCategory()" />
+				<input type="button" id="acceptCat" name="acceptCat" value="Aceptar" onClick="addCat()" />
 				</div>
 				
 				<div id="error_categoria" class="div_error">
@@ -491,10 +416,10 @@ unset($_SESSION["dato"]);
 				</div>
 				
 				<div id="error_nueva_categoria" class="div_error">
-					<p>¡Escriba una categoría nueva para el concurso (menor a 20 caracteres)! Procure no repetirlas. </p>
+					<p>¡Escriba una categoría nueva y válida para el concurso (menor a 20 caracteres)! Procure no repetirlas. </p>
 				</div>
 				
-				<br /><br /><br />
+				<br /><br /><br /><br />
 				
 				<label for="diff">Dificultad: </label><br /><br />
 				<div id="radios">
@@ -544,7 +469,6 @@ unset($_SESSION["dato"]);
 				<textarea id="content_area" name="content_area" rows="20" cols="100" maxlength="10000"></textarea>
 				-->
 				
-				
 				<script  type="text/javascript">
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
@@ -566,7 +490,7 @@ unset($_SESSION["dato"]);
 				<script  type="text/javascript">
 					//build new richTextEditor
 					var rte1 = new richTextEditor('rte1');
-					rte1.html = document.getElementById("pCont").innerHTML;
+					rte1.html = '';//document.getElementById("pCont").innerHTML;
 					
 					document.write("<input type='hidden' id='richContent' name='richContent' / >");
 					document.write("<script type='text/javascript'>document.getElementById('richContent').value = rte1.html" + "</" + "script>");
@@ -620,6 +544,7 @@ unset($_SESSION["dato"]);
 				
 				</script>
 
+
 				
 				<div id="error_contenido" class="div_error">
 					<p>¡Escriba el contenido y descripción del concurso!</p>
@@ -638,7 +563,7 @@ unset($_SESSION["dato"]);
 				<br /><br /><br />
 					
 				<label for="fcreacion" >Fecha de creación: </label>
-				<input type="text" id="fcreacion" name="fcreacion" size="12" value="13-10-2012" />
+				<input type="text" id="fcreacion" name="fcreacion" size="12" />
 				
 				
 				<div id="error_fechas" class="div_error">
@@ -679,6 +604,7 @@ unset($_SESSION["dato"]);
 		<div class="sombra_seccion"></div>
 		
 	</article>
+	<div class="clear"></div>
 	
 	
 	<footer id="paginacion">

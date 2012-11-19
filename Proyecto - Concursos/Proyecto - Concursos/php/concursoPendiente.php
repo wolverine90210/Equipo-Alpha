@@ -44,7 +44,7 @@
 		-moz-border-radius:7px;
 		-webkit-border-radius:7px;'>
 	
-		<h3><strong><p style='text-align:center'>Estado del concurso pendiente.</p></strong></h3>
+		<h3><strong><p style='text-align:center'>Estado del concurso: pendiente.</p></strong></h3>
 		<img src='http://icons.iconarchive.com/icons/enhancedlabs/lha-objects/128/Clock-icon.png' alt='pendiente_icon' />
 		</div>
 		<br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
@@ -52,7 +52,7 @@
 		</html>
 		";
 		
-		header('refresh: 7; url=javascript: history.go(-1)');
+		header('refresh: 4; url=javascript: history.go(-1)');
 	
 	
 	$conexion -> close();
