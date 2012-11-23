@@ -106,7 +106,7 @@
 			<div id="nombre-concurso">
 					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
-					<input  type="text"  id="nombreConcurso" name=""/>
+					<input  type="text"  id="nombreConcurso" name="nombreConcurso"/>
 			</div>
 			<div id='hashtagDiv'>
 					<label class="div_error" id="adv_hashtag" style="display: none">Teclee un hashtag para Twitter(#mihashtag)</label>
@@ -186,7 +186,7 @@
 				<input id="imagenUp1" name="cargarImagen" type="file" accept="image/*" required="required" />
 				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
 			</fieldset>
-			
+			<input type="text" style="display:none" name="descripcion" /><!--para cachar el valor del RTE-->
 			<button type="submit" value="enviar" hidden="hidden" class="show-example">Enviar</button>
 			</form>
 			
