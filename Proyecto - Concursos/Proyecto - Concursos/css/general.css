@@ -398,5 +398,7 @@ form label { font-weight: bold; font-size: 1.25em; }
 
 #div_eval { display: none; }
 
+#done-icon { display: inline-block; float: right; margin-right: 45%; margin-top: -30px; }
+
 
 /*****************/

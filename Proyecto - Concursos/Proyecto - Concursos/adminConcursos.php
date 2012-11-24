@@ -21,7 +21,8 @@
 	<script type="text/javascript" >
 			 $(document).ready(function(e) {
 				$('#site-name h1').show('fast')
-			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
+			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop
+			(false,true).animate({'color':'#FFF'},200)});	
 			});
 		
 	</script>	
@@ -139,7 +140,7 @@
 	
 	
 	<article class="articulo">
-		<div class="cont"><a class="boton1" href="agregarConcurso.html"><span>enviar</span></a></div>
+		<div class="cont"><a class="boton1" href="agregarConcurso.php"><span>enviar</span></a></div>
 		
 		<form method="GET" action="php/mostrarConcursosCancelados.php" style="float:right;">
 		<input type="submit" value="Listar concursos cancelados" class="button" style="font-size:1.2em;"/>
@@ -468,12 +469,59 @@
 				<label for="content_area">Contenido: </label>
 				<textarea id="content_area" name="content_area" rows="20" cols="100" maxlength="10000"></textarea>
 				-->
+								
+				<input type="hidden" id="dataEdit" name="dataEdit" />
+				
+				
+				
+				<label for="datepicker" >Fecha de inicio: </label>
+				<input type="text" id="datepicker" name="fini" class="campofecha" size="12" required>
+				
+				&nbsp &nbsp &nbsp &nbsp
+				
+				<label for="datepicker2" >Fecha de finalización: </label>
+				<input type="text" id="datepicker2" name="ffinal" class="campofecha" size="12" required>
+				
+				<br /><br /><br />
+					
+				<label for="fcreacion" >Fecha de creación: </label>
+				<input type="text" id="fcreacion" name="fcreacion" size="12" />
+				
+				
+				<div id="error_fechas" class="div_error">
+					<p>¡Seleccione las fechas que se piden!</p>
+				</div>
+			
+				<div id="error_fechaAct" class="div_error">
+					<p>¡La fecha de inicio debe ser mayor o igual a la fecha actual!</p>
+				</div>
+				
+				<div id="error_fechasIF" class="div_error">
+					<p>¡La fecha de finalización debe ser mayor a la fecha de inicio!</p>
+				</div>
+				
+				<div id="error_fechasIC" class="div_error">
+					<p>¡La fecha de inicio debe ser mayor a la fecha de creación!</p>
+				</div>
+				
+				
+							
+				</form>
+				
+				<br /><br /><br /><br />
+				
+				<!-- RTE -->
+				<form name="RTEDemo" id="RTEDemo" method="POST" onsubmit="return submitForm();">
 				
 				<script  type="text/javascript">
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
 						updateRTEs();
 						var datosEditor = document.RTEDemo.rte1.value;
+						document.getElementById('dataEdit').value = datosEditor;
+						
+						$('#edit-done').fadeIn("slow").fadeOut(2000);
+						
 						//document.RTEDemo.style.display = 'none';
 						/******/
 
@@ -487,13 +535,15 @@
 					initRTE("cbrte/images/", "cbrte/", "", true);
 					//-->
 				 </script>
+				 
 				<script  type="text/javascript">
 					//build new richTextEditor
 					var rte1 = new richTextEditor('rte1');
-					rte1.html = '';//document.getElementById("pCont").innerHTML;
-					
-					document.write("<input type='hidden' id='richContent' name='richContent' / >");
-					document.write("<script type='text/javascript'>document.getElementById('richContent').value = rte1.html" + "</" + "script>");
+					rte1.html = document.getElementById("pCont").innerHTML;
+					//document.getElementById("dataEdit").value = rte1.html;
+					//rte1.toggleSrc = false;
+					//document.write("<input type='hidden' id='richContent' name='richContent' / >");
+					//document.write("<script type='text/javascript'>document.getElementById('richContent').value = rte1.html" + "</" + "script>");
 						
 		
 					//enable all commands 
@@ -543,53 +593,31 @@
 					
 				
 				</script>
-
-
+				
+				<div style="margin-top: 1em;">
+					<label for="guardarRTE">Debe guardar cambios en la descripción: </label>
+					<input type="submit" name="guardarRTE" value="Guardar" /> 
+				</div>
+				
+				<div id="done-icon"><img id="edit-done" src="images/done-icon.png" alt="Hecho!" style="display: none;"/></div>
+				
 				
 				<div id="error_contenido" class="div_error">
-					<p>¡Escriba el contenido y descripción del concurso!</p>
+					<p>Debe escribir una descripción para el concurso y guardar los cambios.</p>
 				</div>
 				
-				<br /><br />
 				
-				<label for="datepicker" >Fecha de inicio: </label>
-				<input type="text" id="datepicker" name="fini" class="campofecha" size="12" required>
-				
-				&nbsp &nbsp &nbsp &nbsp
-				
-				<label for="datepicker2" >Fecha de finalización: </label>
-				<input type="text" id="datepicker2" name="ffinal" class="campofecha" size="12" required>
-				
-				<br /><br /><br />
-					
-				<label for="fcreacion" >Fecha de creación: </label>
-				<input type="text" id="fcreacion" name="fcreacion" size="12" />
-				
-				
-				<div id="error_fechas" class="div_error">
-					<p>¡Seleccione las fechas que se piden!</p>
-				</div>
+			</form>
 			
-				<div id="error_fechaAct" class="div_error">
-					<p>¡La fecha de inicio debe ser mayor o igual a la fecha actual!</p>
-				</div>
-				
-				<div id="error_fechasIF" class="div_error">
-					<p>¡La fecha de finalización debe ser mayor a la fecha de inicio!</p>
-				</div>
-				
-				<div id="error_fechasIC" class="div_error">
-					<p>¡La fecha de inicio debe ser mayor a la fecha de creación!</p>
-				</div>
 			
-				
-				<br /><br />
-				<input type="button" id="bCancelEdit" name="bCancelEdit" value="Cancelar" onClick="cancelEdit()" />
-				<input type="button" id="bEdit" name="bEdit" value="Aceptar" onClick="makeChanges()" />
-				
-				
-				</fieldset>				
-				</form>
+			
+			<br /><br />
+			<input class="button" type="button" id="bCancelEdit" name="bCancelEdit" value="Cancelar" onClick="cancelEdit()" />
+			<input class="button" type="button" id="bEdit" name="bEdit" value="Aceptar" onClick="makeChanges()" />
+			
+			
+			
+			</fieldset>
 			
 			</div>
 			
@@ -605,6 +633,7 @@
 		
 	</article>
 	<div class="clear"></div>
+	
 	
 	
 	<footer id="paginacion">

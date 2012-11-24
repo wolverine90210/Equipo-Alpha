@@ -21,7 +21,7 @@
 	$fechaFinal = $_REQUEST["ffinal"];
 	$fechaCreacion = $_REQUEST["fcreacion"];
 	$img = $_REQUEST["imagen"];
-	$contenido = $_REQUEST['richContent'];
+	$contenido = $_REQUEST['dataEdit'];
 	
 	
 	$fechaInicial = date('Y-m-d', strtotime($fechaInicial));
@@ -41,6 +41,13 @@
 	$usuario = $conexion -> real_escape_string($usuario);
 	$contenido = $conexion -> real_escape_string($contenido);
 	
+	if(stristr($contenido, '\r') || stristr($contenido, '\n')){echo "FUUUUUUCK!";
+		$contenido = str_replace('\r',"",$contenido);
+		$contenido = str_replace('\n',"",$contenido);
+		$contenido = str_replace('\t',"",$contenido);
+	}
+		
+	echo "5".$contenido."5";
 	if($dificultad == "Basica")
 		$dif = 1;
 	if($dificultad == "Intermedia")
@@ -89,7 +96,7 @@
 		</html>
 		";
 		
-		header('refresh: 4; url=javascript: history.go(-1)');
+		header('refresh: 4; url=../adminConcursos.php');
 
 	
 	$conexion -> close();

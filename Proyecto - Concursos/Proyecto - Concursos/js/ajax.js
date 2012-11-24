@@ -91,7 +91,7 @@ function addCat(){
 	var expresion = new RegExp(/(^[a-zA-Z]\w*){1,20}/);
 
 	if(!expresion.test(new_cat) || new_cat.length == 0  || 
-	new_cat.length > 20){alert("Eita!");
+	new_cat.length > 20){
 			document.getElementById("error_nueva_categoria").style.display='block';
 			document.form_edit.new_cat.focus();
 			return 0;

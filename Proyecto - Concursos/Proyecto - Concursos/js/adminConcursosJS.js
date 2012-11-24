@@ -203,12 +203,32 @@ function cancelEdit(){
 
 
 
+function hoy(){
+
+    var fechaActual = new Date();
+ 
+    dia = fechaActual.getDate();
+    mes = fechaActual.getMonth() + 1;
+    anno = fechaActual.getYear();
+   
+    if (dia < 10) dia = "0" + dia;
+    if (mes < 10) mes = "0" + mes;  
+    if (anno < 1000) anno += 1900;
+ 
+    fechaHoy = dia + "-" + mes + "-" + anno;
+   
+    return fechaHoy;
+}
+
+
+
+
 
 function editContest(){
 
 	if(document.getElementById("div_edit").style.display != "block"){
 
-	document.getElementById("bCancelDec").style.display = "block";
+	//document.getElementById("bCancelDec").style.display = "block";
 
 
 	document.getElementById("div_edit").style.display = "block";
@@ -244,6 +264,8 @@ function editContest(){
 			}
 		}
 	}
+	
+	document.getElementById("fcreacion").value = hoy();
 
 	}
 }
@@ -302,9 +324,9 @@ function makeChanges(){
 			return 0;
 		}
 
-	if(document.getElementById("e1").selectedIndex == 0 ){
+	if(document.getElementById("sel").selectedIndex == 0 ){
 		document.getElementById("error_categoria").style.display='block';
-		document.form_edit.e1.focus();
+		document.form_edit.sel.focus();
 		return 0;
 	}
 
@@ -314,7 +336,8 @@ function makeChanges(){
 		return 0;
 	}
 
-	var extensiones_permitidas = new Array(".jpg", ".gif", ".png", ".bmp", ".raw", ".psd", ".tiff", ".xcf", ".eps", ".pcx", ".pict", ".dng", ".wmp", ".psb", ".jp2", ".tga", ".tif", ".pic", ".emf", ".ico"); 
+	var extensiones_permitidas = new Array(".jpg", ".gif", ".png", ".bmp", ".raw", ".psd", ".tiff", ".xcf", ".eps", ".pcx", ".pict", ".dng",
+	".wmp", ".psb", ".jp2", ".tga", ".tif", ".pic", ".emf", ".ico"); 
 
 	var extension = (document.form_edit.imagen1.value.substring(document.form_edit.imagen1.value.lastIndexOf("."))).toLowerCase(); 
 
@@ -362,11 +385,11 @@ function makeChanges(){
 		}
 	}
 
-	/*if(document.form_edit.content_area.value == ""){
+
+	if(document.getElementById('dataEdit').value == ""){
 		document.getElementById("error_contenido").style.display='block';
-		document.form_edit.content_area.focus();
 		return 0;
-		}*/
+		}
 
 
 	/*Validación de fechas*/
@@ -544,7 +567,7 @@ function makeChanges(){
 
 	document.getElementById("div_edit").style.display = "none";
 	document.getElementById("bCancelDec").style.display = "none";
-	document.getElementById("div_editado").style.display = "block";
+	//document.getElementById("div_editado").style.display = "block";
 	
 	document.form_edit.submit();
 
@@ -649,5 +672,199 @@ function registrarGanador(){
 	document.getElementById("div_ganador").style.display = "block";
 	
 	document.getElementById('nombreConcurso').value = document.getElementById('concurso_name').innerHTML;
+
+}
+
+
+
+function makeChanges2(){
+
+	document.getElementById("error_nombre").style.display="none";
+	document.getElementById("error_hashtag").style.display="none";
+	document.getElementById("error_categoria").style.display="none";
+	document.getElementById("error_dificultad").style.display="none";
+	document.getElementById("error_imagen").style.display="none";
+	document.getElementById("error_otraimg").style.display="none";
+	//document.getElementById("error_contenido").style.display="none";
+	document.getElementById("error_fechaAct").style.display="none";
+	document.getElementById("error_fechasIF").style.display="none";
+	document.getElementById("error_fechasIC").style.display="none";
+	document.getElementById("error_fechas").style.display="none";
+
+	var flag = true, flag2 = true, flag3 = true;
+
+
+	var expresion = new RegExp(/([a-zA-Z]\w*){5,20}/);
+
+		if(!expresion.test(document.form_edit.inNombre.value) || document.form_edit.inNombre.value.length == 0){
+			document.getElementById("error_nombre").style.display='block';
+			document.form_edit.inNombre.focus();
+			return 0;
+		}
+
+	expresion = new RegExp(/#([a-zA-Z]\w*){5,20}/);
+
+		if(!expresion.test(document.form_edit.field_hashtag.value) || document.form_edit.field_hashtag.value.length == 0){
+			document.getElementById("error_hashtag").style.display='block';
+			document.form_edit.field_hashtag.focus();
+			return 0;
+		}
+
+	if(document.getElementById("sel").selectedIndex == 0 ){
+		document.getElementById("error_categoria").style.display='block';
+		document.form_edit.sel.focus();
+		return 0;
+	}
+
+	if(!(document.form_edit.dificultad[0].checked || document.form_edit.dificultad[1].checked || document.form_edit.dificultad[2].checked)){
+		document.getElementById("error_dificultad").style.display='block';
+		document.form_edit.dificultad[0].focus();
+		return 0;
+	}
+
+	var extensiones_permitidas = new Array(".jpg", ".gif", ".png", ".bmp", ".raw", ".psd", ".tiff", ".xcf", ".eps", ".pcx", ".pict", ".dng",
+	".wmp", ".psb", ".jp2", ".tga", ".tif", ".pic", ".emf", ".ico"); 
+
+	var extension = (document.form_edit.imagen1.value.substring(document.form_edit.imagen1.value.lastIndexOf("."))).toLowerCase(); 
+
+	var permitida = false; 
+ 
+	for (var i = 0; i < extensiones_permitidas.length; i++) 
+         	if (extensiones_permitidas[i] == extension) { 
+         	permitida = true; 
+         	break; 
+         	}
+ 
+	if(document.form_edit.imagen1.value == "" || permitida != true){
+		document.getElementById("error_imagen").style.display='block';
+		document.form_edit.imagen1.focus();
+		return 0;
+		}
+
+	var imgs = document.getElementsByTagName("input"); 
+
+
+	for(i in imgs){
+		
+		permitida = false;
+		
+		if(imgs[i].type == "file" && imgs[i].id != 'imagen1'){
+		
+		extension = (imgs[i].value.substring(imgs[i].value.lastIndexOf("."))).toLowerCase();
+		
+			if(imgs[i].value == ""){
+				document.getElementById("error_otraimg").style.display='block';
+				return 0;
+			}
+			
+			for (i = 0; i < extensiones_permitidas.length; i++) 
+         		if (extensiones_permitidas[i] == extension) { 
+         		permitida = true; 
+				//document.getElementById("error_otraimg").style.display='block';
+				break;
+         	}
+
+			if(permitida != true){
+				document.getElementById("error_otraimg").style.display='block';
+				return 0;
+			}
+		}
+	}
+
+
+	if(document.getElementById('dataEdit').value == ""){
+		document.getElementById("error_contenido").style.display='block';
+		return 0;
+		}
+
+
+	/*Validación de fechas*/
+
+	if(document.getElementById("datepicker").value == ""){
+		document.getElementById("error_fechas").style.display='block';
+		document.form_edit.datepicker.focus();
+		return 0;
+	}
+
+	if(document.getElementById("datepicker2").value == ""){
+		document.getElementById("error_fechas").style.display='block';
+		document.form_edit.datepicker2.focus();
+		return 0;
+	}
+
+
+	var fecha_inic = document.getElementById("datepicker").value;
+	var fecha_fin = document.getElementById("datepicker2").value;
+	var fecha_crea = document.getElementById("datepicker3").value;
+
+	var arrayi = fecha_inic.split("-");
+	var arrayf = fecha_fin.split("-");
+	var arrayc = fecha_crea.split("-");
+
+	var fecha_actual = new Date();
+	var dia = fecha_actual.getDate();
+	var mes = fecha_actual.getMonth() + 1;
+	var anio = fecha_actual.getFullYear();
+
+	if(parseInt(arrayi[2],10) < anio)
+		flag = false;
+	else if(parseInt(arrayi[2],10) == anio)
+			if(parseInt(arrayi[1],10) < mes)
+				flag = false;
+			else if(parseInt(arrayi[1],10) == mes)
+					if(parseInt(arrayi[0],10) < dia)
+						flag = false;
+
+	if(flag == false){
+		document.getElementById("error_fechaAct").style.display='block';
+		return 0;
+	}
+
+	if(flag == true){
+
+		if(parseInt(arrayf[2],10) < parseInt(arrayi[2],10))
+			flag2 = false;
+		else if(parseInt(arrayf[2],10) == parseInt(arrayi[2],10))
+				if(parseInt(arrayf[1],10) < parseInt(arrayi[1],10))
+					flag2 = false;
+				else if(parseInt(arrayf[1],10) == parseInt(arrayi[1],10))
+						if(parseInt(arrayf[0],10) <= parseInt(arrayi[0],10))
+							flag2 = false;
+
+	}
+
+	if(flag2 == false){
+		document.getElementById("error_fechasIF").style.display='block';
+		return 0;
+	}
+
+	if(flag2 == true){
+
+		if(parseInt(arrayi[2],10) < parseInt(arrayc[2],10))
+			flag3 = false;
+		else if(parseInt(arrayi[2],10) == parseInt(arrayc[2],10))
+				if(parseInt(arrayi[1],10) < parseInt(arrayc[1],10))
+					flag3 = false;
+				else if(parseInt(arrayi[1],10) == parseInt(arrayc[1],10))
+						if(parseInt(arrayi[0],10) <= parseInt(arrayc[0],10))
+							flag3 = false;
+
+	}
+
+	if(flag3 == false){
+		document.getElementById("error_fechasIC").style.display='block';
+		return 0;
+	}
+
+	
+	document.form_edit.submit();
+
+}
+
+
+
+function cancelEdit2(){
+
+	window.history.back();
 
 }
