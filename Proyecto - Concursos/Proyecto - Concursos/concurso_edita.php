@@ -19,11 +19,11 @@
 	$usuarioGanador = $_SESSION["datos"]["usuarioGanador"];
 	$usuarioOrganizador = $_SESSION["datos"]["usuarioOrganizador"];
 	echo $usuarioOrganizador;
-	require("php/CRUDConcurso/funciones.php");
+	require("php/funciones.php");
 	$organizador = buscarPorIdOrganizador($usuarioOrganizador);
 	echo $usuarioOrganizador = $organizador["arrobaUsuario"];
 
-	//Borrar los datos para que no esten en la sesión
+	//Borrar los datos para que no esten en la sesiï¿½n
 	unset($_SESSION["datos"]);
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
-	<title>Concursos de Programación</title>
+	<title>Concursos de ProgramaciÃ³n</title>
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
@@ -59,9 +59,9 @@
 			currentText : 'Hoy',
 			monthNames : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 			monthNamesShort : ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-			dayNames : ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-			dayNamesShort : ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-			dayNamesMin : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+			dayNames : ['Domingo', 'Lunes', 'Martes', 'Miï¿½rcoles', 'Jueves', 'Viernes', 'Sï¿½bado'],
+			dayNamesShort : ['Dom', 'Lun', 'Mar', 'Miï¿½', 'Juv', 'Vie', 'Sï¿½b'],
+			dayNamesMin : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sï¿½'],
 			weekHeader : 'Sm',
 			dateFormat : 'dd-mm-yy',
 			firstDay : 1,
@@ -132,7 +132,7 @@
 	</header>
 	<article class="articulo">
 		<section class="seccion">
-			<form name="addConcurso" method="get" action="php/CRUDConcurso/guardarConcurso.php">			
+			<form name="addConcurso" method="post" action="php/concursoAgregar.php">			
 			<div id="nombre-concurso">
 					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
@@ -151,8 +151,8 @@
 				<div id="radios"class="button-holder">
 				
 				<?php if(strcmp($dificultad, "1") == 0) { ?>
-				<input type="radio" id="radio-1-1" checked="checked" name="dificultad" class="regular-radio" />
-					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
+				<input type="radio" id="radio-1-1" checked="checked" value = "1" name="dificultad" class="regular-radio" />
+					<label for="radio-1-1"> </label><label class="labelRadios">BÃ¡sica</label>
 					<br />
 					<input type="radio" id="radio-1-2"  name="dificultad" class="regular-radio" />
 					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
@@ -162,9 +162,9 @@
 					<br />
 				<?php } else if($dificultad == "2" ) { ?>
 				<input type="radio" id="radio-1-1"  name="dificultad" class="regular-radio" />
-					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
+					<label for="radio-1-1"> </label><label class="labelRadios">BÃ¡sica</label>
 					<br />
-				<input type="radio" id="radio-1-2" checked="checked" name="dificultad" class="regular-radio" />
+				<input type="radio" id="radio-1-2" checked="checked" value = "2" name="dificultad" class="regular-radio" />
 					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
 					<br />
 					<input type="radio" id="radio-1-3"  name="dificultad" class="regular-radio" />
@@ -172,12 +172,12 @@
 					<br />
 				<?php } else { ?>
 				<input type="radio" id="radio-1-1"  name="dificultad" class="regular-radio" />
-					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
+					<label for="radio-1-1"> </label><label class="labelRadios">BÃ¡sica</label>
 					<br />
 					<input type="radio" id="radio-1-2"  name="dificultad" class="regular-radio" />
 					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
 					<br />
-				<input type="radio" id="radio-1-3" checked="checked" name="dificultad" class="regular-radio" />
+				<input type="radio" id="radio-1-3" checked="checked" name="dificultad" value = "3"  class="regular-radio" />
 					<label for="radio-1-3"> </label><label class="labelRadios">Alta</label>
 					<br />
 				<? } ?>
@@ -185,15 +185,15 @@
 				</div>
 			</div>
 			<div id="categoriaWrapper">
-				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
-				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
+				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categorÃ­a</label>
+				<label  class="subtitulos" id="categoria">Seleccione una categorÃ­a</label>
 				
-				<select id="e1" selected="selected" name="categoria[]">
+				<select id="e1" name="categoria[]">
 				<option value="SeleccioneUna">Seleccione una</option>
 				
 				<?php
 				//Cargar el archivo de funciones
-				require_once("php/CRUDConcurso/funciones.php");
+				require_once("php/funciones.php");
 				$categorias = buscarCategorias();
 				$fila = $categorias[0];
 				foreach($categorias as $fila => $arr){
@@ -202,7 +202,7 @@
 					if($campo == 'idCategoria'){
 						
 					if(strcmp($valor, $categoria) ==0)
-						$cad1 = "<option value=".$valor." selected=".selected.">"; 
+						$cad1 = "<option value=".$valor." selected=selected>"; 
 					
 					else
 					$cad1 = "<option value=".$valor.">"; 
@@ -221,15 +221,16 @@
 			
 			<div id="fechaInicial">
 				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
-				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
+				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de maÃ±ana</label>
 				<p class="subtitulos">Fecha Inicio:</p>	
-<input type="text" id="datepicker" value="<?= $fechaInicio; ?>name="fechaInicio" class="calendario">
+<input type="text" id="datepicker" value="<?= $fechaInicio; ?>" name="fechaInicio" class="calendario">
  				<p class="subtitulos">Fecha Fin:</p>
 				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
-				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
-<input type="text" id="datepicker2" value="<?= $fechaFin; ?>name="fechaFin" class="calendario">
+				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de maÃ±ana</label>				
+<input type="text" id="datepicker2" value="<?= $fechaFin; ?>" name="fechaFin" class="calendario">
+
  				<!--Fecha de creacion hidden -->
- 				<input type="text" id="datepicker3" style="display: none">
+ 				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
 			</div>
 			
 			</section>
@@ -240,7 +241,12 @@
 		    <div class="organizadorConcurso">
 		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
 		    	
-		    	<a href="" id="aroba"><?= $usuarioOrganizador; ?></a> 
+<!-- checar con el loguin de TWITTER -->	    	
+		    	<a href="" id="aroba" name ="organizador"><?= $usuarioOrganizador; ?></a> 
+<!--  para llevarme el id del concurso por POST -->
+				<input  type="text"  id="idConcurso" name ="idConcurso" value="<?= $idConcurso; ?>" style="display:none"/>
+		    	<input  type="text"  id="organizador" name ="organizador" value="<?= $usuarioOrganizador; ?>" style="display:none"/>
+	
  
 		    	<div style="clear:both"> </div>
 		    </div>
@@ -255,19 +261,23 @@
 				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
 			</fieldset>
 			
+			<!-- Aqui pongo el valor del RTE para mandarlo por post -->
+			<input  type="text"  id="valorRTE" name ="descripcion" value="" style="display:none" />
+			
 			<button type="submit" value="enviar" hidden="hidden" class="show-example">Enviar</button>
 			</form>
 			
-			<p class="titulos">Agregue una descripción para el concurso</p>
+			<p class="titulos">Agregue una descripciÃ³n para el concurso</p>
 			<p id="tit-proposito"class="subtitulos" style="text-align: center">(de que se va a tratar)</p>
-			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
+			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripciÃ³n para el concurso</label>
 			<div id="richText">
-			<form name="RTEDemo" action="vistaDetalle.html" method="post" onsubmit="return submitForm();">
+			<form name="RTEDemo"  method="post" onsubmit="return submitForm();">
 				<script  type="text/javascript">
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
 						updateRTEs();
 						var datosEditor = document.RTEDemo.rte1.value;
+						console.log("esto es lo del editor"+datosEditor);
 						var botonGuardar = document.getElementById("botonSubmit");
 						botonGuardar.style.display = 'block';
 						//alert(document.RTEDemo.rte1.value);

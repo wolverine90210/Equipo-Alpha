@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -15,11 +24,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
-    <link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
-    <script src="js/select2.js"></script>
-    <script src="js/select2.min.js"></script>
-    <script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
-    <script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
+    	<link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+    	<script src="js/select2.js"></script>
+    	<script src="js/select2.min.js"></script>
+    	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
+    	<script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
 	<script type="text/javascript" src="js/jquery.purr.js"></script>
  	<script type="text/javascript" >
@@ -73,6 +82,8 @@
 				onSelect : function(dateText, inst) {
 					var lockDate = new Date($('#txtStartDate').datepicker('getDate'));
 					lockDate.setDate(lockDate.getDate() + 1);
+					
+					
 				}
 			});
 			$("#datepicker2").datepicker({
@@ -95,14 +106,16 @@
 			<h1>Agregar Concurso</h1>
 		</div>
 	    <nav id="menu-r">
-			<?php
-						include('php/secciones/menu.html');
-			?>
+			<ul>
+				<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
+				<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
+				<li class="boton"><a href="404.shtml" target="_self">RSS</a></li>
+			</ul>
 	    </nav>
 	</header>
 	<article class="articulo">
 		<section class="seccion">
-			<form name="addConcurso" method="post" action="agregarConcurso.html">			
+			<form name="addConcurso" method="get" action="php/concursoAgregar.php">			
 			<div id="nombre-concurso">
 					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
@@ -111,20 +124,20 @@
 			<div id='hashtagDiv'>
 					<label class="div_error" id="adv_hashtag" style="display: none">Teclee un hashtag para Twitter(#mihashtag)</label>
 					<label id="hashtagLabel">hashtag:</label>
-					<input  type="text" id="hashTwitter" placeholder="#nombreConcurso"onfocus="this.value='';"/>
+					<input  type="text" id="hashTwitter" name="hashtagTwitter" placeholder="#nombreConcurso"onfocus="this.value='';"/>
 			</div>
 			<section id="datosBasicos"> 
 			<div id="radiosWrapper">
 				<label class="div_error" id="adv_radio" style="display: none">No se ha seleccionado dificultad</label>
 				<label class="subtitulos" id="dificultad">Seleccione un nivel de dificultad</label>
 				<div id="radios"class="button-holder">
-					<input type="radio" id="radio-1-1" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-1" name="dificultad" value="1" class="regular-radio" />
 					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
 					<br />
-					<input type="radio" id="radio-1-2" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-2" name="dificultad" value="2" class="regular-radio" />
 					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
 					<br />
-					<input type="radio" id="radio-1-3" name="dificultad" class="regular-radio" />
+					<input type="radio" id="radio-1-3" name="dificultad" value="3"class="regular-radio" />
 					<label for="radio-1-3"> </label><label class="labelRadios">Alta</label>
 					<br />
 				</div>
@@ -132,6 +145,7 @@
 			<div id="categoriaWrapper">
 				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
 				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
+				
 				<select id="e1" selected="selected" name="categoria[]">
 				<option value="SeleccioneUna">Seleccione una</option>
 				
@@ -157,13 +171,14 @@
 				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
 				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
 				<p class="subtitulos">Fecha Inicio:</p>	
-    			<input type="text" id="datepicker" class="calendario">
+    				<input type="text" id="datepicker" name="fechaInicio" class="calendario">
  				<p class="subtitulos">Fecha Fin:</p>
 				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
 				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
- 				<input type="text" id="datepicker2"  class="calendario">
+ 				<input type="text" id="datepicker2" name="fechaFin" class="calendario">
  				<!--Fecha de creacion hidden -->
- 				<input type="text" id="datepicker3" style="display: none">
+ 				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
+ 				
 			</div>
 			
 			</section>
@@ -173,9 +188,13 @@
 		    <p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
 		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
-		    	<a href="http://www.google.com" id="aroba">@levhita</a>  
+		    	
+<!-- checar con el loguin de TWITTER  -->
+		    	<a href="http://www.google.com" id="aroba" name="organizador">@levhita</a> 
+		    	<input  type="text"  id="organizador" name ="organizador" value="@levhita" style="display:none"/>
+		    	 
 		    	<div style="clear:both"> </div>
-		    </div>
+		    </div>"
 		    
 			<div style="clear:both"> </div>	
 			
@@ -183,10 +202,15 @@
 			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
 			<fieldset id="campoField">
 				<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
-				<input id="imagenUp1" name="cargarImagen" type="file" accept="image/*" required="required" />
+				<input id="imagenUp1" name="cargarImagen[]" type="file" accept="image/*" required="required" />
 				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
 			</fieldset>
-			<input type="text" style="display:none" name="descripcion" /><!--para cachar el valor del RTE-->
+			
+			
+			
+			<!-- Aqui pongo el valor del RTE para mandarlo por post -->
+			<input  type="text"  id="valorRTE" name ="descripcion" value="" style="display:none" />
+			
 			<button type="submit" value="enviar" hidden="hidden" class="show-example">Enviar</button>
 			</form>
 			
@@ -194,12 +218,15 @@
 			<p id="tit-proposito"class="subtitulos" style="text-align: center">(de que se va a tratar)</p>
 			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
 			<div id="richText">
-			<form name="RTEDemo" action="vistaDetalle.html" method="post" onsubmit="return submitForm();">
+			<form name="RTEDemo" method="post" onsubmit="return submitForm();">
 				<script  type="text/javascript">
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
 						updateRTEs();
 						var datosEditor = document.RTEDemo.rte1.value;
+						
+						var botonGuardar = document.getElementById("botonSubmit");
+						botonGuardar.style.display = 'block';
 						//alert(document.RTEDemo.rte1.value);
 						//change the following line to true to submit form
 						return false;
@@ -259,8 +286,11 @@
 					rte1.build();
 				</script>
 				<div style="clear:both"> </div>	
-			<label>No olvide guardar los cambios</label>
+			<label>No olvide guardar los cambios y enviar</label>
 			<input class="botonGuardar" type="submit" name="submit"  value="Guardar" />
+			<br />
+			<a class="botonSubmit" id="botonSubmit" class="show-example" style="display:none"onclick="valida_envia()"> </a>
+			
 		</form>
 	  </div>	
 	<div style="clear:both"> </div>	
@@ -268,7 +298,7 @@
 	<div class="sombra_seccion"> </div>
 	</article>
 	<footer > 
-		<a class="botonSubmit" class="show-example" onclick="valida_envia()"> </a>
+		
 	</footer>
 </body>
 </html>

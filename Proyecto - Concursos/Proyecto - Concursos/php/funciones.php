@@ -33,6 +33,20 @@ function listarConcursos(){
 	return $datos;
 }
 
+/*
+ * 
+ * Funciones de buscar
+ */
+
+/**
+ * 
+ * 
+ * @return $datos
+ * @param $id
+ * Busca un concurso por su id de alta
+ * y regresa los datos de ese concurso
+ */
+
 function buscarPorId($id){
 
 
@@ -253,6 +267,37 @@ function buscarCategorias(){
 	return $datos;
 	
 
+}
+/*
+ * 
+ * 
+ * FUNCIONES DE ELIMINAR
+ */
+
+/**
+ * @param ID
+ * esta funcion elimina 
+ * el concurso con ese id
+ */
+
+function eliminarConcurso($id){
+
+	//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "delete  from concurso where idConcurso = $id";
+
+	//Ejecuto mi consulta
+	 $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
 }
 
 ?>

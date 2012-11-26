@@ -1,92 +1,112 @@
 <?php
+/**
+ * 
+ * 
+ * 
+ */
+	session_start();
+	
+//Nos conectamos a la base de datos
+require_once("bd.inc");
+$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
 
-	//Nos conectamos a la base de datos
-	require_once("bd.inc");
-	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
+//Verificar que la conexión no haya generado error
+if ($conexion->connect_error) {
+	die('Error de Conexión (' . $conexion->connect_errno . ') '
+	. $conexion->connect_error);
+}
+	
+print_r($_REQUEST);
 
-	//Verificar que la conexión no haya generado error
-	if ($conexion->connect_error) {
-		die('Error de Conexión (' . $conexion->connect_errno . ') '
-		        . $conexion->connect_error);
+//Obtener mis variables del formulario
+$nomConcurso = $_REQUEST['nombreConcurso'];
+$hashtag = $_REQUEST['hashtagTwitter'];
+
+//sacar la categoria del arreglo
+if (isset($_REQUEST['categoria'])){
+	$categoria = $_REQUEST['categoria'];
+	$n        = count($categoria);
+	$i        = 0;
+	while ($i < $n)
+	{
+		$categoria =$categoria[$i];
+		$i++;
 	}
-	
-	print_r($_REQUEST);
-	
-	//Obtener mis variables del formulario
-	$nomConcurso = $_REQUEST['nombreConcurso'];
-	$hashtag = $_REQUEST['hashtagTwitter'];
-	
-	//sacar la categoria del array 
-	if (isset($_REQUEST['categoria'])){
-	   $categoria = $_REQUEST['categoria'];
-	   $n        = count($categoria);
-	   $i        = 0;
-	   while ($i < $n)
-	   {
-	      $categoria =$categoria[$i];
-	      $i++;
-	   }
-	}
+}
 
-	$dificultad = $_REQUEST['dificultad'];
-	$fechaAlta = date('Y-m-d', strtotime($_REQUEST['fechaAlta']));
-	$fechaInicio = date('Y-m-d', strtotime($_REQUEST['fechaInicio']));
-	$fechaFin = date('Y-m-d', strtotime($_REQUEST['fechaFin']));
-	$urlImagenes = $_REQUEST['cargarImagen'];
-	$organizador = $_REQUEST['organizador'];
-	$descripConcurso = $_REQUEST['descripcion'];
-	
+$dificultad = $_REQUEST['dificultad'];
+date_default_timezone_set('UTC');
+$fechaAlta = date('Y-m-d', strtotime($_REQUEST['fechaAlta']));
+$fechaInicio = date('Y-m-d', strtotime($_REQUEST['fechaInicio']));
+$fechaFin = date('Y-m-d', strtotime($_REQUEST['fechaFin']));
+//$urlImagenes = $_REQUEST['cargarImagen'];
+$organizador = $_REQUEST['organizador'];
+$descripConcurso = $_REQUEST['descripcion'];
 
-	//Validar las entradas para evitar inyecciones de sql
-	//Usar expresiones regulares y la función de mysqli	
-	$nomConcurso = $conexion -> real_escape_string($nomConcurso);
-	$hashtag = $conexion -> real_escape_string($hashtag);
-	$categoria = $conexion -> real_escape_string($categoria);
-	$dificultad = $conexion -> real_escape_string($dificultad);
-	$fechaAlta = $conexion -> real_escape_string($fechaAlta);
-	$fechaInicio = $conexion -> real_escape_string($fechaInicio);
-	$fechaFin = $conexion -> real_escape_string($fechaFin);
-	$urlImagen = $conexion -> real_escape_string($urlImagen);
-	$organizador = $conexion -> real_escape_string($organizador);
-	$descripConcurso = $conexion -> real_escape_string($descripConcurso);
-	
-	
-	//buscar el id del usuario organizador
-	$query = "select * from usuario where arrobaUsuario = '$organizador'";
-	
-	//Ejecutar el query
-	$result = $conexion -> query($query);
-	
 
-	//Convierto el resultado de mi consulta a una matriz
-	if($result -> num_rows == 1){
-		$datos= $result -> fetch_assoc();
-	}
+//Validar las entradas para evitar inyecciones de sql
+//Usar expresiones regulares y la función de mysqli
+$nomConcurso = $conexion -> real_escape_string($nomConcurso);
+$hashtag = $conexion -> real_escape_string($hashtag);
+$categoria = $conexion -> real_escape_string($categoria);
+$dificultad = $conexion -> real_escape_string($dificultad);
+$fechaAlta = $conexion -> real_escape_string($fechaAlta);
+$fechaInicio = $conexion -> real_escape_string($fechaInicio);
+$fechaFin = $conexion -> real_escape_string($fechaFin);
+//$urlImagen = $conexion -> real_escape_string($urlImagen);
+$organizador = $conexion -> real_escape_string($organizador);
+$descripConcurso = $conexion -> real_escape_string($descripConcurso);
 	
+	
+//buscar el id del usuario organizador
+$query = "select * from usuario where arrobaUsuario = '$organizador'";
 
-	$idUsuario = $datos['idUsuario'];//este es el id del usuarioOrganizador
-	
-	
+//Ejecutar el query
+$result = $conexion -> query($query);
+
+
+//Convierto el resultado de mi consulta a una matriz
+if($result -> num_rows == 1)
+	$datos= $result -> fetch_assoc();
+
+//este es el id del usuarioOrganizador
+$idUsuario = $datos['idUsuario'];
+
+
+//Si ya existe el concurso entonces hacer update sino hacer insert
+if(isset($_REQUEST['idConcurso'])){
+	$idConcurso = $_REQUEST['idConcurso'];
+	$query = "UPDATE `concurso` SET `idConcurso` = $idConcurso,`nombreConcurso` = '$nomConcurso',
+			`hashtag` = '$hashtag',`dificultad` = $dificultad,`categoria` = $categoria,`fechaDeAlta` = '$fechaAlta',
+			`fechaDeInicio` = '$fechaInicio',
+			`descripcion` = '$descripConcurso',`fechaDeFin` = '$fechaFin',
+			`status` = 1,`motivos` = 'falta aprobar',`usuarioGanador` = 1,
+			`usuarioOrganizador` = $idUsuario 
+				WHERE `concurso`.`idConcurso` = $idConcurso
+ 				AND `concurso`.`categoria` = 1 AND `concurso`.`usuarioOrganizador` = $idUsuario;";
+
+}
+else{
 	
 	//insertar el concurso con todos lo datos
-	
-	$query = "INSERT INTO `concurso` (`nombreConcurso`, `hashtag`, `dificultad`, `categoria`, `fechaDeAlta`, `fechaDeInicio`, `descripcion`, `fechaDeFin`, `status`, `motivos`, `usuarioGanador`, `usuarioOrganizador`) VALUES ('$nomConcurso', '$hashtag', $categoria, $dificultad, '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 1, $idUsuario)";
+	$query = "INSERT INTO `concurso` (`nombreConcurso`, `hashtag`, `dificultad`, `categoria`, `fechaDeAlta`, `fechaDeInicio`, `descripcion`, `fechaDeFin`, `status`, `motivos`, `usuarioGanador`, `usuarioOrganizador`) 
+			  VALUES ('$nomConcurso', '$hashtag', $categoria, $dificultad, '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 1, $idUsuario)";
+}
+
+
+//Ejecutar el query
+$result = $conexion -> query($query);
+	if($conexion -> error)
+		printf("Errormessage: %s\n", $conexion->error);
+
+//Cerrar la conexion
+$conexion -> close();
+
 	
 
-	//Ejecutar el query
-	$conexion -> query($query);
-	 
-	
-	//insertar la path de la imagen
-	
-	
-	
-	//Cerrar la conexion
-	$conexion -> close();
-	
-	//mostrar un mensaje de confirmacion
-	
-		echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
+//mostrar un mensaje de confirmacion
+
+echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
 	<head>
 	<meta charset='UTF-8' />
 	</head>
@@ -110,6 +130,7 @@
 	</body>
 	</html>
 	";
-	header('refresh: 2; url=javascript: history.go(-1)');
-	
+header('refresh: 2; url=http://localhost/Proyecto2012/listaConcursos.php');
+
+
 ?>

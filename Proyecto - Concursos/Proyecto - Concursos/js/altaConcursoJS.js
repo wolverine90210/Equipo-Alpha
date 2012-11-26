@@ -33,7 +33,7 @@ function crearCampos(obj) {
 	elementoBoton.type = 'file';
 	elementoBoton.value = 'Agregar otra Imagen';
 	elementoBoton.setAttribute('accept','image/*');
-	elementoBoton.name = 'boton' + contador;
+	elementoBoton.name = "cargarImagen[]";
 	elementoContenedor.appendChild(elementoBoton);
 
 	//su respectivo boton para borrarlo
@@ -228,7 +228,7 @@ function valida_envia() {
 
 	//Asignar fecha de creacion
 	
-	document.getElementById('datepicker3').value = dameFechaActual();
+	document.getElementById('datepicker3').value = new Date();
 	
 	
 	
@@ -264,16 +264,18 @@ function valida_envia() {
 		}
 		
  //validar editor
- document.RTEDemo.rte1.value;
+ 
+
  
  if (document.RTEDemo.rte1.value.length == 0) {
 		muestraEtiqueta("adv_rteEditor");
 		return 0;
 	} else {
 		ocultaEtiqueta("adv_rteEditor");
+		document.getElementById("valorRTE").value = document.RTEDemo.rte1.value;
 	}
 
-document.addConcurso.submit(); 
+ document.addConcurso.submit(); 
 }
 			
 	
