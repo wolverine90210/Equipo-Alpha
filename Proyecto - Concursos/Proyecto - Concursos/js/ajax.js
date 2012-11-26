@@ -129,3 +129,111 @@ function addCat(){
 
 }
 
+function buscarConcursosPorStatus(){
+	//Obtengo del formulario el campo del tipo de usuario
+	//para poder hacer la consulta filtrada
+	statusSeleccionado = document.getElementById("statusConcurso").value;
+
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("GET", "php/listaConcursos.php?status="+statusSeleccionado, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("extra").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+
+function buscarConcursosPorFechas(){
+	//Obtengo del formulario el campo del tipo de usuario
+	//para poder hacer la consulta filtrada
+	fechaInicio = document.getElementById("datepicker").value;
+	fechaFin = document.getElementById("datepicker2").value;
+	console.log(fechaInicio);
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("GET", "php/listaConcursos.php?fi="+fechaInicio+"&ff="+fechaFin, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("extra").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+
+
+function buscarConcursosPorDificultad(valuet){
+	//Obtengo del formulario el campo del tipo de usuario
+	//para poder hacer la consulta filtrada
+	dificultad = valuet;
+	console.log(dificultad);
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("GET", "php/listaConcursos.php?dificultad="+dificultad, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("extra").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+
+function buscarConcursosPorCategoria(){
+	//Obtengo del formulario el campo del tipo de usuario
+	//para poder hacer la consulta filtrada
+	categoria = document.getElementById("e1").value;
+	console.log(categoria);
+
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("GET", "php/listaConcursos.php?categoria="+categoria, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("extra").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+
+
