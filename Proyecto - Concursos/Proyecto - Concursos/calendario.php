@@ -11,33 +11,41 @@
 	<script type='text/javascript' src='jquery/jquery-1.8.1.min.js'></script>
 	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
-	<script type="text/javascript" language="javascript">
-			$(document).ready(function(e) {
-				$('#site-name h1').show('fast')
-			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
-			});
-	</script>	
+
 	<script type='text/javascript' src='fullcalendar/fullcalendar.js'></script>
 	<script>
+	var eventos = new Array;
 		$(document).ready(function() {
-
-    	// page is now ready, initialize the calendar...
-	
-    		$('#calendar').fullCalendar({
-        		events: '/myfeed.php'/*{
-       				url: '/myfeed.php',
-        			type: 'POST',
-        			data: {
-            			custom_param1: 'something',
-            			custom_param2: 'somethingelse'
-        			},
-        			error: function() {
-           				alert('there was an error while fetching events!');
-        			},
-        			color: 'yellow',   // a non-ajax option
-        			textColor: 'black' // a non-ajax option
-    			}*/
-   			})
+		
+		$.ajax(
+		{
+		url:'myfeed.php',
+		dataType:'json',
+		type: 'POST',
+		success:function(data)
+		{
+			
+			eventos=data;
+			$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+			events: eventos
+		});
+			
+		},
+		error:function(data)
+		{
+		alert('fallo')
+		}
+		});
+		
+		
+			$('#site-name h1').show('fast')
+			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});
 
 		});
 	</script>
