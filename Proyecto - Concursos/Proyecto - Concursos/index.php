@@ -6,7 +6,6 @@
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
-	<meta http-equiv="refresh" content="160" />
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
@@ -34,7 +33,21 @@
 			<?php
 						include('php/secciones/menu.html');
 			?>
+			
+			<script type="text/javascript">$('#adminButton').hide();</script>	  
+			<script type="text/javascript">$('#accountButton').hide();</script>	
+			
+			<a id="loginButton" style="float:right;" href="loginWithTwitter.php?authenticate=1">
+	  		<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
+	  		</a>
+	 
 	   </nav>
+	   
+	   <script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+	<?php
+	include('php/secciones/signIn.php');
+	?>
 	
 	</header>
 	

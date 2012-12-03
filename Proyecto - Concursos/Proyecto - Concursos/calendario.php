@@ -59,10 +59,25 @@
 	   	<?php
 				include('php/secciones/menu.html');
 		?>
+		
+		<script type="text/javascript">$('#adminButton').hide();</script>	  
+		<script type="text/javascript">$('#accountButton').hide();</script>	
+			
+		<a id="loginButton" style="float:right;" href="loginWithTwitter.php?authenticate=1">
+	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
+	  	</a>
+	  	
 	   </nav>
+	   
+	   <script type="text/javascript">$('#loginButton').hide();</script> 
+	
+	<?php
+	include('php/secciones/signIn.php');
+	?>
+	   
 	 </header>
 	 <article class="articulo">
-			<div class="cont"><a class="boton1" href="404.shtml"><span>enviar</span></a></div>
+			<div class="cont"><a class="boton1" href="agregarConcurso.php"><span>enviar</span></a></div>
 	 		<section class="seccion">
 				<div id='calendar'></div>
 			</section>	
