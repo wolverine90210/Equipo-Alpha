@@ -75,22 +75,22 @@
 	});
 		</script>
 		
-		<script type="text/javascript" src="js/ajax.js"></script>
-		<noscript>Tu navegador no soporta Javascript</noscript>	
+		<noscript>Tu navegador no soporta Javascript</noscript>
+		<title>Mis concursos</title>	
 </head>
 
 <body id="container">
 	<header id="header">
-		<div id="site-name2">
-			<h1>Mis concursos</h1>
-		</div>
-	    <nav id="menu-r">
-			<ul>
-				<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-				<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
-				<li class="boton"><a href="404.shtml" target="_self">RSS</a></li>
-			</ul>
-	    </nav>
+		<div id="site-name">
+	   				<h1>Concursos</h1>
+   				</div>
+  
+  				 <nav id="menu-r">
+				<?php
+						include('php/secciones/menu.html');
+				?>
+					
+	   			</nav>
 	</header>
 	<article class="articulo">
 		<section class="seccion">

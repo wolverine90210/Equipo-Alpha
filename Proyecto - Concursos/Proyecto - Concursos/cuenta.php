@@ -1,53 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-	
-<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Index - Maquetado Vista de Blog" />
-		<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
-		<meta name="author" content="Equipo Alpha" />
-		<meta http-equiv="refresh" content="160" />
-		<link href="css/general.css" type="text/css" rel="stylesheet" />
-		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
-		<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
-		<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
-		<script type="text/javascript" language="javascript">
-			$(document).ready(function(e) {
-				$('#site-name h1').show('slow')
-			$('#menu-l li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
-			});
-		</script>	
-		<script type="text/javascript">
-    		 var disqus_developer = 1; // this would set it to developer mode
-     	</script>
-     	<script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'equipoalpha'; // required: replace example with your forum shortname
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        </script>
-         
-   		<title>Cuenta de Usuario</title>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Index - Maquetado Vista de Blog" />
+	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
+	<meta name="author" content="Equipo Alpha" />
+	<title>Concursos de Programación</title>
+	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
+	<link href="css/general.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
+	<link href="css/select2.css" type="text/css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+    <link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+    <script src="js/select2.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
+    <script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
+	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
+ 	<script type="text/javascript" >
+	 jQuery(function($) {
+		$.datepicker.regional['es'] = {
+			closeText : 'Cerrar',
+			prevText : 'Anterior',
+			nextText : 'Siguiente',
+			currentText : 'Hoy',
+			monthNames : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			monthNamesShort : ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+			dayNames : ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort : ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+			dayNamesMin : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+			weekHeader : 'Sm',
+			dateFormat : 'dd-mm-yy',
+			firstDay : 1,
+			numberOfMonths : 1,
+			isRTL : false,
+			yearSuffix : ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['es']);
+	});
+	$(document).ready(function(e) {
+		$("#e1").select2();
+		$(function() {
+			$("#datepicker").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				onSelect : function(dateText, inst) {
+					var lockDate = new Date($('#txtStartDate').datepicker('getDate'));
+					lockDate.setDate(lockDate.getDate() + 1);
+					
+					
+				}
+			});
+			$("#datepicker2").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				onSelect : function(dateText, inst) {
+				}
+			});
+
+		});
+	});
+		</script>
+		
+		<noscript>Tu navegador no soporta Javascript</noscript>
+		<title>Cuenta</title>	
 </head>
 
 <body id="container">
-		
-		<header id="header">
-		<!--	<nav id="menu-l">
-				  	<ul>
-				  		<li class="boton"><a href="" target="_self">Enviar Entrada</a></li>
-						<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-					</ul>	
-  				</nav> -->
-  				<div id="site-name">
-	   				<h1 style="display:none; ">Cuenta</h1>
+	<header id="header">
+		<div id="site-name">
+	   				<h1>Cuenta</h1>
    				</div>
   
   				 <nav id="menu-r">
@@ -56,69 +82,97 @@
 				?>
 					
 	   			</nav>
-	   	
-   		</header>	
-	
-	 	<article class="articulo">
-			<div class="cont"><a class="boton1" href="404.shtml"><span>enviar</span></a></div>
-    			<h2>Aceptados</h2>
-	  			<div id="aceptados">
-    			<section id="evento1" class="seccion">
-					<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-    		
-    			</section>
-    			<div id="sombra1" class="sombra_seccion"></div>
-    			 				
-    			<section id="evento2" class="seccion"><br />
-    				<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-				</script>
-    			
-    			</section>
-    			<div id="sombra2" class="sombra_seccion"></div>
-    			
+	</header>
+	<article class="articulo">
+		<section class="seccion">
+			<form name="addConcurso" method="get" action="php/concursoAgregar.php">	
+			<h2>Seleccione uno o más criterios de búsqueda</h2>		
+			<section id="datosBasicos"> 
+			
+			<div id="radiosWrapper">
+				<label class="div_error" id="adv_radio" style="display: none">No se ha seleccionado dificultad</label>
+				<label class="subtitulos" id="dificultad">Seleccione un nivel de dificultad</label>
+				<div id="radios"class="button-holder">
+					<input type="radio" id="radio-1-1" name="dificultad" value="1" class="regular-radio" onClick="buscarConcursosPorDificultad(1)"/>
+					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
+					<br />
+					<input type="radio" id="radio-1-2" name="dificultad" value="2" class="regular-radio" onClick="buscarConcursosPorDificultad(2)"/>
+					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
+					<br />
+					<input type="radio" id="radio-1-3" name="dificultad" value="3"class="regular-radio" onClick="buscarConcursosPorDificultad(3)"/>
+					<label for="radio-1-3"> </label><label class="labelRadios">Alta</label>
+					<br />
+				</div>
 			</div>
-		<h2>Rechazados</h2>
-	  			<div id="rechazados">
-	  				
-    			<section id="evento3" class="seccion">
-    				<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-    			</section>
-    			<div id="sombra3" class="sombra_seccion"></div>
-    			
-    		
-    			<section id="evento4" class="seccion">
-    				<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-    			</section>
-    			<div id="sombra4" class="sombra_seccion"></div>
-    			
-		</div>
-		<h2>Pendientes</h2>
-		<div id="pendientes">
-    			<section id="evento5" class="seccion">
-    				<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-    			</section>
-    			<div id="sombra5" class="sombra_seccion"></div>
-    			
-    		
-    			<section id="evento6" class="seccion">
-    				<?php
-						include('php/secciones/cuentaSec.html');
-					?>
-    			</section>
-    			<div id="sombra6" class="sombra_seccion"></div>
-    			
-		</div>
-   		</article>
-    	
+			<div id="categoriaWrapper">
+				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
+				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
+				
+				<select id="e1"  name="categoria[]"  onChange="buscarConcursosPorCategoria()">
+				<option value="SeleccioneUna">Seleccione una</option>
+				
+				<?php
+				//Cargar el archivo de funciones
+				require_once("php/funciones.php");
+				$categorias = buscarCategorias();
+				$fila = $categorias[0];
+				foreach($categorias as $fila => $arr){
+					//Todos los campos de cada fila
+				    foreach($arr as $campo => $valor){
+					if($campo == 'idCategoria')
+					$cad1 = "<option value=".$valor.">";
+					else if($campo == 'nom_Categoria')
+					echo $cad1.$valor.'</option>';
+					}
+				     }
+				?>
+				</select>
+			</div>
+			
+			<div id="fechaInicial">
+				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
+				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
+				<p class="subtitulos">Fecha Inicio:</p>	
+    				<input type="text" id="datepicker" name="fechaInicio" class="calendario">
+ 				<p class="subtitulos">Fecha Fin:</p>
+				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
+				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
+ 				<input type="text" id="datepicker2" name="fechaFin" class="calendario">
+ 				<!--Fecha de creacion hidden -->
+ 				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
+ 				<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="buscarConcursosPorFechas()"> </a>
+			</div>
+	<!-- Entonces en cuanto a status del concurso: 1 para pendiente, 2 para aceptado y 3 para cancelado :B -->
+			<label  class="subtitulos" id="sta">Seleccione un status</label><br />
+			<select name="statusConcurso" id="statusConcurso" onChange="buscarConcursosPorStatus()">
+				<option value="0">Selecciona...</option>
+				<option value="1">Pendiente</option>
+				<option value="2">Aceptado</option>
+				<option value="3">Rechazado</option>
+			</select>
+			
+			</section>
+			
+			<div style="clear:both;height:50px;"> </div>
+			
+
+		    
+			<div style="clear:both"> </div>	
+				
+			<button type="submit" value="enviar" style="display:none" class="show-example">Enviar</button>
+			</form>
+
+	  </div>	
+	<div style="clear:both"> </div>	
+	</section>
+	<section class="seccion">
+		<div id="extra"></div>
+
+</section>
+	<div class="sombra_seccion"> </div>
+	</article>
+	<footer > 
+		
+	</footer>
 </body>
 </html>
