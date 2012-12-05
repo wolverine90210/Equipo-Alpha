@@ -262,7 +262,7 @@ $conexion -> close();
 
 
 //mostrar un mensaje de confirmacion
- /*echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
+ echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
  <head>
  <meta charset='UTF-8' />
  </head>
@@ -287,5 +287,4 @@ $conexion -> close();
  </html>
  ";
  header('refresh: 2; url=http://localhost/Proyecto2012/listaConcursos.php');
-*/
 ?>
