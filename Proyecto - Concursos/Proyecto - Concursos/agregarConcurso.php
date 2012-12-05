@@ -190,7 +190,7 @@
 		    <div class="organizadorConcurso">
 		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
 		    	
-<!-- checar con el loguin de TWITTER  -->
+	<!-- checar con el loguin de TWITTER  -->
 		    	<a href="http://www.google.com" id="aroba" name="organizador">@levhita</a> 
 		    	<input  type="text"  id="organizador" name ="organizador" value="@levhita" style="display:none"/>
 		    	 
