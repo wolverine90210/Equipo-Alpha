@@ -22,6 +22,7 @@
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+	<LINK REL="SHORTCUT ICON" HREF="favicon.ico" />
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
     	<link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
@@ -115,7 +116,7 @@
 	</header>
 	<article class="articulo">
 		<section class="seccion">
-			<form name="addConcurso" method="get" action="php/concursoAgregar.php">			
+			<form name="addConcurso"  action="php/concursoAgregar.php" method="post" enctype="multipart/form-data">			
 			<div id="nombre-concurso">
 					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
@@ -202,10 +203,10 @@
 			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
 			<fieldset id="campoField">
 				<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
-				<input id="imagenUp1" name="cargarImagen[]" type="file" accept="image/*" required="required" />
+				<input id="imagenUp1"  type="file" name="file[]" accept="image/*" required="required" />
 				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
 			</fieldset>
-			
+		
 			
 			
 			<!-- Aqui pongo el valor del RTE para mandarlo por post -->

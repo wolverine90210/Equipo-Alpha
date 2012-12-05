@@ -114,6 +114,35 @@ function buscarPorId($id){
 
 }
 
+function dameIdDeConcurso($nomConcurso,$hashtag){
+	
+		//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from concurso  as c where c.nombreConcurso LIKE '$nomConcurso' and c.hashtag LIKE '$hashtag'";
+	
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Convierto el resultado de mi consulta a un arreglo
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+		var_dump($datos);
+	
+	if($con -> error)
+	printf("Errormessage: %s\n", $con->error);
+
+	return $datos["idConcurso"];
+	
+}
+
 function buscarPorDificultad($dificultad){
 	
 		//Conectarse a la base de datos

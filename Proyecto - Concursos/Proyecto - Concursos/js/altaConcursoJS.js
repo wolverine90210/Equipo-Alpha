@@ -31,9 +31,9 @@ function crearCampos(obj) {
 	elementoBoton = document.createElement('input');
 	elementoBoton.id = 'imagenUp'+contador;
 	elementoBoton.type = 'file';
+	elementoBoton.name = "file[]";
 	elementoBoton.value = 'Agregar otra Imagen';
 	elementoBoton.setAttribute('accept','image/*');
-	elementoBoton.name = "cargarImagen[]";
 	elementoContenedor.appendChild(elementoBoton);
 
 	//su respectivo boton para borrarlo
