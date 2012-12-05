@@ -124,29 +124,32 @@
 
 	<header id="header">
 	
+		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
+	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
+	  	</a>
+	
+		<script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+		<?php
+		include('php/secciones/signIn.php');
+		?>
+	
 		<div id="site-name">
 			<h1 style="display:none; ">Concursos</h1>
 		</div>
 		
 	   <nav id="menu-r">
-		<?php
-		include('php/secciones/menu.html');
-		?>	
 		
-		<script type="text/javascript">$('#adminButton').hide();</script>	  
-		<script type="text/javascript">$('#accountButton').hide();</script>	
+		<?php
+				include('php/secciones/menu.html');
+		?>	 
 			
-		<a id="loginButton" style="float:right;" href="loginWithTwitter.php?authenticate=1">
-	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
-	  	</a>
+			<script type="text/javascript">
+			$('#adminButton').hide();
+			$('#accountButton').hide();
+			</script>
 		
 	   </nav>
-	   
-	<script type="text/javascript">$('#loginButton').hide();</script> 
-	
-	<?php
-	include('php/secciones/signIn.php');
-	?>
 
 	
 	<h1>Administración de concursos</h1>

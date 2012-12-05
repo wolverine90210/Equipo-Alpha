@@ -20,7 +20,7 @@ session_start();
 	$usuarioOrganizador = $_SESSION["datos"]["usuarioOrganizador"];
 	
 	//Nos conectamos a la base de datos y obtenemos el usuario
-	require_once('php/BD_Concursos.inc');
+	require_once('php/bd.inc');
 	$conexion = new mysqli($host, $user, $pass, $bd);
 
 	if($conexion->connect_error){

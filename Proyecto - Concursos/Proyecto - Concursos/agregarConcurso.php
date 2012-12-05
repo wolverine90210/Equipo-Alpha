@@ -103,15 +103,29 @@
 
 <body id="container">
 	<header id="header">
+	
+		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
+	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
+	  	</a>
+	
+		<script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+		<?php
+		include('php/secciones/signIn.php');
+		?>
+		
 		<div id="site-name2">
-			<h1>Agregar Concurso</h1>
+			<h1 class="site-name2">Agregar Concurso</h1>
 		</div>
 	    <nav id="menu-r">
-			<ul>
-				<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-				<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
-				<li class="boton"><a href="404.shtml" target="_self">RSS</a></li>
-			</ul>
+			<?php
+						include('php/secciones/menu.html');
+			?>	 
+			
+			<script type="text/javascript">
+			$('#adminButton').hide();
+			$('#accountButton').hide();
+			</script>
 	    </nav>
 	</header>
 	<article class="articulo">

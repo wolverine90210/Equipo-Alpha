@@ -1,9 +1,11 @@
 #site-name2{
-	display:inline-block; width:550px;
+	display:inline;
 	font-family:'Bitter', serif;
 	font-size:30px;
 	margin:0;
 }
+
+.site-name2 { display:inline; }
 
 #menu-r {
 	font-size:12px;

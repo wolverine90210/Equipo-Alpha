@@ -3,8 +3,8 @@
 	session_start();
 	
 	//Nos conectamos a la base de datos y obtenemos el usuario
-	require_once('BD_Concursos.inc');
-	$conexion = new mysqli($host, $user, $pass, $bd);
+	require_once('bd.inc');
+	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
 
 	if($conexion->connect_error){
 
