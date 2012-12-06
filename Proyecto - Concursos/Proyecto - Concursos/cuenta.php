@@ -8,6 +8,7 @@
 	<meta name="author" content="Equipo Alpha" />
 	<title>Concursos de Programación</title>
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
+	<script type="text/javascript" src='js/ajax.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
