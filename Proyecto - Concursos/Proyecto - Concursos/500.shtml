@@ -17,7 +17,7 @@
       Hubo un error interno en el servidor o algo esta mal configurado y no pudo completar su solicitud.<BR>
       Disculpe las molestias.
       <BR><BR>
-<A href="http://mimostudios.com"><!--#echo var="HTTP_HOST" --></A>
+      <a href="http://alanturing.cucei.udg.mx/equipo-alpha/index.php">Regrese a nuestra p&aacute;gina de inicio</a>
       </TD>
    </TR>
 </TABLE>
