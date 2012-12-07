@@ -6,6 +6,7 @@
 	<meta name="keywords" content="HTML5,Practica_1" />
 	<meta name="author" content="Oliver Castellanos" />
 	<meta charset="UTF-8" />
+	<link rel="SHORTCUT ICON" href="favicon.ico" />
 	<link href="css/general.css" rel="stylesheet" type="text/css"/>
 	<link rel='stylesheet' type='text/css' href='fullcalendar/fullcalendar.css' />
 	<script type='text/javascript' src='jquery/jquery-1.8.1.min.js'></script>
