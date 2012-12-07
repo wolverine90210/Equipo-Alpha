@@ -13,8 +13,8 @@
    </TR>
    <TR align="center">
       <TD style="font-size:15pt; text-align:center;">
-      Parece que la direcci&oacute;n <B style="color:#FF0000;"><!--#echo var="REQUEST_URI" --></B> no se encuentra en nuestro servidor.<BR><BR>
-Regrese a nuestra p&aacute;gina de inicio <A href="http://mimostudios.com"><!--#echo var="HTTP_HOST" --></A>
+      Parece que la direcci&oacute;n <B style="color:#FF0000;"><!--#echo var="REQUEST_URI" --></B> no se encuentra en nuestro servidor.<br /><br />
+      <a href="http://alanturing.cucei.udg.mx/equipo-alpha/index.php">Regrese a nuestra p&aacute;gina de inicio </a>
       </TD>
    </TR>
 </TABLE>
