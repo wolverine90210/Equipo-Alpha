@@ -1,5 +1,6 @@
 <?php
 
+	ob_start();
 	//Nos conectamos a la base de datos y obtenemos el usuario
 	require_once('bd.inc');
 	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
@@ -96,7 +97,7 @@
 		</html>
 		";
 		
-		header('refresh: 4; url=../adminConcursos.php');
+		@header('refresh: 4; url=../adminConcursos.php');
 
 	
 	$conexion -> close();

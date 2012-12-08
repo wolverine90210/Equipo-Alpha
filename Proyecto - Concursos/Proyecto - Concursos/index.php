@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 ﻿<!DOCTYPE html>
 <html lang="es">
 
@@ -10,6 +13,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+	<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" ></script>
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
 	<script type="text/javascript" >
@@ -24,10 +28,11 @@
 <body id="container">
 
 	<header id="header">	
-
-		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
-	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
-	  	</a>
+	  	
+	  	<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+	  	href="loginWithTwitter.php?authenticate=1">
+		    Iniciar sesión con <b>Twitter</b>
+		</a>
 	
 		<script type="text/javascript">$('#loginButton').hide();</script> 
 	   

@@ -1,9 +1,9 @@
 <?php
 
-	session_start();
+	//session_start();
 
 	//Conectarse a la base de datos
-	require_once("bd.inc");
+	require_once("php/bd.inc");
 	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
 	
 	//Validar que no genere error la conexión
@@ -12,7 +12,7 @@
 
 
 	//Creo la consulta
-	$mi_query = "select idConcurso as id, NombreConcurso as title, FechaDeInicio as start, FechaDeFin as end, '' as url  
+	$mi_query = "select idConcurso as id, nombreConcurso as title, fechaDeInicio as start, fechaDeFin as end, '' as url  
 				 from concurso";
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);

@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -12,6 +16,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 		<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
 		<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
+		<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" language="javascript">
 			$(document).ready(function(e) {
 				$('#site-name h1').show('slow')
@@ -40,18 +45,32 @@
 <body id="container">
 		
 		<header id="header">
-		<!--	<nav id="menu-l">
-				  	<ul>
-				  		<li class="boton"><a href="" target="_self">Enviar Entrada</a></li>
-						<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-					</ul>	
-  				</nav> -->
-  
-  				 <nav id="menu-r">
+		
+			<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+		  	href="loginWithTwitter.php?authenticate=1">
+			    Iniciar sesión con <b>Twitter</b>
+			</a>
+	
+			<script type="text/javascript">$('#loginButton').hide();</script> 
+		   
+			<?php
+			include('php/secciones/signIn.php');
+			?>
+	
+			<div id="site-name">
+				<h1 style="display:none; ">Concursos</h1>
+			</div>
+		
+		   <nav id="menu-r">
 				<?php
-						include('php/secciones/menu.html');
-				?>
-	   			</nav>
+							include('php/secciones/menu.html');
+				?>	 
+			
+				<script type="text/javascript">
+				$('#adminButton').hide();
+				$('#accountButton').hide();
+				</script>
+		   </nav>
 	   	
    		</header>	
 	

@@ -1,5 +1,6 @@
 <?php	
 
+	ob_start();
 	//Nos conectamos a la base de datos y obtenemos el usuario
 	require_once('bd.inc');
 	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
@@ -44,7 +45,7 @@
 		</html>
 		";
 		
-		header('refresh: 4; url=javascript: history.go(-1)');
+		@header('refresh: 4; url=javascript: history.go(-1)');
 
 	//Cierro la conexión
 	$conexion -> close();
