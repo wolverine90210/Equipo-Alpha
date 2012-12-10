@@ -20,7 +20,7 @@ session_start();
 		<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 		<script type="text/javascript" src="cbrte/richtext_compressed.js"></script>
-		
+		<script type="text/javascript" src="js/vista-detalleJS.js"></script>
 		<script type="text/javascript" language="javascript">
 			$(document).ready(function(e) {
 				$('#site-name h1').show('fast')
@@ -42,7 +42,7 @@ session_start();
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
-         <script type="text/javascript" src="js/vista-detalleJS.js"></script>
+         
    		<title>Vista de Detalle</title>
 </head>
 
@@ -175,29 +175,60 @@ session_start();
 
 				<a id="titleEntrada">Entradas: </a>
 				
-  				<section class="seccion-g">
-    				<a href="http://www.google.com" class="aroba">@levhita</a>  
-					<div class="fechaEnvio"><p class="tituloEnvio">Enviado:</p><a href="http://www.google.com" > 23/09/12</a></div>
-    				<p class="imageDeAroba"><img  src="http://lorempixel.com/80/80" alt="Poster"/></p>  
-					<p class="comentarioEntrada">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ae Aldus PageMaker including versions of Lorem Ipsum.</p>             
-   				</section>
-    
- 				<section class="seccion-g">
-    				<a href="http://www.google.com" class="aroba">@levhita</a>  
-					<div class="fechaEnvio"><p class="tituloEnvio">Enviado:</p><a href="http://www.google.com" > 23/09/12</a></div>
-    				<p class="imageDeAroba"><img  src="http://lorempixel.com/80/80" alt="Poster"/></p>  
-					<p class="comentarioEntrada">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ae Aldus PageMaker including versions of Lorem Ipsum.</p>             
-    			</section>
-
-   				<section class="seccion-g">
-    				<a href="http://www.google.com" class="aroba">@levhita</a>  
-					<div class="fechaEnvio"><p class="tituloEnvio">Enviado:</p><a href="http://www.google.com" > 23/09/12</a></div>
-    				<p class="imageDeAroba"><img  src="http://lorempixel.com/80/80" alt="Poster"/></p>  
-					<p class="comentarioEntrada">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ae Aldus PageMaker including versions of Lorem Ipsum.</p>             
-    			</section>
-    	
+			<?php 
+				require_once("php/funciones.php");
+			$idConcurso = 2;
+			$entradas = dameEntradasDelConcurso($idConcurso);
 			
+			//Obtener los titulos
+			$fila = $entradas[0];
+			$titulos = array_keys($fila);
+			echo '<thead><tr>';
+			foreach($titulos as $th){
+				switch ($th) {
+					case 'idEntrada':
+					echo '<th> </th>';
+					break;
+				}
+			}
+			echo '</tr></thead>';
+			echo '<tbody>';
 
+			//Por cada fila
+			foreach($entradas as $fila => $arr){
+				echo '<tr>';
+				//Todos los campos de cada fila
+				foreach($arr as $campo => $valor){
+					switch($campo){
+			
+						case 'fechaDeEnvio':
+						$fecha = $valor;
+						date_default_timezone_set('UTC');
+						$fechaNueva = date('d-m-Y', strtotime($fecha));
+						break;
+						case 'descripEntrada':
+						$descripcion = $valor;
+						break;
+						case 'usuario_IdUsuario':
+						$usuarioId = $valor;
+						$arroba = dameArrobaDeUsuario($usuarioId);
+						break;
+					}
+			
+				}
+					echo 
+					"<section class=\"seccion-g\">
+	    				<a href=\"https://twitter.com/$arroba\" target=\"_blank\" class=\"aroba\">$arroba</a>  
+						<div class=\"fechaEnvio\"><p class=\"tituloEnvio\">Enviado:</p><a href=\"http://alanturing.cucei.udg.mx/equipo-alpha/calendario.php\" > $fechaNueva</a></div>
+	    				<p class=\"imageDeAroba\"><img  src=\"http://lorempixel.com/80/80\" alt=\"Poster\"/></p>  
+						<p class=\"comentarioEntrada\">$descripcion</p>             
+   					</section>";
+				echo '</tr>';
+			}
+			echo '</tbody>';
+			echo '</table>';
+				
+		?>	
    		</article>
      
         

@@ -310,6 +310,32 @@ function buscarPorIdOrganizador($id){
 	return $datos;
 }
 
+function dameArrobaDeUsuario($id){
+	//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from usuario where idUsuario=$id";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+	
+	//Convierto el resultado de mi consulta a un arreglo
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+
+	return $datos["arrobaUsuario"];
+	
+}
+
 function eliminarUsuario($id){
 
 	//Conectarse a la base de datos
@@ -507,6 +533,73 @@ function listarImagenes(){
 	
 	//Regreso la matriz
 	return $datos;
+
+}
+
+
+function dameEntradasDelConcurso($idConcurso){
+		
+	//Nos conectamos a la base de datos
+	require("bd.inc");
+	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
+
+	//Verificar que la conexión no haya generado error
+	if ($conexion->connect_error) {
+		die('Error de Conexión (' . $conexion->connect_errno . ') '
+		        . $conexion->connect_error);
+	}
+	
+
+	//buscar todas las entradas y ordernarlas por fecha 
+	$query = "select entrada.idEntrada, entrada.fechaDeEnvio, entrada.descripEntrada,
+			 entrada.usuario_IdUsuario from entrada 
+			 inner join concurso_has_entrada 
+			 on entrada.idEntrada = concurso_has_entrada.Entrada_idEntrada 
+			  ORDER BY entrada.fechaDeEnvio asc";
+		
+	//Ejecutar el query
+	$result = $conexion -> query($query);
+
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			
+			$datos[] = $fila;
+	}
+	
+	//Cerrar la conexion
+	$conexion -> close();
+	
+	//Regreso la matriz
+	return $datos;
+	
+}
+
+function dameIdDelaUltimaEntrada(){
+			//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from entrada order by idEntrada desc limit 1";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+	return $datos['idEntrada'];
+	
 
 }
 

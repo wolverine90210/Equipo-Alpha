@@ -113,10 +113,7 @@ foreach($concursos as $fila => $arr){
 					
 				break;
 					
-			case 'usuarioGanador':
-				$valor = buscarPorIdGanador($valor);
-				echo '<td>',$valor["arrobaUsuario"],'</td>';
-				break;
+			
 					
 			case 'usuarioOrganizador':
 				$valor = buscarPorIdOrganizador($valor);
