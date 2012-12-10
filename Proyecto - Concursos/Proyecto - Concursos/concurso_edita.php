@@ -34,7 +34,9 @@
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
-	<link rel="SHORTCUT ICON" href="favicon.ico" />
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<title>Concursos de Programación</title>
 	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
 	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">

@@ -9,6 +9,9 @@
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>

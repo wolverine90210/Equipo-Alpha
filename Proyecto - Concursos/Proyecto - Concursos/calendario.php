@@ -10,7 +10,9 @@
 	<meta name="keywords" content="HTML5,Practica_1" />
 	<meta name="author" content="Oliver Castellanos" />
 	<meta charset="UTF-8" />
-	<link rel="SHORTCUT ICON" href="favicon.ico" />
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<link href="css/general.css" rel="stylesheet" type="text/css"/>
 	<link rel='stylesheet' type='text/css' href='fullcalendar/fullcalendar.css' />
 	<script type='text/javascript' src='jquery/jquery-1.8.1.min.js'></script>

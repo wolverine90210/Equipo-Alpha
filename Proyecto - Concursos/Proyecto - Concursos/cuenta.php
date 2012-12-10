@@ -11,6 +11,9 @@
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
 	<title>Concursos de Programación</title>
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<script type="text/javascript" src='js/ajax.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
