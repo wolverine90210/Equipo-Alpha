@@ -41,10 +41,85 @@ else if(isset($_REQUEST["dificultad"]))
 else if(isset($_REQUEST["categoria"]))
 
 	
-	$concursos = buscarConcursosPorCategoria($_REQUEST["categoria"]);	
+	$concursos = buscarConcursosPorCategoria($_REQUEST["categoria"]);
+
+else if(isset($_REQUEST["idUsuario"])){
 	
+	$entradas = listarEntradasPorUsuario($_REQUEST["idUsuario"]);
+	//var_dump($entradas);
+	 //idEntrada | fechaDeEnvio | descripEntrada | USUARIO_idUsuario 
+	//Obtener los titulos
+	//Recorro mi arreglo para dibujar la tabla
+echo '<table border="1">';
+echo '<caption>Entradas realizadas</caption>';
+		$fila = $entradas[0];
+		$titulos = array_keys($fila);
+		echo '<thead><tr>';
+		foreach($titulos as $th){
+			
+			if($th == 'idEntrada')
+			  echo '<th>','ACCIONES','</th>';
+
+			else if($th == 'fechaDeEnvio')
+			  echo '<th>FeCHA</th>';
+	
+			else if($th == 'descripEntrada')
+			  echo '<th>CONTENIDO DE LA ENTRADA</th>';
+		
+		}
+		echo '<th>Ir al concurso</th>';
+		echo '</tr></thead>';
+		
+		echo '<tbody>';
+
+		//Por cada fila
+		foreach($entradas as $fila => $arr){
+			echo '<tr>';
+			//Todos los campos de cada fila
+			foreach($arr as $campo => $valor){
+				switch($campo){
+		
+					case 'idEntrada':
+		
+						echo '<td>
+							  <form action="php/entradaEliminar.php" method="post">
+								<input type="hidden" name="id" value="',$valor,'" />
+								<input type="image" src="images/eliminar2.png" />
+							  </form>
+							  </td>';
+						break;
+							
+					case 'fechaDeEnvio':
+						date_default_timezone_set('UTC');
+						$fecha = date('d-m-Y', strtotime($valor));
+						echo '<td>',$fecha,'</td>';
+						break;
+							
+							
+					case 'descripEntrada':
+						echo '<td>',$valor,'</td>';
+						break;
+					
+				}
+		
+			}
+			echo '<td>
+					  <form action="vista-detalle.php" method="post">
+						<input type="hidden" name="id" value="',$valor,'" />
+						<input type="image" src="images/fder.png" width="30" height="30" />
+					  </form>
+				  </td>';
+			echo '</tr>';
+		}
+		echo '</tbody>';
+		echo '</table>';
+}	
+
+
 else 
 	$concursos = listarConcursos();
+	
+	
 	
 	if(isset($concursos)){
 		
@@ -130,13 +205,13 @@ foreach($concursos as $fila => $arr){
 echo '</tbody>';
 echo '</table>';
 		
-		
-		
-	}
-
+}
+/*
 else {
 	echo 'no hay concursos que mostrar';
-}
+}*/
+
+
 
 ?>
 </body>

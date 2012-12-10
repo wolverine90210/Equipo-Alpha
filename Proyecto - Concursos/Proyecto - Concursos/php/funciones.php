@@ -72,6 +72,39 @@ function listarConcursosPorStatus($status){
 	
 }
 
+function listarConcursosCuenta($status){
+
+	//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status from concurso where status = $status";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+
+	//Regreso la matriz
+	return $datos;
+
+}
+
+
 function dameNumeroDeConcursos(){
 	//Conectarse a la base de datos
 	require("bd.inc");
@@ -251,6 +284,35 @@ function buscarPorCategoria($cat){
 
 	return $datos;
 }
+
+function buscarPorIdCategoria($cat){
+	
+
+	//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from categoria where idCategoria=$cat";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+	
+	//Convierto el resultado de mi consulta a un arreglo
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+
+	return $datos['nom_Categoria'];
+}
+
+
 
 
 
@@ -550,7 +612,7 @@ function dameEntradasDelConcurso($idConcurso){
 	}
 	
 
-	//buscar todas las entradas y ordernarlas por fecha 
+	//buscar todas las entradas y ordernarlas por fecha ascendente
 	$query = "select entrada.idEntrada, entrada.fechaDeEnvio, entrada.descripEntrada,
 			 entrada.usuario_IdUsuario from entrada 
 			 inner join concurso_has_entrada 
@@ -577,6 +639,38 @@ function dameEntradasDelConcurso($idConcurso){
 	
 }
 
+function listarEntradasPorUsuario($idUsuario){
+	
+	//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from entrada where USUARIO_idUsuario = $idUsuario";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+	
+	//Regreso la matriz
+	return $datos;
+}
+
+
 function dameIdDelaUltimaEntrada(){
 			//Conectarse a la base de datos
 	require("bd.inc");
@@ -601,6 +695,30 @@ function dameIdDelaUltimaEntrada(){
 	return $datos['idEntrada'];
 	
 
+}
+
+function eliminarEntrada($id){
+			//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+	
+	//Creo la consulta
+	$mi_query = "delete from entrada, concurso_has_entrada 
+					using entrada 
+					left join concurso_has_entrada 
+					on entrada.idEntrada = concurso_has_entrada.entrada_idEntrada 
+					where entrada.idEntrada = $id; ";
+	
+	//Ejecuto mi consulta
+	 $con -> query($mi_query);
+	
+	//Cierro la conexión
+	$con -> close();
+	
 }
 
 ?>

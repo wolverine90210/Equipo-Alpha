@@ -262,4 +262,26 @@ function buscarConcursosPorCategoria(){
 	ajax.send(null);
 }
 
+function listarMisEntradas(idUsuario){
 
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("POST", "php/listaConcursos.php?idUsuario="+idUsuario, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("EntradasDeUsuario").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+	

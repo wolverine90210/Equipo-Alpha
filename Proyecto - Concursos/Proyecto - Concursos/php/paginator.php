@@ -123,7 +123,7 @@ foreach($concursos as $fila => $arr){
 		}
 
 	}
-	echo '<td>','<img src="images/magni.png" width="50" height="50">','</td>';	
+	echo '<td><img src="images/magni.png" width="50" height="50"></td>';	
 	echo '</tr>';
 }
 echo '</tbody>';

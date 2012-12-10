@@ -16,7 +16,6 @@ session_start();
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
-	<script src="js/ajaxPaginator.js" type="text/javascript" ></script>
 	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" ></script>
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
 	<script type="text/javascript" >

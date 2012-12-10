@@ -1,10 +1,5 @@
 <?php 
-/**
- * 
- * 
- * 
- * 
- */
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +15,7 @@
 	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
 	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
+	<script type="text/javascript" src='js/ajax.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
@@ -154,7 +150,7 @@
  				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
  				<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="buscarConcursosPorFechas()"> </a>
 			</div>
-	<!-- Entonces en cuanto a status del concurso: 1 para pendiente, 2 para aceptado y 3 para cancelado :B -->
+
 			<label  class="subtitulos" id="sta">Seleccione un status</label><br />
 			<select name="statusConcurso" id="statusConcurso" onChange="buscarConcursosPorStatus()">
 				<option value="0">Selecciona...</option>
@@ -164,15 +160,10 @@
 			</select>
 			
 			</section>
-			
-			<div style="clear:both;height:50px;"> </div>
-			
-
-		    
-			<div style="clear:both"> </div>	
-				
-			<button type="submit" value="enviar" style="display:none" class="show-example">Enviar</button>
+			<div style="clear:both;height:50px;"> </div>	
 			</form>
+			<label></label>
+			<a style="color:#FFFFFF" onclick="listarMisEntradas(960498032)">Ver mis entradas realizadas</a>
 
 	  </div>	
 	<div style="clear:both"> </div>	
@@ -180,7 +171,12 @@
 	<section class="seccion">
 		<div id="extra"></div>
 
-</section>
+	</section>
+	<div class="sombra_seccion"> </div>
+	<section class="seccion">
+		<div id="EntradasDeUsuario"></div>
+
+	</section>
 	<div class="sombra_seccion"> </div>
 	</article>
 	<footer > 

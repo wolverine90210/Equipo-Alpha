@@ -82,27 +82,35 @@ session_start();
     			
 	  			<?php
 						include('php/secciones/enviar.html');
+						require_once("php/funciones.php");
+						$datosConcurso = buscarPorId('2');//poner por request
+						if(strcmp($datosConcurso['dificultad'], "1") == 0) 
+							$dificultad = "Básica";
+						else if($datosConcurso['dificultad'] == "2" )
+							$dificultad = "Intermedia";
+						else
+							 $dificultad = "Avanzada";
+							 
+						$categoria = buscarPorIdCategoria($datosConcurso['categoria']);
+						//$imagenPrincial = dameImagenDeConcurso('2');//poner por request
 				?>
 	  			<div id="letras">
 	   					<ul>
    	   					<li class="topic">Categoría:</li>
-      	   					<li>PHP</li>
+      	   					<li><?=$categoria?></li>
          					<li class="topic">Dificultad:</li>
-	         				<li>Avanzada</li>
+	         				<li><?=$dificultad?></li>
 	        				<li class="topic">Inicia:</li>
-	         				<li>20-05-12</li>
+	         				<li><?=date('d-m-Y', strtotime($datosConcurso['fechaDeInicio']));?></li>
 	         				<li class="topic">Termina:</li>
-	         				<li>20-07-12</li>
+	         				<li><?=date('d-m-Y', strtotime($datosConcurso['fechaDeFin']));?></li>
    	  					 </ul>
 	  				 </div>	
     			<section class="seccion">
-    				<a id="TituloConcurso">Grafos XKCDMX</a>
-   					<a href="http://www.google.com" id="hashtagTwitter">#XKCDMX</a>
-   					<p id="textIntroduccion">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the rel</p>
+    				<a id="TituloConcurso"><?=$datosConcurso['nombreConcurso']?></a>
+   					<a href="http://www.google.com" id="hashtagTwitter"><?=$datosConcurso['hashtag']?></a>
 	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
-    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
-    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>    
-    				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
+    				<p><?=$datosConcurso['descripcion']?></p>    
     			</section>
     			<div class="sombra_seccion"></div>
     			
