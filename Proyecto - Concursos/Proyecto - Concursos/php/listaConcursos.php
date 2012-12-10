@@ -45,7 +45,9 @@ else if(isset($_REQUEST["categoria"]))
 	
 else 
 	$concursos = listarConcursos();
-
+	
+	if(isset($concursos)){
+		
 //Recorro mi arreglo para dibujar la tabla
 echo '<table border="1">';
 echo '<caption>Concursos agregados</caption>';
@@ -130,7 +132,14 @@ foreach($concursos as $fila => $arr){
 }
 echo '</tbody>';
 echo '</table>';
+		
+		
+		
+	}
 
+else {
+	echo 'no hay concursos que mostrar';
+}
 
 ?>
 </body>
