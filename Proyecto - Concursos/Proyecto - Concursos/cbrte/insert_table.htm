@@ -4,8 +4,7 @@
 <head>
 	<title>Insert Table</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script language="JavaScript" type="text/javascript">
-<!--
+<script  type="text/javascript">
 function AddTable() {
 	var widthType = (document.tableForm.widthType.value == "pixels") ? "" : "%";
 	var html = '<table border="' + document.tableForm.border.value + '" cellpadding="' + document.tableForm.padding.value + '" ';
@@ -23,7 +22,6 @@ function AddTable() {
 	window.opener.insertHTML(html);
 	window.close();
 }
-//-->
 </script>
 </head>
 
@@ -58,8 +56,8 @@ function AddTable() {
 	</tr>
 	<tr>
 		<td colspan="3" align="center">
-			<input type="button" value="Insert Table" onClick="AddTable();" />
-			<input type="button" value="Cancel" onClick="window.close();" />
+			<input type="button" value="Insert Table" onclick="AddTable();" />
+			<input type="button" value="Cancel" onclick="window.close();" />
 		</td>
 	</tr>
 </table>

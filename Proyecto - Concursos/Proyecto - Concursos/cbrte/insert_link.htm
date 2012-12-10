@@ -4,8 +4,7 @@
 <head>
 	<title>Insert Link</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script language="JavaScript" type="text/javascript">
-<!--
+<script type="text/javascript">
 var ua = navigator.userAgent.toLowerCase();
 var isIE = ((ua.indexOf("msie") != -1) && (ua.indexOf("opera") == -1) && (ua.indexOf("webtv") == -1));
 var ieVersion = parseFloat( ua.substring( ua.indexOf('msie ') + 5 ) );
@@ -73,7 +72,7 @@ function setLinkText(linkText) {
 
 <body style="margin: 10px; background: #D3D3D3;">
 
-<form name="linkForm" onSubmit="return AddLink();">
+<form name="linkForm" onsubmit="return AddLink();">
 <table cellpadding="4" cellspacing="0" border="0">
 	<tr><td colspan="2"><span style="font-style: italic; font-size: x-small;"><b>Tip:</b> To insert an email link, start your URL with "mailto:"</span></td></tr>
 	<tr>
@@ -98,16 +97,14 @@ function setLinkText(linkText) {
 	<tr>
 		<td colspan="3" align="center">
 			<input type="submit" value="Insert Link" />
-			<input type="button" value="Cancel" onClick="window.close();" />
+			<input type="button" value="Cancel" onclick="window.close();" />
 		</td>
 	</tr>
 </table>
 
 </form>
-<script language="JavaScript" type="text/javascript">
-<!--
+<script  type="text/javascript">
 setLinkText(getQueryVariable("selectionText"));
-//-->
 </script>
 </body>
 </html>
