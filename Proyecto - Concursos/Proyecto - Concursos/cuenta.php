@@ -108,88 +108,19 @@
 	<article class="articulo">
 		<section class="seccion">
 			<form name="addConcurso" method="get" action="php/concursoAgregar.php">	
-			<h2>Seleccione uno o más criterios de búsqueda</h2>		
-			<section id="datosBasicos"> 
-			
-			<div id="radiosWrapper">
-				<label class="div_error" id="adv_radio" style="display: none">No se ha seleccionado dificultad</label>
-				<label class="subtitulos" id="dificultad">Seleccione un nivel de dificultad</label>
-				<div id="radios"class="button-holder">
-					<input type="radio" id="radio-1-1" name="dificultad" value="1" class="regular-radio" onClick="buscarConcursosPorDificultad(1)"/>
-					<label for="radio-1-1"> </label><label class="labelRadios">Básica</label>
-					<br />
-					<input type="radio" id="radio-1-2" name="dificultad" value="2" class="regular-radio" onClick="buscarConcursosPorDificultad(2)"/>
-					<label for="radio-1-2"> </label><label class="labelRadios">Intermedia</label>
-					<br />
-					<input type="radio" id="radio-1-3" name="dificultad" value="3"class="regular-radio" onClick="buscarConcursosPorDificultad(3)"/>
-					<label for="radio-1-3"> </label><label class="labelRadios">Alta</label>
-					<br />
-				</div>
-			</div>
-			<div id="categoriaWrapper">
-				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
-				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
-				
-				<select id="e1"  name="categoria[]"  onChange="buscarConcursosPorCategoria()">
-				<option value="SeleccioneUna">Seleccione una</option>
-				
-				<?php
-				//Cargar el archivo de funciones
-				require_once("php/funciones.php");
-				$categorias = buscarCategorias();
-				$fila = $categorias[0];
-				foreach($categorias as $fila => $arr){
-					//Todos los campos de cada fila
-				    foreach($arr as $campo => $valor){
-					if($campo == 'idCategoria')
-					$cad1 = "<option value=".$valor.">";
-					else if($campo == 'nom_Categoria')
-					echo $cad1.$valor.'</option>';
-					}
-				     }
-				?>
-				</select>
-			</div>
-			
-			<div id="fechaInicial">
-				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
-				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
-				<p class="subtitulos">Fecha Inicio:</p>	
-    				<input type="text" id="datepicker" name="fechaInicio" class="calendario">
- 				<p class="subtitulos">Fecha Fin:</p>
-				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
-				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
- 				<input type="text" id="datepicker2" name="fechaFin" class="calendario">
- 				<!--Fecha de creacion hidden -->
- 				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
- 				<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="buscarConcursosPorFechas()"> </a>
-			</div>
-	<!-- Entonces en cuanto a status del concurso: 1 para pendiente, 2 para aceptado y 3 para cancelado :B -->
-			<label  class="subtitulos" id="sta">Seleccione un status</label><br />
-			<select name="statusConcurso" id="statusConcurso" onChange="buscarConcursosPorStatus()">
+			<h2>Seleccione el tipo de concursos que desea ver</h2>		
+			<select name="statusConcurso" id="statusConcurso" onChange="buscarCuenta()">
 				<option value="0">Selecciona...</option>
 				<option value="1">Pendiente</option>
 				<option value="2">Aceptado</option>
 				<option value="3">Rechazado</option>
 			</select>
-			
-			</section>
-			
-			<div style="clear:both;height:50px;"> </div>
-			
-
-		    
-			<div style="clear:both"> </div>	
-				
-			<button type="submit" value="enviar" style="display:none" class="show-example">Enviar</button>
 			</form>
-
-	  </div>	
-	<div style="clear:both"> </div>	
-	</section>
-	<section class="seccion">
+			
+	 </div>
 		<div id="extra"></div>
-
+		<div class="ver_mas"><b><a href="listaConcursos.php">Ver todos los concursos...</a></b></div>
+		<br />
 </section>
 	<div class="sombra_seccion"> </div>
 	</article>

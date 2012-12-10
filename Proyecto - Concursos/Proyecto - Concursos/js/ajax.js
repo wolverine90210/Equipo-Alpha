@@ -155,6 +155,32 @@ function buscarConcursosPorStatus(){
 	ajax.send(null);
 }
 
+function buscarCuenta(){
+	//Obtengo del formulario el campo del tipo de usuario
+	//para poder hacer la consulta filtrada
+	statusSeleccionado = document.getElementById("statusConcurso").value;
+
+	// Creo el nuevo objeto AJAX
+	var ajax=nuevoAjax();
+
+	//Mando a abrir en el servidor el archivo de php que
+	//consulta la lista de usuario
+	ajax.open("GET", "php/listaConcursos.php?status2="+statusSeleccionado, true);
+
+	//Acciones para los distintos estados de mi conexión
+	//ajax
+	ajax.onreadystatechange=function() 
+	{ 
+		if (ajax.readyState==4)
+		{
+			
+			document.getElementById("extra").innerHTML = ajax.responseText;
+		} 
+	}
+
+	ajax.send(null);
+}
+
 function buscarConcursosPorFechas(){
 	//Obtengo del formulario el campo del tipo de usuario
 	//para poder hacer la consulta filtrada

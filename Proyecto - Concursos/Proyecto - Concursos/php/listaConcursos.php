@@ -23,6 +23,10 @@ require_once("funciones.php");
 if(isset($_REQUEST["status"]))
 
 	$concursos  = listarConcursosPorStatus($_REQUEST["status"]);
+
+else if(isset($_REQUEST["status2"]))
+
+	$concursos  = listarConcursosCuenta($_REQUEST["status2"]);
 	
 else if(isset($_REQUEST["fi"]) && isset($_REQUEST["ff"]) )
 
@@ -77,11 +81,11 @@ foreach($concursos as $fila => $arr){
 				echo '<td>
 					  <form action="php/concursoEliminar.php" method="post">
 						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/eliminar.png" />
+						<input type="image" src="images/eliminar2.png" />
 					  </form>
 					  <form action="php/concursoEditar.php" method="post">
 						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/edit.png" />
+						<input type="image" src="images/edit2.png" />
 					  </form>
 					  </td>';	
 				break;

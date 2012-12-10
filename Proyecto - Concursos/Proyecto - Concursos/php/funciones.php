@@ -71,6 +71,37 @@ function listarConcursosPorStatus($status){
 	return $datos;
 	
 }
+function listarConcursosCuenta($status){
+	
+	//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status from concurso where status = $status";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+	
+	//Regreso la matriz
+	return $datos;
+	
+}
 
 
 
