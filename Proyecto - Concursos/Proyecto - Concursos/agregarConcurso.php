@@ -1,19 +1,13 @@
-<?php
-	session_start();
-?>
-
 ﻿<?php 
-/**
- * 
- * 
- * 
- * 
- */
+session_start();
+if(!isset($_SESSION['access_token']['screen_name'])){
+	header("Location: loginWithTwitter.php?authenticate=1.php");
+}
+ob_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
@@ -23,19 +17,22 @@
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloTabla.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
-	<LINK REL="SHORTCUT ICON" HREF="favicon.ico" />
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
-    	<link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
-    	<script src="js/select2.js"></script>
-    	<script src="js/select2.min.js"></script>
-    	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
-    	<script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
-	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
-	<script type="text/javascript" src="js/jquery.purr.js"></script>
+	<link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+	<script src="js/select2.js"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
+	<script type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
+	<script type="text/javascript" src="cbrte/richtext_compressed.js"></script>
+    <script src="js/jquery.form.js"></script> 
  	<script type="text/javascript" >
 	 jQuery(function($) {
 		$.datepicker.regional['es'] = {
@@ -59,27 +56,6 @@
 	});
 	$(document).ready(function(e) {
 		$("#e1").select2();
-		$('.show-example').click( function (){
-						var notice = '<div class="notice">'
-								  + '<div class="notice-body">' 
-									  + '<img src="images/purr-example/info.png" alt="" />'
-									  + '<h3>Purr Example</h3>'
-									  + '<p>This a normal Purr. It will fade out on its own.</p>'
-								  + '</div>'
-								  + '<div class="notice-bottom">'
-								  + '</div>'
-							  + '</div>';
-							  
-						$( notice ).purr(
-							{
-								usingTransparentPNG: true
-							}
-						);
-						 
-						return false;
-						
-					}
-				);
 		$(function() {
 			$("#datepicker").datepicker({
 				changeMonth : true,
@@ -99,6 +75,29 @@
 			});
 
 		});
+		
+		//para la subida de imagenes con ajax
+			var bar = $('.bar');
+			var percent = $('.percent');
+			var status = $('#linksDeTabla');
+			$('form').ajaxForm({
+			    beforeSend: function() {
+				var percentVal = '0%';
+				status.empty();
+				bar.width(percentVal)
+				percent.html(percentVal);
+			    },
+			    uploadProgress: function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				bar.width(percentVal)
+				percent.html(percentVal);
+			    },
+				complete: function(xhr) {
+					//$('#status').html = (xhr.responseText);
+					status.val(xhr.responseText);
+					mostrarTablaDeLinks(xhr.responseText);
+				}
+			}); 
 	});
 		</script>
 		<noscript>Tu navegador no soporta Javascript</noscript>	
@@ -107,7 +106,6 @@
 
 <body id="container">
 	<header id="header">
-	
 		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
 	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
 	  	</a>
@@ -134,7 +132,7 @@
 	</header>
 	<article class="articulo">
 		<section class="seccion">
-			<form name="addConcurso"  action="php/concursoAgregar.php" method="post" enctype="multipart/form-data">			
+		<form name="addConcurso"  action="php/concursoAgregar.php" method="post" enctype="multipart/form-data">			
 			<div id="nombre-concurso">
 					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
@@ -204,39 +202,58 @@
 			
 			<div style="clear:both;height:50px;"> </div>
 			
-		    <p class = "titulos">Este concurso es organizado por: </p>
+		   	<p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
-		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
-		    	
-	<!-- checar con el loguin de TWITTER  -->
-		    	<a href="http://www.google.com" id="aroba" name="organizador">@levhita</a> 
-		    	<input  type="text"  id="organizador" name ="organizador" value="@levhita" style="display:none"/>
-		    	 
-		    	<div style="clear:both"> </div>
-		    </div>"
-		    
+			    <div id="imgAroba"><img  src = "<?=$_SESSION['access_token']['avatar']?>" alt="Poster" width="120" height="120" /></div>	
+			    <a href="https://twitter.com/<?= $_SESSION['access_token']['screen_name'] ?>" target="_blank" id = "aroba" name = "organizador" onmouseover= "decorado(this)" onmouseout= "desdecorado(this)" ><?= '@'.$_SESSION['access_token']['screen_name'] ?> </a> 
+			    <!--Para pasarlo por post el id del usuario organizador-->
+			    <input  type="text"  id="organizador" name ="organizador" value="<?= $_SESSION['access_token']['id']; ?>" style="display:none"/>  
+			    <div style="clear:both"> </div>
+		    </div>
+			
 			<div style="clear:both"> </div>	
-			
-			<p class="titulos">Agregar imagen(es)</p>
-			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
-			<fieldset id="campoField">
-				<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
-				<input id="imagenUp1"  type="file" name="file[]" accept="image/*" required="required" />
-				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
-			</fieldset>
-		
-			
+			<!--Aqui agarro la tabla de links -->
+			<input  type="text" id="linksDeTabla" style="display:none" name ="linksDeTabla"  />
 			
 			<!-- Aqui pongo el valor del RTE para mandarlo por post -->
-			<input  type="text"  id="valorRTE" name ="descripcion" value="" style="display:none" />
-			
-			<button type="submit" value="enviar" hidden="hidden" class="show-example">Enviar</button>
+			<input  type="text"  id="valorRTE" name ="descripcion" style="display:none" />
+	</form>
+	
+		
+
+<!-- MODULO DE IMAGENES-->	
+			<p class="titulos">Agregar imagen(es)</p>
+			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
+			<form action="php/imagenesAgregar.php" method="post" enctype="multipart/form-data"> 
+				<fieldset id="campoField" style="width:50">
+					<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
+					<input id="imagenUp1"  type="file" name="file[]" accept="image/*" required="required" />
+					<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
+					<button type="submit" class="botonSimg">Subir imágenes</button> 
+				</fieldset>
 			</form>
 			
+			<!--Poner las url de las imagenes subidas al servidor -->
+			<br />
+			<div style="clear:both"> </div>
+			
+			<table id="tablaDeRutas"  style="display:none" width="100%" border="1">
+						<caption style="color:#FFFFFF">Imágenes agregadas</caption>
+						<tr>
+							<th>Imagen</th>
+							<th>Ruta</th>
+						</tr>
+			</table>
+		<div style="clear:both"> </div>	
+			
+<!-- TERMINA MODULO DE IMAGENES-->
+			
+<!-- Comienza modulo de descripcion -->
+		<div id="richText">
 			<p class="titulos">Agregue una descripción para el concurso</p>
 			<p id="tit-proposito"class="subtitulos" style="text-align: center">(de que se va a tratar)</p>
 			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
-			<div id="richText">
+			
 			<form name="RTEDemo" method="post" onsubmit="return submitForm();">
 				<script  type="text/javascript">
 					function submitForm() {
@@ -305,17 +322,17 @@
 					rte1.build();
 				</script>
 				<div style="clear:both"> </div>	
-			<label>No olvide guardar los cambios y enviar</label>
-			<input class="botonGuardar" type="submit" name="submit"  value="Guardar" />
+			<input class="botonGuardar" type="submit" id="guardarRT" name="submit"  style="display: none"value="Guardar" />
 			<br />
-			<a class="botonSubmit" id="botonSubmit" class="show-example" style="display:none"onclick="valida_envia()"> </a>
-			
+			<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="valida_envia()"> </a>
 		</form>
 	  </div>	
 	<div style="clear:both"> </div>	
 	</section>
 	<div class="sombra_seccion"> </div>
 	</article>
+	
+<!--Termina modulo de descripcion -->
 	<footer > 
 		
 	</footer>

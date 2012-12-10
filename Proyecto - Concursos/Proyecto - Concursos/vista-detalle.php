@@ -1,25 +1,29 @@
-<?php
-	session_start();
+<?php 
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-	
 <head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Index - Maquetado Vista de Blog" />
 		<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 		<meta name="author" content="Equipo Alpha" />
 		<meta http-equiv="refresh" content="160" />
+		<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+		<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+		<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 		<link href="css/general.css" type="text/css" rel="stylesheet" />
 		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 		<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
 		<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
 		<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
+		<script type="text/javascript" src="cbrte/richtext_compressed.js"></script>
+		
 		<script type="text/javascript" language="javascript">
 			$(document).ready(function(e) {
-				$('#site-name h1').show('slow')
+				$('#site-name h1').show('fast')
 			$('#menu-l li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
 			});
 		</script>	
@@ -38,7 +42,7 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
-         
+         <script type="text/javascript" src="js/vista-detalleJS.js"></script>
    		<title>Vista de Detalle</title>
 </head>
 
@@ -81,7 +85,7 @@
 				?>
 	  			<div id="letras">
 	   					<ul>
-   	   						<li class="topic">Categoría:</li>
+   	   					<li class="topic">Categoría:</li>
       	   					<li>PHP</li>
          					<li class="topic">Dificultad:</li>
 	         				<li>Avanzada</li>
@@ -101,7 +105,65 @@
     				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>        
     			</section>
     			<div class="sombra_seccion"></div>
-    	
+    			
+				<section class="seccion">
+					
+					<label>Agregar nueva entrada</label>
+					<label class="div_error" id="adv_rteEditor" style="display: none">Escriba una entrada</label>
+					<label id="ok_rteEditor" style="display: none">Entrada agregada correctamente</label>
+					<div style="margin-left:20%">
+					<form name="RTEDemo" method="post" onsubmit="return submitForm();">
+						<script  type="text/javascript">
+							function submitForm() {
+								//make sure hidden and iframe values are in sync for all rtes before submitting form
+								updateRTEs();
+								var datosEditor = document.RTEDemo.rte1.value;
+								
+								var botonGuardar = document.getElementById("botonSubmit");
+								botonGuardar.style.display = 'block';
+								//alert(document.RTEDemo.rte1.value);
+								//change the following line to true to submit form
+								return false;
+							}
+							//Usage: initRTE(imagesPath, includesPath, cssFile, genXHTML, encHTML)
+							initRTE("cbrte/images/", "cbrte/", "", true);
+							//-->
+						 </script>
+						<script  type="text/javascript">
+							//build new richTextEditor
+							var rte1 = new richTextEditor('rte1');
+							rte1.html = '';
+				
+							//enable all commands 
+							rte1.cmdFormatBlock = true;
+							rte1.cmdFontName = true;
+							rte1.cmdFontSize = true;
+							rte1.cmdIncreaseFontSize = true;
+							rte1.cmdDecreaseFontSize = true;
+				
+							rte1.cmdBold = true;
+							rte1.cmdItalic = true;
+							rte1.cmdUnderline = true;
+							rte1.cmdStrikethrough = true;
+							rte1.cmdSuperscript = true;
+							rte1.cmdSubscript = true;
+				
+							rte1.cmdJustifyLeft = true;
+							rte1.cmdJustifyCenter = true;
+							rte1.cmdJustifyRight = true;
+							rte1.cmdJustifyFull = true;
+							rte1.toggleSrc = false;
+							rte1.build();
+						</script>
+						<div style="clear:both"> </div>	
+						<input id="guardarRT" class="botonGuardar" type="submit" style="display:none" name="submit"  value="Guardar" />
+					</form>
+					<a  id="botonSubmit" class="button" style="float:right" onclick="valida_envia()">Guardar</a>
+		    		<div style="clear:both"> </div>		
+		    		</div>	
+		    	</section>
+ 				<div class="sombra_seccion"></div>
+ 
     			<p id="titleGanador">Ganador: </p>
     			<section id="enviarEntrada">
     				<a href="http://www.google.com" class="aroba">@levhita</a>  
@@ -134,7 +196,7 @@
 					<p class="comentarioEntrada">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ae Aldus PageMaker including versions of Lorem Ipsum.</p>             
     			</section>
     	
-
+			
 
    		</article>
      

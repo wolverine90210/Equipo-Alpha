@@ -1,118 +1,82 @@
-﻿<!DOCTYPE html>
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8" />
+	<meta name="description" content="Index - Maquetado Vista de Blog" />
+	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
+	<meta name="author" content="Equipo Alpha" />
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
+	<link href="css/general.css" type="text/css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+	<script src="js/ajaxPaginator.js" type="text/javascript" ></script>
+	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" ></script>
+	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
+	<script type="text/javascript" >
+			 $(document).ready(function(e) {
+				$('#site-name h1').show('fast')
+			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
+			});
+	</script>	
+	<title>Concursos de Programación</title>		
 </head>
-<body>
-<?php
-/**
- *
- *
- *
- */
 
+<body id="container">
 
-//Cargar el archivo de funciones
-require_once("php/funciones.php");
+	<header id="header">	
 
-//Ejecutar la función que obtiene
-//los datos de los usuarios
+		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
+	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
+	  	</a>
+	
+		<script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+		<?php
+		include('php/secciones/signIn.php');
+		?>
+	
+		<div id="site-name">
+			<h1 style="display:none; ">Lista de Concursos</h1>
+		</div>
+		
+	   <nav id="menu-r">
+			<?php
+						include('php/secciones/menu.html');
+			?>	 
+			
+			<script type="text/javascript">
+			$('#adminButton').hide();
+			$('#accountButton').hide();
+			</script>
+	   </nav>
+	   
 
-//Para la funcion que mando llamar con Ajax
-if(isset($_REQUEST["status"]))
-	//echo 'Entro';
-	$concursos  = listarConcursosPorStatus($_REQUEST["status"]);	
+	
+	</header>
+	
 
-else 
-	$concursos = listarConcursos();
-
-//Recorro mi arreglo para dibujar la tabla
-echo '<table border="1">';
-echo '<caption>Concursos agregados</caption>';
-
-//Obtener los titulos
-$fila = $concursos[0];
-$titulos = array_keys($fila);
-echo '<thead><tr>';
-foreach($titulos as $th){
-
-	if($th == 'idConcurso')
-	echo '<th>','Acciones','</th>';
-
-
-	else
-	echo '<th>',$th,'</th>';
-
-}
-
-echo '</tr></thead>';
-
-echo '<tbody>';
-
-//Por cada fila
-foreach($concursos as $fila => $arr){
-	echo '<tr>';
-	//Todos los campos de cada fila
-	foreach($arr as $campo => $valor){
-		switch($campo){
-
-			case 'idConcurso':
-
-				echo '<td>
-					  <form action="php/concursoEliminar.php" method="post">
-						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/eliminar.png" />
-					  </form>
-					  <form action="php/concursoEditar.php" method="post">
-						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/edit.png" />
-					  </form>
-					  </td>';	
-				break;
-					
-			case 'categoria':
-				$valor = buscarPorCategoria($valor);
-				echo '<td>',$valor["nom_Categoria"],'</td>';
-				break;
-					
-					
-			case 'dificultad':
-				if($valor == 1) $valor = 'Básica';
-				else if($valor == 2)  $valor = 'Intermedia';
-				else if($valor == 3)  $valor = 'Avanzada';
-				echo '<td>',$valor,'</td>';
-				break;
-					
-			case 'status':
-				if($valor == 1) $valor = 'Pendiente';
-				else if($valor == 2)  $valor = 'Aceptado';
-				else if($valor == 3)  $valor = 'Rechazado';
-				echo '<td>',$valor,'</td>';
-					
-				break;
-					
-			case 'usuarioGanador':
-				$valor = buscarPorIdGanador($valor);
-				echo '<td>',$valor["arrobaUsuario"],'</td>';
-				break;
-					
-			case 'usuarioOrganizador':
-				$valor = buscarPorIdOrganizador($valor);
-				echo '<td>',$valor["arrobaUsuario"],'</td>';
-					
-				break;
-					
-			default: echo '<td>',$valor,'</td>';
-		}
-
-	}
-	echo '</tr>';
-}
-echo '</tbody>';
-echo '</table>';
-
-
-?>
+	<article class="articulo" id="contenidoTabla">
+		
+		<?php include('php/paginator.php')?>
+	
+	</article>
+	
+	<article class="articulo">
+		
+	
+		<div class="sombra_seccion"></div>
+	</article>
+	
+	
 </body>
+
 </html>
+
+

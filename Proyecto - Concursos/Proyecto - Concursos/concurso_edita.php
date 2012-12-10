@@ -10,10 +10,10 @@
 	$hashtag = $_SESSION["datos"]["hashtag"];
 	$dificultad = $_SESSION["datos"]["dificultad"];
 	$categoria = $_SESSION["datos"]["categoria"];
-	$fechaAlta = $_SESSION["datos"]["fechaDeAlta"];
-	$fechaInicio = $_SESSION["datos"]["fechaDeInicio"];
+	$fechaAlta = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeAlta"]));
+	$fechaInicio = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeInicio"]));
 	$descripcion = $_SESSION["datos"]["descripcion"];
-	$fechaFin = $_SESSION["datos"]["fechaDeFin"];
+	$fechaFin = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeFin"]));
 	$status = $_SESSION["datos"]["status"];
 	$motivos = $_SESSION["datos"]["motivos"];
 	$usuarioGanador = $_SESSION["datos"]["usuarioGanador"];
@@ -36,6 +36,9 @@
 	<meta name="author" content="Equipo Alpha" />
 	<link rel="SHORTCUT ICON" href="favicon.ico" />
 	<title>Concursos de Programación</title>
+	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
+	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
+	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
@@ -240,9 +243,8 @@
 			
 		    <p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
-		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
-		    	
-<!-- checar con el loguin de TWITTER -->	    	
+		    	<!--<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>-->
+		        	
 		    	<a href="" id="aroba" name ="organizador"><?= $usuarioOrganizador; ?></a> 
 <!--  para llevarme el id del concurso por POST -->
 				<input  type="text"  id="idConcurso" name ="idConcurso" value="<?= $idConcurso; ?>" style="display:none"/>

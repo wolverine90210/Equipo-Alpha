@@ -71,8 +71,8 @@ function listarConcursosPorStatus($status){
 	return $datos;
 	
 }
-function listarConcursosCuenta($status){
-	
+
+function dameNumeroDeConcursos(){
 	//Conectarse a la base de datos
 	require("bd.inc");
 
@@ -83,7 +83,7 @@ function listarConcursosCuenta($status){
 		die("Por el momento no se puede acceder al gestor de la base de datos");
 
 	//Creo la consulta
-	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status from concurso where status = $status";
+	$mi_query = "select count(*) from concurso";
 
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);
@@ -91,16 +91,10 @@ function listarConcursosCuenta($status){
 	//Cierro la conexión
 	$con -> close();
 
-	//Convierto el resultado de mi consulta a una matriz
-	if($result -> num_rows >= 1){
-		//Por cada fila obtengo un arreglo
-		while($fila = $result -> fetch_assoc())
-			$datos[] = $fila;
-	}
-	
-	//Regreso la matriz
-	return $datos;
-	
+
+		return $result;
+		var_dump($result);
+
 }
 
 
@@ -165,8 +159,7 @@ function dameIdDeConcurso($nomConcurso,$hashtag){
 	//Convierto el resultado de mi consulta a un arreglo
 	if($result -> num_rows == 1)
 		$datos = $result -> fetch_array(MYSQLI_ASSOC);
-		var_dump($datos);
-	
+
 	if($con -> error)
 	printf("Errormessage: %s\n", $con->error);
 
@@ -456,6 +449,65 @@ function eliminarConcurso($id){
 
 	//Cierro la conexión
 	$con -> close();
+}
+
+
+function dameIdDelUltimoConcursoAgregado(){
+			//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select * from concurso order by idConcurso desc limit 1";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+	return $datos['idConcurso']+1;
+	
+
+}
+function listarImagenes(){
+		//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+	
+	$numeroDeConcurso = dameUnNumeroDeConcurso()+1;
+
+	//Creo la consulta
+	$mi_query = "SELECT * FROM `imagenes` WHERE `CONCURSO_idConcurso` = $numeroDeConcurso";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+	
+	//Regreso la matriz
+	return $datos;
+
 }
 
 ?>

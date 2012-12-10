@@ -1,11 +1,10 @@
-/*
-Version: 3.2 Timestamp: Mon Sep 10 10:38:04 PDT 2012
-*/
+/*Version: 3.2 Timestamp: Mon Sep 10 10:38:04 PDT 2012*/
 .select2-container {
     position: relative;
     /* inline-block for ie7 */
     zoom: 1;
-	font-size: 24px;
+	font-size: 1.5em;
+	font-weight: bold;
     vertical-align: bottom;
 }
 
