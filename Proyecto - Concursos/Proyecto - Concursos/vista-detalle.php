@@ -83,7 +83,7 @@ session_start();
 	  			<?php
 						include('php/secciones/enviar.html');
 						require_once("php/funciones.php");
-						$datosConcurso = buscarPorId('2');//poner por request
+						$datosConcurso = buscarPorId($_REQUEST["id"]);//poner por request
 						if(strcmp($datosConcurso['dificultad'], "1") == 0) 
 							$dificultad = "Básica";
 						else if($datosConcurso['dificultad'] == "2" )
@@ -185,10 +185,12 @@ session_start();
 				
 			<?php 
 				require_once("php/funciones.php");
-			$idConcurso = 2;
-			$entradas = dameEntradasDelConcurso($idConcurso);
+			$entradas = dameEntradasDelConcurso($_REQUEST["id"]);
 			
-			//Obtener los titulos
+			if(!isset($entradas))
+				echo 'No hay entradas para este concurso,sé el primero en agregar una';
+			else{
+				//Obtener los titulos
 			$fila = $entradas[0];
 			$titulos = array_keys($fila);
 			echo '<thead><tr>';
@@ -235,6 +237,9 @@ session_start();
 			}
 			echo '</tbody>';
 			echo '</table>';
+			}
+			
+			
 				
 		?>	
    		</article>

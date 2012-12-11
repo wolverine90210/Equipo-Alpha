@@ -13,6 +13,8 @@ session_start();
 	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
 	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
+	<script src="js/ajax.js" type="text/javascript" ></script>
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
@@ -61,18 +63,12 @@ session_start();
 	</header>
 	
 
-	<article class="articulo" id="contenidoTabla">
+	<section class="seccion" id="contenidoTabla">
 		
 		<?php include('php/paginator.php')?>
 	
-	</article>
-	
-	<article class="articulo">
-		
-	
-		<div class="sombra_seccion"></div>
-	</article>
-	
+	</section>
+	<div class="sombra_seccion"></div>
 	
 </body>
 

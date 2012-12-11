@@ -17,7 +17,7 @@ ob_start();
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
-	<link href="css/estiloTabla.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloTablaImagenes.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>

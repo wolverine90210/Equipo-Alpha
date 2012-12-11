@@ -75,17 +75,17 @@ if(isset($_REQUEST['idConcurso'])){
 			`hashtag` = '$hashtag',`dificultad` = $dificultad,`categoria` = $categoria,`fechaDeAlta` = '$fechaAlta',
 			`fechaDeInicio` = '$fechaInicio',
 			`descripcion` = '$descripConcurso',`fechaDeFin` = '$fechaFin',
-			`status` = 1,`motivos` = 'falta aprobar',`usuarioGanador` = 1,
+			`status` = 1,`motivos` = 'falta aprobar',`usuarioGanador` = 960498034,
 			`usuarioOrganizador` = $idUsuario 
 				WHERE `concurso`.`idConcurso` = $idConcurso
- 				AND `concurso`.`categoria` = 1 AND `concurso`.`usuarioOrganizador` = $idUsuario;";
+ 				AND `concurso`.`categoria` = $categoria AND `concurso`.`usuarioOrganizador` = $idUsuario;";
 
 }
 else{
 
 	//insertar el concurso con todos lo datos
 	$query = "INSERT INTO `concurso` (`nombreConcurso`, `hashtag`, `dificultad`, `categoria`, `fechaDeAlta`, `fechaDeInicio`, `descripcion`, `fechaDeFin`, `status`, `motivos`, `usuarioGanador`, `usuarioOrganizador`)
-			  VALUES ('$nomConcurso', '$hashtag', $dificultad, $categoria, '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar',960498032, $idUsuario)";
+			  VALUES ('$nomConcurso', '$hashtag', $dificultad, $categoria, '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar',960498034, $idUsuario)";
 }
 
 
