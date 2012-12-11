@@ -51,4 +51,5 @@ if($conexion -> error)
 
 //Cerrar la conexion
 $conexion -> close();
+
 ?>

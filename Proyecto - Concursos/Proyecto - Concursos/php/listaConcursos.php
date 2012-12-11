@@ -46,8 +46,6 @@ else if(isset($_REQUEST["categoria"]))
 else if(isset($_REQUEST["idUsuario"])){
 	
 	$entradas = listarEntradasPorUsuario($_REQUEST["idUsuario"]);
-	//var_dump($entradas);
-	 //idEntrada | fechaDeEnvio | descripEntrada | USUARIO_idUsuario 
 	//Obtener los titulos
 	//Recorro mi arreglo para dibujar la tabla
 echo '<table border="1">';
