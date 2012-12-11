@@ -62,10 +62,15 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 					//si no existe la carpeta la creo y le doy permisos
 					if(!mkdir_recursive($nombre_fichero, 0775,true)){
 					$mens= $_FILES["file"]["name"][$i] . 'hubo problemas al crear el archivo';
-					$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@'.$mens.'|';
+						
+					if(isset($misRutas))
+						$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@'.$mens.'|';
+						else 
+							$misRutas = $_FILES["file"]["name"][$i].'@'.$rutaDestino.'|';
 					$contador++;
 					}
 				}
+				
 					
 				//donde voy a guardar la imagen
 				$rutaDestino = getcwd()."/uploads/$idConcurso/".$_FILES["file"]["name"][$i];

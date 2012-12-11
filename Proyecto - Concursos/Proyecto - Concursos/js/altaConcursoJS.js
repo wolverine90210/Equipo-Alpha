@@ -23,7 +23,7 @@ function crearCampos(obj) {
 
 	elementoEtiqueta = document.createElement('label');
 	elementoEtiqueta.className = 'subtitulos';
-	texto = document.createTextNode("Imagen # " + contador + " ");
+	texto = document.createTextNode("IMAGEN" + contador + " ");
 	elementoEtiqueta.appendChild(texto);
 	elementoContenedor.appendChild(elementoEtiqueta);
 
@@ -106,6 +106,24 @@ function ocultaEtiqueta(id){
 	  var elemento = document.getElementById(id); 
 	  elemento.style.display = 'none';
 	}
+}
+
+
+
+
+//decorar links con el evento onmouseover
+function decorado(obj){
+	
+	obj.style.textDecoration = 'underline';
+	obj.style.color = 'black';
+	
+}
+
+function desdecorado(obj){
+	
+	obj.style.textDecoration = 'none';
+	obj.style.color = '#790000';
+	
 }
 
 function dameFechaActual(){
@@ -221,6 +239,7 @@ function valida_envia() {
 		console.log(numero_dias);
 		 if (numero_dias>0) {
 			ocultaEtiqueta("adv_fechaFinMal");
+			
 		} else {
 			muestraEtiqueta("adv_fechaFinMal");
 		}
@@ -243,7 +262,7 @@ function valida_envia() {
 	var extension;
 	var imgPermitida = false;
 	var numero_para_etiqueta = 0;
-
+	var cont = 1;
 		for(elemento in inputsImage){
 			if(inputsImage[elemento].type == "file"){
 				numero_para_etiqueta =inputsImage[elemento].id.substring(8,inputsImage[elemento].length);
@@ -251,31 +270,79 @@ function valida_envia() {
 				for(var i=0; i<extensiones_permitidas.length; i++){
 					if(extensiones_permitidas[i] == extension){
 						imgPermitida = true;
+						cont++;
 						break;
 					}
 				}
-				if(inputsImage[elemento].value == 0 || imgPermitida == false)
+				if(inputsImage[elemento].value == 0 || imgPermitida == false){
 					muestraEtiqueta("adv_imagen"+numero_para_etiqueta);
+					return 0;
+					
+				}
+					
 				else{
 					imgPermitida = false;
 					ocultaEtiqueta("adv_imagen"+numero_para_etiqueta);
 				}
 			}
 		}
-		
- //validar editor
- 
+	
+	
+	//validar editor
+		document.getElementById('guardarRT').click();
+		if (document.RTEDemo.rte1.value.length == 0) {
+			muestraEtiqueta("adv_rteEditor");
+			return 0;
+		} else {
+			ocultaEtiqueta("adv_rteEditor");
+			/*Para guardarlo en un input oculto para el submit*/
+			document.getElementById("valorRTE").value = document.RTEDemo.rte1.value;
+			document.addConcurso.submit();
+		}
 
- 
- if (document.RTEDemo.rte1.value.length == 0) {
-		muestraEtiqueta("adv_rteEditor");
-		return 0;
-	} else {
-		ocultaEtiqueta("adv_rteEditor");
-		document.getElementById("valorRTE").value = document.RTEDemo.rte1.value;
-	}
 
- document.addConcurso.submit(); 
 }
+
+
+function mostrarTablaDeLinks(cadena){
+	
+	console.log(cadena);
+	console.log(document.getElementById('tablaDeRutas').innerHTML);
+	var table = document.getElementById('tablaDeRutas').style.display="block";
+	
+	var n=cadena.split("|");
+	  for(var i = 0; i<n.length-1; i++){
+	  	var nn =n[i].split("@");
+	  	console.log(nn[0]);
+	  	console.log(nn[1]);
+	    agregarCelda(nn[0],nn[1]);
+	   }
+	  
+	   /*Mostrar el rte*/
+	   document.getElementById("richText").style.display = 'block';	
+}
+
+
+function agregarCelda(nombreImagen, rutaImagen) {
+ 
+		var table = document.getElementById('tablaDeRutas');
+
+		var rowCount = table.rows.length;
+		var row = table.insertRow(rowCount);
+		row.style.fontWeight= 'bold';
+		if(parseInt(rowCount) % 2 == 0)//para hacer la pijama de la tabla
+			row.className = 'even';
+		else
+			row.className = 'odd';
 			
+		var cell1 = row.insertCell(0);
+		cell1.innerHTML = nombreImagen;
+		
+
+		var cell2 = row.insertCell(1);
+		cell2.innerHTML = rutaImagen;
+		
+}
+
+
 	
