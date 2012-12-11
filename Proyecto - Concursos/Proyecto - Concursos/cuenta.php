@@ -1,6 +1,20 @@
 <?php
 	session_start();
-?>
+	if (!isset($_GET["op"])) { $op = ""; } else { $op = trim($_GET["op"]); } 
+	
+
+	if ($op=="pdf") {
+				// generamos PDF
+				require_once("./dompdf-0.5.1/dompdf_config.inc.php");
+				
+				$dompdf = new DOMPDF();
+				$dompdf->load_html_file('listaConcursos2.php');
+				$dompdf->render();
+				$dompdf->stream("Concursos.pdf");
+				exit(0);
+	
+	}
+?> 
 
 <!DOCTYPE html>
 <html lang="es">
@@ -29,6 +43,45 @@
     <script src="jquery/jquery.effects.core.js" type="text/javascript" ></script> 
     <script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
+	<style type="text/css">
+ 	body{
+	font:12px Arial, Tahoma, Verdana, Helvetica, sans-serif;
+	background-color:#BECEDC;
+	color:#000;
+	}
+	
+	a h1{
+	font-size:35px;	
+	color:#FFF;
+	}
+	
+	table{
+	width:100%;
+	height:auto;
+	margin:10px 0 10px 0;
+	border-collapse:collapse;
+	text-align:center;
+	background-color:#365985;
+	color:#FFF;
+	}
+	
+	table td,th{
+	border:1px solid black;
+	}
+	
+	table th{
+	color:#FC0;	
+	}
+	
+	.menu{
+	background-color:#69C;
+	color:#FFF;
+	}
+	
+	.menu a{
+	color:#FFF;	
+	}
+	</style>
  	<script type="text/javascript" >
 	 jQuery(function($) {
 		$.datepicker.regional['es'] = {
@@ -121,8 +174,11 @@
 			</form>
 			
 	 </div>
-		<div id="extra"></div>
-		<div class="ver_mas"><b><a href="listaConcursos.php">Ver todos los concursos...</a></b></div>
+	<div id="extra"></div>
+	<div class="ver_mas"><b><a href="excel.php">Bajar archivo de excel con la tabla completa</a></b></div>
+	  <form name='formFactura' id='formFactura' method='post' action="cuenta.php?op=pdf">  
+			    <input type="submit" id="btnAceptar" name="btnAceptar" title="crear PDF" value="crear PDF"/>   
+	  </form>
 		<br />
 </section>
 	<div class="sombra_seccion"> </div>
