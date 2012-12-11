@@ -17,7 +17,7 @@ ob_start();
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
-	<link href="css/estiloTablaImagenes.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloTabla.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
@@ -106,9 +106,11 @@ ob_start();
 
 <body id="container">
 	<header id="header">
-		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
-	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
-	  	</a>
+		
+		<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+	  	href="loginWithTwitter.php?authenticate=1">
+		    Iniciar sesión con <b>Twitter</b>
+		</a>
 	
 		<script type="text/javascript">$('#loginButton').hide();</script> 
 	   
@@ -205,7 +207,7 @@ ob_start();
 		   	<p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
 			    <div id="imgAroba"><img  src = "<?=$_SESSION['access_token']['avatar']?>" alt="Poster" width="120" height="120" /></div>	
-			    <a href="https://twitter.com/<?= $_SESSION['access_token']['screen_name'] ?>" target="_blank" id = "aroba" name = "organizador" onmouseover= "decorado(this)" onmouseout= "desdecorado(this)" ><?= '@'.$_SESSION['access_token']['screen_name'] ?> </a> 
+			    <a href="https://twitter.com/<?= $_SESSION['access_token']['screen_name'] ?>" target="_blank" id = "aroba" name = "organizador"  ><?= '@'.$_SESSION['access_token']['screen_name'] ?> </a> 
 			    <!--Para pasarlo por post el id del usuario organizador-->
 			    <input  type="text"  id="organizador" name ="organizador" value="<?= $_SESSION['access_token']['id']; ?>" style="display:none"/>  
 			    <div style="clear:both"> </div>

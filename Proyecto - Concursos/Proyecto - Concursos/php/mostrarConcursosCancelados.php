@@ -11,9 +11,7 @@
 	}
 	
 	
-	$query = "select idConcurso as 'ID de concurso', nombreConcurso as 'Nombre', hashtag as 'Hashtag de Twitter', dificultad as 'Dificultad', categoria as 'Categoria',
-	 fechaDeAlta as 'Fecha de Alta', fechaDeInicio as 'Fecha de inicio', descripcion as 'Descripcion', fechaDeFin as 'Fecha de fin', motivos as 
-	 'Motivos de cancelacion', usuarioGanador as 'Usuario ganador', usuarioOrganizador as 'Usuario creador' from concurso where status = 3";
+	$query = "select idConcurso as 'ID de concurso', nombreConcurso as 'Nombre', hashtag as 'Hashtag de Twitter', dificultad as 'Dificultad', categoria as 'Categoria',fechaDeAlta as 'Fecha de Alta', fechaDeInicio as 'Fecha de inicio', descripcion as 'Descripcion', fechaDeFin as 'Fecha de fin', motivos as 'Motivos de cancelacion', usuarioGanador as 'Usuario ganador', usuarioOrganizador as 'Usuario creador' from concurso where status=3";
 	
 	$resultados = $conexion -> query($query);
 	
@@ -31,14 +29,6 @@
 		while($filaCat = $categorias -> fetch_assoc())
 			$datosCat[] = $filaCat;
 	}
-
-	//Convierto el resultado de mi consulta a un arreglo
-	if($resultados -> num_rows >= 1){
-		//Por cada fila obtengo un arreglo
-		while($fila = $resultados -> fetch_assoc())
-			$datos[] = $fila;
-	}
-	
 	
 	//Convierto el resultado de mi consulta a un arreglo
 	if($usuarios -> num_rows >= 1){
@@ -46,7 +36,12 @@
 		while($filaUsers = $usuarios -> fetch_assoc())
 			$datosUsers[] = $filaUsers;
 	}
-
+	
+	//Convierto el resultado de mi consulta a un arreglo
+	if($resultados -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $resultados -> fetch_assoc())
+			$datos[] = $fila;	
 
 	
 	//Recorro mi arreglo para dibujar la tabla
@@ -161,6 +156,34 @@
 	
 	</body>";
 
+	}
+	else{
+		echo "<body style='background-color:#727272;'>";
+	
+		echo "<br /><div style='clear:both;
+			background-color: #D5D7C6;
+			color: #1739AB;
+			font-weight: bold;
+			font-size: 1.7em;
+			text-align: center;
+			border-style: solid;
+			margin-top: 20px;
+			border-radius:7px;
+			-moz-border-radius:7px;
+			-webkit-border-radius:7px;'>";
+		
+		echo "<p style='text-align:center;font-weight:bold;font-size:1.3em;'>No hay resultados para mostrar.</p>";
+		echo "<p style='text-align:center'><img src='../images/empty_folder.png' width='128px' height='128px' 
+				alt='empty_folder_icon' /></p>";
+		echo "</div>
+	
+		<div style='text-align:center;'><br />
+		<input type='button' value='Regresar' onClick='history.back()' style='font-size:1.1 em; font-weight: bold;'>
+		</div>
+	
+		</body>";
+
+	}
 	
 	$conexion -> close();
 	

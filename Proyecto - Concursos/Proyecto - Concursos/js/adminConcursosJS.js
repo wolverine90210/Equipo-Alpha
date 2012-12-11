@@ -324,9 +324,9 @@ function makeChanges(){
 			return 0;
 		}
 
-	if(document.getElementById("sel").selectedIndex == 0 ){
+	if(document.getElementById("e1").selectedIndex == 0 ){
 		document.getElementById("error_categoria").style.display='block';
-		document.form_edit.sel.focus();
+		document.form_edit.e1.focus();
 		return 0;
 	}
 
@@ -362,7 +362,7 @@ function makeChanges(){
 		
 		permitida = false;
 		
-		if(imgs[i].type == "file" && imgs[i].id != 'imagen1'){
+		if(imgs[i].type == "file" && imgs[i].id != 'file[]'){
 		
 		extension = (imgs[i].value.substring(imgs[i].value.lastIndexOf("."))).toLowerCase();
 		
@@ -473,95 +473,7 @@ function makeChanges(){
 
 
 
-	var text = document.createTextNode(document.getElementById("inNombre").value);
-	var name = document.getElementById("concurso_name");
-	name.parentNode.removeChild(name);
-
-	var node = document.createElement("p");
-	node.setAttribute('id','concurso_name');
-	node.appendChild(text);
-
-	document.getElementById("div_name").appendChild(node);
-
-	/******************/
-
-	text = document.createTextNode(document.getElementById("field_hashtag").value);
-	name = document.getElementById("pHash");
-	name.parentNode.removeChild(name);
-
-	node = document.createElement("p");
-	node.setAttribute('id','pHash');
-	node.appendChild(text);
-
-	document.getElementById("hashtag").appendChild(node);
-
-	/******************/
-
-	text = document.createTextNode(document.getElementById("e1")[document.getElementById("e1").selectedIndex].innerHTML);
-	name = document.getElementById("pCat");
-	name.parentNode.removeChild(name);
-
-	node = document.createElement("p");
-	node.setAttribute('id','pCat');
-	node.appendChild(text);
-
-	document.getElementById("div_cat").appendChild(node);
-
-	/******************/
 	
-	var valuesDif = document.form_edit.dificultad;
-	
-	for (i=0; i<valuesDif.length; i++) {
-		if (valuesDif[i].checked==true) {
-			text = document.createTextNode(valuesDif[i].value);
-			break;
-		}
-	}
-	
-	name = document.getElementById("pDif");
-	name.parentNode.removeChild(name);
-
-	node = document.createElement("p");
-	node.setAttribute('id','pDif');
-	node.appendChild(text);
-
-	document.getElementById("div_dif").appendChild(node);
-
-	/******************/
-
-	/*text = document.createTextNode(document.getElementById("content_area").value);
-	name = document.getElementById("pCont");
-	name.parentNode.removeChild(name);
-	
-	node = document.createElement("p");
-	node.setAttribute('id','pCont');
-	node.appendChild(text);
-	
-	document.getElementById("div_content").appendChild(node);*/
-
-	/******************/
-
-	text = document.createTextNode(document.getElementById("datepicker").value);
-	name = document.getElementById("pFinic");
-	name.parentNode.removeChild(name);
-
-	node = document.createElement("p");
-	node.setAttribute('id','pFinic');
-	node.appendChild(text);
-
-	document.getElementById("div_Finic").appendChild(node);
-
-	/******************/
-
-	text = document.createTextNode(document.getElementById("datepicker2").value);
-	name = document.getElementById("pFfin");
-	name.parentNode.removeChild(name);
-
-	node = document.createElement("p");
-	node.setAttribute('id','pFfin');
-	node.appendChild(text);
-
-	document.getElementById("div_Ffin").appendChild(node);
 
 	/******************/
 
@@ -710,9 +622,9 @@ function makeChanges2(){
 			return 0;
 		}
 
-	if(document.getElementById("sel").selectedIndex == 0 ){
+	if(document.getElementById("e1").selectedIndex == 0 ){
 		document.getElementById("error_categoria").style.display='block';
-		document.form_edit.sel.focus();
+		document.form_edit.e1.focus();
 		return 0;
 	}
 

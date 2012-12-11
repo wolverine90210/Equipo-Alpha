@@ -61,12 +61,13 @@
 		
 		$idUsuario = $_SESSION['access_token']['id'];
 		$arrobaUsuario = '@'.$_SESSION['access_token']['screen_name'];
+		$avatar = $_SESSION['access_token']['avatar'];
 		
 		//echo $_SESSION['access_token']['id'].$_SESSION['access_token']['screen_name'];
 		
 		if($idUsuario == 960498032 || $idUsuario == 984327331 || $idUsuario == 302412674 || $idUsuario == 199881655)
-			$query = "insert into usuario values($idUsuario, '$arrobaUsuario', 0)";
-			else $query = "insert into usuario values($idUsuario, '$arrobaUsuario', 1)";
+			$query = "insert into usuario values($idUsuario, '$arrobaUsuario', 0, '$avatar')";
+			else $query = "insert into usuario values($idUsuario, '$arrobaUsuario', 1, '$avatar')";
 		
 		$conexion -> query($query);
 		

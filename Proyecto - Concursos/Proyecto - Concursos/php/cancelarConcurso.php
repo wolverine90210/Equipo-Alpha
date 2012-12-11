@@ -48,7 +48,7 @@
 		-webkit-border-radius:7px;'>
 	
 		<h3><strong><p style='text-align:center'>Concurso cancelado.</p></strong></h3>
-		<img src='http://www.mricons.com/store/png/72113_48893_cancel_128x128.png' alt='cancelar_icon' />
+		<img src='../images/eliminarConc.png' alt='cancelar_icon' />
 		</div>
 		<br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
 		</body>

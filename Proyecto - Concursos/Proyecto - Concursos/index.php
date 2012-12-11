@@ -66,33 +66,16 @@
 	<article class="articulo">
 		<?php
 						include('php/secciones/enviar.html');
+		?>			
+			
+			
+			
+		<?php
+						include('php/secciones/indexData.php');
 		?>
-		<section class="seccion">
+								
 		
-			<?php
-						include('php/secciones/incat.html');
-			?>
-			
-		</section>
-		<div class="sombra_seccion"></div>
-		
-		<section class="seccion">
-			
-			<?php
-						include('php/secciones/incat2.html');
-			?>
 
-		</section>
-		<div class="sombra_seccion"></div>
-		
-		<section class="seccion">
-			
-			<?php
-						include('php/secciones/incat3.html');
-			?>
-			
-		</section>
-		<div class="sombra_seccion"></div>
 	</article>
 	
 	

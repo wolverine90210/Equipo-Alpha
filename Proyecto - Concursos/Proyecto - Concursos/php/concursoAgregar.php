@@ -38,6 +38,7 @@ $fechaInicio = date('Y-m-d', strtotime($_REQUEST['fechaInicio']));
 $fechaFin = date('Y-m-d', strtotime($_REQUEST['fechaFin']));
 $organizador = $_REQUEST['organizador'];
 $descripConcurso = $_REQUEST['descripcion'];
+$idUsuario = $datos['usuarioOrganizador'];
 
 
 //Validar las entradas para evitar inyecciones de sql
@@ -54,7 +55,7 @@ $descripConcurso = $conexion -> real_escape_string($descripConcurso);
 
 
 //buscar el id del usuario organizador
-$query = "select * from usuario where idUsuario = '$organizador'";
+$query = "select idUsuario from usuario where arrobaUsuario = '$organizador'";
 
 //Ejecutar el query
 $result = $conexion -> query($query);
@@ -64,28 +65,20 @@ $result = $conexion -> query($query);
 if($result -> num_rows == 1)
 $datos= $result -> fetch_assoc();
 
-//este es el id del usuarioOrganizador
-$idUsuario = $datos['idUsuario'];
+$idUsuario=$datos['idUsuario'];
 
 
 //Si ya existe el concurso entonces hacer update sino hacer insert
-if(isset($_REQUEST['idConcurso'])){
+if(isset($_REQUEST['idConcurso'])){ 
 	$idConcurso = $_REQUEST['idConcurso'];
-	$query = "UPDATE `concurso` SET `idConcurso` = $idConcurso,`nombreConcurso` = '$nomConcurso',
-			`hashtag` = '$hashtag',`dificultad` = $dificultad,`categoria` = $categoria,`fechaDeAlta` = '$fechaAlta',
-			`fechaDeInicio` = '$fechaInicio',
-			`descripcion` = '$descripConcurso',`fechaDeFin` = '$fechaFin',
-			`status` = 1,`motivos` = 'falta aprobar',`usuarioGanador` = 960498034,
-			`usuarioOrganizador` = $idUsuario 
-				WHERE `concurso`.`idConcurso` = $idConcurso
- 				AND `concurso`.`categoria` = $categoria AND `concurso`.`usuarioOrganizador` = $idUsuario;";
+	
+	$query = "UPDATE concurso SET idConcurso = $idConcurso, nombreConcurso = '$nomConcurso', hashtag = '$hashtag', dificultad = $dificultad, categoria = $categoria, fechaDeAlta = '$fechaAlta', fechaDeInicio = '$fechaInicio', descripcion = '$descripConcurso', fechaDeFin = '$fechaFin', status = 1, motivos = 'falta aprobar', usuarioGanador = 960498034, usuarioOrganizador = '$idUsuario' where idConcurso=$idConcurso";
 
 }
 else{
 
 	//insertar el concurso con todos lo datos
-	$query = "INSERT INTO `concurso` (`nombreConcurso`, `hashtag`, `dificultad`, `categoria`, `fechaDeAlta`, `fechaDeInicio`, `descripcion`, `fechaDeFin`, `status`, `motivos`, `usuarioGanador`, `usuarioOrganizador`)
-			  VALUES ('$nomConcurso', '$hashtag', $dificultad, $categoria, '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar',960498034, $idUsuario)";
+	$query = "INSERT INTO concurso VALUES ( null ,'$nomConcurso', '$hashtag', '$dificultad', '$categoria', '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 960498034, '$idUsuario')";
 }
 
 

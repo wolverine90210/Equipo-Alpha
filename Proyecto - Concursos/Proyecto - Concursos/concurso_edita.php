@@ -2,7 +2,7 @@
 
 	session_start();
 	
-	var_dump($_SESSION["datos"]);
+	//var_dump($_SESSION["datos"]);
 
 	//Obtener los datos
 	$idConcurso = $_SESSION["datos"]["idConcurso"];
@@ -10,18 +10,18 @@
 	$hashtag = $_SESSION["datos"]["hashtag"];
 	$dificultad = $_SESSION["datos"]["dificultad"];
 	$categoria = $_SESSION["datos"]["categoria"];
-	$fechaAlta = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeAlta"]));
-	$fechaInicio = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeInicio"]));
+	$fechaAlta = $_SESSION["datos"]["fechaDeAlta"];
+	$fechaInicio = $_SESSION["datos"]["fechaDeInicio"];
 	$descripcion = $_SESSION["datos"]["descripcion"];
-	$fechaFin = date('d-m-Y', strtotime($_SESSION["datos"]["fechaDeFin"]));
+	$fechaFin = $_SESSION["datos"]["fechaDeFin"];
 	$status = $_SESSION["datos"]["status"];
 	$motivos = $_SESSION["datos"]["motivos"];
 	$usuarioGanador = $_SESSION["datos"]["usuarioGanador"];
 	$usuarioOrganizador = $_SESSION["datos"]["usuarioOrganizador"];
-	echo $usuarioOrganizador;
+	//echo $usuarioOrganizador;
 	require("php/funciones.php");
 	$organizador = buscarPorIdOrganizador($usuarioOrganizador);
-	echo $usuarioOrganizador = $organizador["arrobaUsuario"];
+	//echo $usuarioOrganizador = $organizador["arrobaUsuario"];
 
 	//Borrar los datos para que no esten en la sesi�n
 	unset($_SESSION["datos"]);
@@ -34,13 +34,11 @@
 	<meta name="description" content="Index - Maquetado Vista de Blog" />
 	<meta name="keywords" content="Concursos, programacion, enviar, categoria" />
 	<meta name="author" content="Equipo Alpha" />
+	<link rel="SHORTCUT ICON" href="favicon.ico" />
 	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
 	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
 	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<title>Concursos de Programación</title>
-	<link rel="icon" href="hackergarage_32.png" sizes="32x32">
-	<link rel="icon" media="screen" type="image/png" href="hackergarage_16.png">
-	<link rel="icon" href="hackergarage_48.png" sizes="48x48">
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
@@ -125,16 +123,33 @@
 
 <body id="container">
 	<header id="header">
-		<div id="site-name2">
-			<h1>Modificar Concurso</h1>
+		<header id="header">	
+	  	
+	  	<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+	  	href="loginWithTwitter.php?authenticate=1">
+		    Iniciar sesión con <b>Twitter</b>
+		</a>
+	
+		<script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+		<?php
+		include('php/secciones/signIn.php');
+		?>
+	
+		<div id="site-name">
+			<h1 style="display:none; ">Concursos</h1>
 		</div>
-	    <nav id="menu-r">
-			<ul>
-				<li class="boton"><a href="index.html" target="_self">Inicio</a></li>
-				<li class="boton"><a href="calendario.html" target="_self">Calendario</a></li>
-				<li class="boton"><a href="404.shtml" target="_self">RSS</a></li>
-			</ul>
-	    </nav>
+		
+	   <nav id="menu-r">
+			<?php
+						include('php/secciones/menu.html');
+			?>	 
+			
+			<script type="text/javascript">
+			$('#adminButton').hide();
+			$('#accountButton').hide();
+			</script>
+	   </nav>
 	</header>
 	<article class="articulo">
 		<section class="seccion">
@@ -245,8 +260,9 @@
 			
 		    <p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
-		    	<!--<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>-->
-		        	
+		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
+		    	
+<!-- checar con el loguin de TWITTER -->	    	
 		    	<a href="" id="aroba" name ="organizador"><?= $usuarioOrganizador; ?></a> 
 <!--  para llevarme el id del concurso por POST -->
 				<input  type="text"  id="idConcurso" name ="idConcurso" value="<?= $idConcurso; ?>" style="display:none"/>
@@ -345,7 +361,7 @@
 				</script>
 				<div style="clear:both"> </div>	
 			<label>No olvide guardar los cambios</label>
-			<input class="botonGuardar" type="submit" name="submit"  value="Guardar" />
+			<input id="guardarRT" class="botonGuardar" type="submit" name="submit"  value="Guardar" />
 		</form>
 	  </div>	
 	<div style="clear:both"> </div>	

@@ -45,7 +45,7 @@
 		-webkit-border-radius:7px;'>
 	
 		<h3><strong><p style='text-align:center'>Concurso aceptado.</p></strong></h3>
-		<img src='http://betapermanente.files.wordpress.com/2012/03/accept.png?w=600' alt='aceptar_icon' />
+		<img src='../images/acceptConc.png' alt='aceptar_icon' />
 		</div>
 		<br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
 		</body>

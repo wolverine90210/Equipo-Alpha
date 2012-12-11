@@ -120,15 +120,14 @@ function dameNumeroDeConcursos(){
 
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);
-	
-		//Cierro la conexión
+
+	//Cierro la conexión
 	$con -> close();
 
-	//Convierto el resultado de mi consulta a un arreglo
-	if($result -> num_rows == 1)
-		$datos = $result -> fetch_array(MYSQLI_ASSOC);
 
-	return $datos["count(*)"];
+		return $result;
+		var_dump($result);
+
 }
 
 
@@ -168,9 +167,6 @@ function buscarPorId($id){
 	//Convierto el resultado de mi consulta a un arreglo
 	if($result -> num_rows == 1)
 		$datos = $result -> fetch_array(MYSQLI_ASSOC);
-	
-		//Cierro la conexión
-	$con -> close();
 
 	return $datos;
 
@@ -199,9 +195,6 @@ function dameIdDeConcurso($nomConcurso,$hashtag){
 
 	if($con -> error)
 	printf("Errormessage: %s\n", $con->error);
-	
-		//Cierro la conexión
-	$con -> close();
 
 	return $datos["idConcurso"];
 	
@@ -230,10 +223,6 @@ function buscarPorDificultad($dificultad){
 			
 			$datos[] = $fila;
 	}
-	
-	
-		//Cierro la conexión
-	$con -> close();
 
 	return $datos;
 	
@@ -264,9 +253,6 @@ function buscarConcursosPorCategoria($categoria){
 			
 			$datos[] = $fila;
 	}
-	
-		//Cierro la conexión
-	$con -> close();
 
 	return $datos;
 	
@@ -521,6 +507,47 @@ function buscarCategorias(){
 	
 
 }
+
+
+function buscarUsuarios(){
+//
+
+
+//Nos conectamos a la base de datos
+	require("bd.inc");
+	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
+
+	//Verificar que la conexión no haya generado error
+	if ($conexion->connect_error) {
+		die('Error de Conexión (' . $conexion->connect_errno . ') '
+		        . $conexion->connect_error);
+	}
+	
+
+	//buscar todas las categorias y ordernarlas por nombre
+	$query = "select * from usuario";
+	//$query = "select * from concurso";
+	
+	//Ejecutar el query
+	$result = $conexion -> query($query);
+
+	//Cerrar la conexion
+	$conexion -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			
+			$datos[] = $fila;
+	}
+	
+	//var_dump($datos);
+	
+	//Regreso la matriz
+	return $datos;
+	
+}
 /*
  * 
  * 
@@ -630,7 +657,7 @@ function dameEntradasDelConcurso($idConcurso){
 	$query = "select entrada.idEntrada, entrada.fechaDeEnvio, entrada.descripEntrada,
 			 entrada.usuario_IdUsuario from entrada 
 			 inner join concurso_has_entrada 
-			 on  concurso_has_entrada.concurso_IdConcurso = $idConcurso
+			 on entrada.idEntrada = concurso_has_entrada.Entrada_idEntrada 
 			  ORDER BY entrada.fechaDeEnvio asc";
 		
 	//Ejecutar el query
@@ -643,16 +670,13 @@ function dameEntradasDelConcurso($idConcurso){
 		while($fila = $result -> fetch_assoc())
 			
 			$datos[] = $fila;
-		
-		//Regreso la matriz
-		return $datos;
 	}
 	
 	//Cerrar la conexion
 	$conexion -> close();
 	
-	
-	
+	//Regreso la matriz
+	return $datos;
 	
 }
 

@@ -45,7 +45,7 @@
 		</html>
 		";
 		
-		@header('refresh: 4; url=javascript: history.go(-1)');
+		@header("refresh: 4; url='../adminConcursos.php'");
 
 	//Cierro la conexión
 	$conexion -> close();

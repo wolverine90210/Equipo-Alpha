@@ -12,7 +12,18 @@
 	}
 	
 	
-	$idganador = $_REQUEST["idGanador"];
+	//sacar la categoria del arreglo
+	if (isset($_REQUEST['ganador'])){
+	$usuarios = $_REQUEST['ganador'];
+	$n        = count($usuarios);
+	$i        = 0;
+	while ($i < $n)
+	{
+		$idganador =$usuarios[$i];
+		$i++;
+	}
+}
+	
 	$nombreConcurso = $_REQUEST["nombreConcurso"];
 	
 	//Limpiar variables a utilizar
@@ -73,7 +84,7 @@
 		-webkit-border-radius:7px;'>
 	
 		<h3><strong><p style='text-align:center'>Usuario ganador asignado exitosamente.</p></strong></h3>
-		<img src='http://a.dryicons.com/images/icon_sets/coquette_part_3_icons_set/png/128x128/prize_winner.png' alt='ganador_icon' />
+		<img src='../images/prize_winner.png' alt='ganador_icon' />
 		</div>
 		<br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
 		</body>
