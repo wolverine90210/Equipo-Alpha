@@ -11,7 +11,7 @@
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
-	<link href="css/estiloTabla.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloTablaImagenes.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
@@ -130,7 +130,7 @@
 		<section class="seccion">
 		<form name="addConcurso"  action="php/concursoAgregar.php" method="post" enctype="multipart/form-data">			
 			<div id="nombre-concurso">
-					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre para el concurso(min 5 carac.)</label>
+					<label class="div_error" id="adv_nombre" style="display: none">Escriba un nombre valido para el concurso(min 5 carac. sin incluir caracteres especiales)</label>
 			      	<a class="subtitulos" id="TituloConcurso">Nombre del Concurso:</a>
 					<input  type="text"  id="nombreConcurso" name="nombreConcurso"/>
 			</div>
@@ -166,7 +166,8 @@
 				//Cargar el archivo de funciones
 				require_once("php/funciones.php");
 				$categorias = buscarCategorias();
-				$fila = $categorias[0];
+				if(isset($categorias)){
+					$fila = $categorias[0];
 				foreach($categorias as $fila => $arr){
 					//Todos los campos de cada fila
 				    foreach($arr as $campo => $valor){
@@ -175,7 +176,14 @@
 					else if($campo == 'nom_Categoria')
 					echo $cad1.$valor.'</option>';
 					}
-				     }
+				  }	
+				}else{
+					
+					echo '<select>
+						  <option selected=selected>No hay categorías</option>
+						</select>';
+				}
+				
 				?>
 				</select>
 			</div>
@@ -219,6 +227,8 @@
 
 <!-- MODULO DE IMAGENES-->	
 			<p class="titulos">Agregar imagen(es)</p>
+			<label class="subtitulos">Seleccione los archivos que desea subir, al final haga clic en subir imágenes 
+				para obtener la ruta de donde se encuentran almacenadas.</label>
 			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
 			<form action="php/imagenesAgregar.php" method="post" enctype="multipart/form-data"> 
 				<fieldset id="campoField" style="margin:0 auto">

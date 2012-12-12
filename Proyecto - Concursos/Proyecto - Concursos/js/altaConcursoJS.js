@@ -136,7 +136,7 @@ function dameFechaActual(){
 function valida_envia() {
 			
 	//nombre del concurso
-	if(document.addConcurso.nombreConcurso.value.length ==' ' || !/([a-zA-Z0-9]\w*){5,20}/.test(document.addConcurso.nombreConcurso.value)){
+	if(document.addConcurso.nombreConcurso.value.length ==' ' || !/([a-zA-Z0-9]\w*){5,20}/.test(document.addConcurso.nombreConcurso.value) || (/\<|\>|\"|\?|\\|\\||\/|\*|\;/.test(document.addConcurso.nombreConcurso.value))){
 		muestraEtiqueta('adv_nombre');
 		
 	}
@@ -146,7 +146,7 @@ function valida_envia() {
 	
 	
 	//hashtag twitter
-	if(document.addConcurso.hashTwitter.value.length == 0 || document.addConcurso.hashTwitter.value.length > 15 || !/(#([a-zA-Z0-9_])+)/.test(document.addConcurso.hashTwitter.value)){
+	if(document.addConcurso.hashTwitter.value.length == 0 || !/#{1}([a-zA-Z0-9_]\w*){5,15}/.test(document.addConcurso.hashTwitter.value)){
 		muestraEtiqueta('adv_hashtag');
 	}
 	else{
@@ -265,7 +265,7 @@ function valida_envia() {
 	var numero_para_etiqueta = 0;
 	var cont = 1;
 		for(elemento in inputsImage){
-			if(inputsImage[elemento].type == "file"){
+			if(inputsImage[elemento].type == "file" && inputsImage[elemento].value != 0){
 				numero_para_etiqueta =inputsImage[elemento].id.substring(8,inputsImage[elemento].length);
 				extension = (inputsImage[elemento].value.substring(inputsImage[elemento].value.lastIndexOf("."))).toLowerCase();
 				for(var i=0; i<extensiones_permitidas.length; i++){
