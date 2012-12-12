@@ -3,6 +3,7 @@
 //Porque la maestra dijo
 
 session_start();
+//var_dump($_SESSION["datos"]);
 
 //Obtener los datos
 	$idConcurso = $_SESSION["datos"]["idConcurso"];
@@ -21,7 +22,7 @@ session_start();
 	
 	//Nos conectamos a la base de datos y obtenemos el usuario
 	require_once('php/bd.inc');
-	$conexion = new mysqli($host, $user, $pass, $bd);
+	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
 
 	if($conexion->connect_error){
 
@@ -60,6 +61,9 @@ session_start();
 //Borrar los datos para que no esten en la sesión
 unset($_SESSION["datos"]);
 
+?>
+<?php
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -193,15 +197,30 @@ unset($_SESSION["datos"]);
 
 	<header id="header">
 	
+		<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+	  	href="loginWithTwitter.php?authenticate=1">
+		    Iniciar sesión con <b>Twitter</b>
+		</a>
+	
+		<script type="text/javascript">$('#loginButton').hide();</script> 
+	   
+		<?php
+		include('php/secciones/signIn.php');
+		?>
+	
 		<div id="site-name">
 			<h1 style="display:none; ">Concursos</h1>
 		</div>
 		
 	   <nav id="menu-r">
-		<?php
-		include('php/secciones/menu.html');
-		?>	
-		
+			<?php
+						include('php/secciones/menu.html');
+			?>	 
+			
+			<script type="text/javascript">
+			$('#adminButton').hide();
+			$('#accountButton').hide();
+			</script>
 	   </nav>
 	   
 	<h1>Edición de concurso</h1>
@@ -258,16 +277,25 @@ unset($_SESSION["datos"]);
 				
 				<br /><br /><br />
 				
-				<div style="width:350px;float:left;">
-					<label for="categoria">Categoría: </label>
-					<select id="sel" style="background-color: #ececec;border: none;box-sizing: border-box;-moz-box-sizing: border-box;
-					-webkit-box-sizing: border-box;color: #454545;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-					font-weight: bold;font-size: 18px;border: 2px solid transparent;border-radius: 5px; " onChange="fillSelect()">
-					<option value="<?= $catego ?>">Actual: <?= $catego ?></option>
-					<option>Cargar categorías</option>
-					</select>				
-				<div id="catego"></div>
-				</div>
+				<label for="categoria">Categoría: </label>
+				<select id="e1" selected="selected" name="categoria[]">
+				<option value="SeleccioneUna">Seleccione una</option>			
+				<?php
+				//Cargar el archivo de funciones
+				require_once("php/funciones.php");
+				$categorias = buscarCategorias();
+				$fila = $categorias[0];
+				foreach($categorias as $fila => $arr){
+					//Todos los campos de cada fila
+				    foreach($arr as $campo => $valor){
+					if($campo == 'idCategoria')
+					$cad1 = "<option value=".$valor.">";
+					else if($campo == 'nom_Categoria')
+					echo $cad1.$valor.'</option>';
+					}
+				     }
+				?>
+				</select>
 				&nbsp &nbsp &nbsp &nbsp
 				<div style="float:right">
 				<label for="nueva_cat">Nueva categoría: </label>
@@ -296,7 +324,7 @@ unset($_SESSION["datos"]);
 					<br />
 					<input type="radio" id="radio-1-3" name="dificultad" value="Alta" class="regular-radio" />
 					<label for="radio-1-3"> </label><label class="labelRadios"> Alta</label>
-					<?php elseif($fidicultad == '2'): ?>
+					<?php elseif($dificultad == '2'): ?>
 					<input type="radio" id="radio-1-1" name="dificultad" value="Basica" class="regular-radio" />
 					<label for="radio-1-1"> </label><label class="labelRadios"> Básica</label>
 					<br />
@@ -330,7 +358,7 @@ unset($_SESSION["datos"]);
 				<br /><br />
 				
 				<label for="imagen1">Subir imagen(es): </label><br /><br / >
-				<input type="file" id="imagen1" name="imagen" accept="image/*" required/>
+				<input type="file" id="imagen1" name="file[]" accept="image/*" required/>
 				
 				<div id="error_imagen" class="div_error">
 					<p>¡Seleccione una imagen de sus archivos para el concurso! El archivo debe ser una imagen.</p>

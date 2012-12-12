@@ -91,6 +91,7 @@ for($i=0; $i<count($datos); $i++)
    if($dificultad == 3)
 	$dificultad = "Avanzada";
    
+
    echo "<item>\n";
    echo "<title>$nombreConcurso</title>";
    echo "<link>http://alanturing.cucei.udg.mx/equipo-alpha</link>";

@@ -41,7 +41,8 @@ function outputError($tmhOAuth) {
 
 // reset request?
 if ( isset($_REQUEST['wipe'])) {
-  session_destroy();
+  //session_destroy();
+  require_once('php/secciones/cerrarSesion.php');
   header("Location: index.php");
 
 // already got some credentials stored?

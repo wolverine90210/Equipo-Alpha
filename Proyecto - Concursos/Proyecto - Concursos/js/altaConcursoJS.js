@@ -138,6 +138,7 @@ function valida_envia() {
 	//nombre del concurso
 	if(document.addConcurso.nombreConcurso.value.length ==' ' || !/([a-zA-Z]\w*){5,20}/.test(document.addConcurso.nombreConcurso.value)){
 		muestraEtiqueta('adv_nombre');
+		
 	}
 	else{
 		ocultaEtiqueta('adv_nombre');
@@ -145,7 +146,7 @@ function valida_envia() {
 	
 	
 	//hashtag twitter
-	if(document.addConcurso.hashTwitter.value.length ==' ' || !/([#a-zA-Z]\w*){5,20}/.test(document.addConcurso.hashTwitter.value)){
+	if(document.addConcurso.hashTwitter.value.length == 0 || document.addConcurso.hashTwitter.value.length > 15 || !/(#([a-zA-Z0-9_])+)/.test(document.addConcurso.hashTwitter.value)){
 		muestraEtiqueta('adv_hashtag');
 	}
 	else{
@@ -274,7 +275,7 @@ function valida_envia() {
 						break;
 					}
 				}
-				if(inputsImage[elemento].value == 0 || imgPermitida == false){
+				if(inputsImage[elemento].value != 0 || imgPermitida == false){
 					muestraEtiqueta("adv_imagen"+numero_para_etiqueta);
 					return 0;
 					

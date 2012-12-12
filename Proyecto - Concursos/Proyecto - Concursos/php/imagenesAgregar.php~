@@ -61,10 +61,10 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 				} else {
 					//si no existe la carpeta la creo y le doy permisos
 					if(!mkdir_recursive($nombre_fichero, 0775,true)){
-					//$mens= $_FILES["file"]["name"][$i] ;
+					$mens= $_FILES["file"]["name"][$i] . 'hubo problemas al crear el archivo';
 						
 					if(isset($misRutas))
-						$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@'.'|';
+						$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@'.$mens.'|';
 						else 
 							$misRutas = $_FILES["file"]["name"][$i].'@'.$rutaDestino.'|';
 					$contador++;
@@ -79,8 +79,8 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 				//Si el archivo ya existe se muestra el mensaje de error
 				if (file_exists($rutaDestino)){
 					//echo $_FILES["file"]["name"][$i] . " ya existe. ";
-					//$mens= $_FILES["file"]["name"][$i];
-					$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@|';
+					$mens= $_FILES["file"]["name"][$i] . " ya se encuentra almacenada.";
+					$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@'.$mens.'|';
 					$contador++;
 						
 				}

@@ -1,5 +1,8 @@
 <?php 
 session_start();
+
+$idConcurso = $_REQUEST['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,7 +86,7 @@ session_start();
 	  			<?php
 						include('php/secciones/enviar.html');
 						require_once("php/funciones.php");
-						$datosConcurso = buscarPorId($_REQUEST["id"]);//poner por request
+						$datosConcurso = buscarPorId($idConcurso);//poner por request
 						if(strcmp($datosConcurso['dificultad'], "1") == 0) 
 							$dificultad = "Básica";
 						else if($datosConcurso['dificultad'] == "2" )
@@ -108,7 +111,7 @@ session_start();
 	  				 </div>	
     			<section class="seccion">
     				<a id="TituloConcurso"><?=$datosConcurso['nombreConcurso']?></a>
-   					<a href="http://www.google.com" id="hashtagTwitter"><?=$datosConcurso['hashtag']?></a>
+   					<a href="https://twitter.com/" id="hashtagTwitter"><?=$datosConcurso['hashtag']?></a>
 	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
     				<p><?=$datosConcurso['descripcion']?></p>    
     			</section>
@@ -185,12 +188,10 @@ session_start();
 				
 			<?php 
 				require_once("php/funciones.php");
-			$entradas = dameEntradasDelConcurso($_REQUEST["id"]);
+			$idConcurso = 2;
+			$entradas = dameEntradasDelConcurso($idConcurso);
 			
-			if(!isset($entradas))
-				echo 'No hay entradas para este concurso,sé el primero en agregar una';
-			else{
-				//Obtener los titulos
+			//Obtener los titulos
 			$fila = $entradas[0];
 			$titulos = array_keys($fila);
 			echo '<thead><tr>';
@@ -237,9 +238,6 @@ session_start();
 			}
 			echo '</tbody>';
 			echo '</table>';
-			}
-			
-			
 				
 		?>	
    		</article>

@@ -44,7 +44,7 @@
     <script  type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 	<script  type="text/javascript" src="cbrte/richtext_compressed.js"></script>
 	<style type="text/css">
- 	body{
+ 	body table{
 	font:12px Arial, Tahoma, Verdana, Helvetica, sans-serif;
 	background-color:#BECEDC;
 	color:#000;

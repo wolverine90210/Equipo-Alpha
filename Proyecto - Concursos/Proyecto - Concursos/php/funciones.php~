@@ -507,47 +507,6 @@ function buscarCategorias(){
 	
 
 }
-
-
-function buscarUsuarios(){
-//
-
-
-//Nos conectamos a la base de datos
-	require("bd.inc");
-	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
-
-	//Verificar que la conexión no haya generado error
-	if ($conexion->connect_error) {
-		die('Error de Conexión (' . $conexion->connect_errno . ') '
-		        . $conexion->connect_error);
-	}
-	
-
-	//buscar todas las categorias y ordernarlas por nombre
-	$query = "select * from usuario";
-	//$query = "select * from concurso";
-	
-	//Ejecutar el query
-	$result = $conexion -> query($query);
-
-	//Cerrar la conexion
-	$conexion -> close();
-
-	//Convierto el resultado de mi consulta a una matriz
-	if($result -> num_rows >= 1){
-		//Por cada fila obtengo un arreglo
-		while($fila = $result -> fetch_assoc())
-			
-			$datos[] = $fila;
-	}
-	
-	//var_dump($datos);
-	
-	//Regreso la matriz
-	return $datos;
-	
-}
 /*
  * 
  * 

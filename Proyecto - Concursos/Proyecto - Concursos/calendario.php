@@ -60,9 +60,10 @@
 <body id="container">
 	<header id="header">
 	
-		<a id="loginButton" style="float:right; margin-top: 36px; margin-left: 10px;" href="loginWithTwitter.php?authenticate=1">
-	  	<img src="images/sign-in-with-twitter-gray.png" alt="Sign-In-With-Twitter" />
-	  	</a>
+		<a id="loginButton" class="btn-auth btn-twitter" style="float:right; margin-top: 38px; margin-left: 10px;" 
+	  	href="loginWithTwitter.php?authenticate=1">
+		    Iniciar sesión con <b>Twitter</b>
+		</a>
 	
 		<script type="text/javascript">$('#loginButton').hide();</script> 
 	   

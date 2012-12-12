@@ -85,6 +85,10 @@ else{
 }
 
 
+$query = "SET FOREIGN_KEY_CHECKS=1";
+$conexion -> query($query);
+
+
 //Ejecutar el query
 $result = $conexion -> query($query);
 if($conexion -> error)
@@ -113,11 +117,6 @@ for ($x=0;$x<$tamanio-1; $x++){
 							if($conexion -> error)
 								printf("Errormessage: %s\n", $conexion->error);
 }
-
-
-$query = "SET FOREIGN_KEY_CHECKS=1";
-$conexion -> query($query);
-
 //Cerrar la conexion
 $conexion -> close();
 
