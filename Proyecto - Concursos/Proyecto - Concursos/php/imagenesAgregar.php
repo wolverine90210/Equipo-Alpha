@@ -80,8 +80,10 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 				if (file_exists($rutaDestino)){
 					//echo $_FILES["file"]["name"][$i] . " ya existe. ";
 					//$mens= $_FILES["file"]["name"][$i];
+					//if(isset($misRutas)){
 					$misRutas = $misRutas.$_FILES["file"]["name"][$i].'@|';
 					$contador++;
+					//}
 						
 				}
 				else{

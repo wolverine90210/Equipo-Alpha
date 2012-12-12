@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 ob_start();
 
 //Nos conectamos a la base de datos
@@ -38,7 +37,7 @@ $fechaInicio = date('Y-m-d', strtotime($_REQUEST['fechaInicio']));
 $fechaFin = date('Y-m-d', strtotime($_REQUEST['fechaFin']));
 $organizador = $_REQUEST['organizador'];
 $descripConcurso = $_REQUEST['descripcion'];
-$idUsuario = $datos['usuarioOrganizador'];
+//$idUsuario = $datos['usuarioOrganizador'];
 
 
 //Validar las entradas para evitar inyecciones de sql
@@ -54,18 +53,7 @@ $organizador = $conexion -> real_escape_string($organizador);
 $descripConcurso = $conexion -> real_escape_string($descripConcurso);
 
 
-//buscar el id del usuario organizador
-$query = "select idUsuario from usuario where arrobaUsuario = '$organizador'";
-
-//Ejecutar el query
-$result = $conexion -> query($query);
-
-
-//Convierto el resultado de mi consulta a una matriz
-if($result -> num_rows == 1)
-$datos= $result -> fetch_assoc();
-
-$idUsuario=$datos['idUsuario'];
+$idUsuario = $organizador;
 
 $query = "SET FOREIGN_KEY_CHECKS=0";
 $conexion -> query($query);
@@ -81,7 +69,7 @@ if(isset($_REQUEST['idConcurso'])){
 else{
 
 	//insertar el concurso con todos lo datos
-	$query = "INSERT INTO concurso VALUES ( null ,'$nomConcurso', '$hashtag', '$dificultad', '$categoria', '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 960498034, '$idUsuario')";
+	$query = "INSERT INTO concurso VALUES ( null ,'$nomConcurso', '$hashtag', '$dificultad', '$categoria', '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 960498034, $idUsuario)";
 }
 
 

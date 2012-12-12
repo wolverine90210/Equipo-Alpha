@@ -1,10 +1,4 @@
-﻿<?php 
-session_start();
-if(!isset($_SESSION['access_token']['screen_name'])){
-	header("Location: loginWithTwitter.php?authenticate=1.php");
-}
-ob_start();
-?>
+﻿<?php @session_start();?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -227,7 +221,7 @@ ob_start();
 			<p class="titulos">Agregar imagen(es)</p>
 			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
 			<form action="php/imagenesAgregar.php" method="post" enctype="multipart/form-data"> 
-				<fieldset id="campoField" style="width:50">
+				<fieldset id="campoField" style="margin:0 auto">
 					<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
 					<input id="imagenUp1"  type="file" name="file[]" accept="image/*" required="required" />
 					<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />

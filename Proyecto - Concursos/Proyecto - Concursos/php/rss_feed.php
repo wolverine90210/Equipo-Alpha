@@ -71,31 +71,35 @@ echo "<copyright>Equipo-Alpha</copyright>\n";
 
 //para cada registro encontrado en la base de datos
 //tengo que crear la entrada RSS en un item
-for($i=0; $i<count($datos); $i++)
-{
-   //elimino caracteres extraños en campos susceptibles de tenerlos
-   $nombreConcurso=clrAll($datos[$i]["nombreConcurso"]);         
-   $fechaDeInicio=clrAll($datos[$i]["fechaDeInicio"]);
-   $categoria=clrAll($datos[$i]["categoria"]);
-	
-   for($k=0; $k<count($datosCat); $k++)
-	if($datosCat[$k]['idCategoria'] == $categoria)
-		$categoria = $datosCat[$k]['nom_Categoria'];
-   
-   $dificultad=clrAll($datos[$i]["dificultad"]);
 
-   if($dificultad == 1)
-	$dificultad = "Básica";
-   if($dificultad == 2)
-	$dificultad = "Intermedia";
-   if($dificultad == 3)
-	$dificultad = "Avanzada";
-   
-   echo "<item>\n";
-   echo "<title>$nombreConcurso</title>";
-   echo "<link>http://alanturing.cucei.udg.mx/equipo-alpha</link>";
-   echo "<description>Fecha de inicio: $fechaDeInicio --- Categoría: $categoria --- Dificultad: $dificultad</description>";
-   echo "</item>\n";
+if(isset($datos)){
+	for($i=0; $i<count($datos); $i++)
+	{
+	   //elimino caracteres extraños en campos susceptibles de tenerlos
+	   $nombreConcurso=clrAll($datos[$i]["nombreConcurso"]);         
+	   $fechaDeInicio=clrAll($datos[$i]["fechaDeInicio"]);
+	   $categoria=clrAll($datos[$i]["categoria"]);
+	
+	   for($k=0; $k<count($datosCat); $k++)
+		if($datosCat[$k]['idCategoria'] == $categoria)
+			$categoria = $datosCat[$k]['nom_Categoria'];
+	   
+	   $dificultad=clrAll($datos[$i]["dificultad"]);
+
+	   if($dificultad == 1)
+		$dificultad = "Básica";
+	   if($dificultad == 2)
+		$dificultad = "Intermedia";
+	   if($dificultad == 3)
+		$dificultad = "Avanzada";
+	   
+	   echo "<item>\n";
+	   echo "<title>$nombreConcurso</title>";
+	   echo "<link>http://alanturing.cucei.udg.mx/equipo-alpha</link>";
+	   echo "<description>Fecha de inicio: $fechaDeInicio    ---    Categoria: $categoria    ---    Dificultad: $dificultad</description>";
+	   echo "<generator>Equipo-Alpha</generator>";
+	   echo "</item>\n";
+	}
 }
 
 //cierro las etiquetas del XML

@@ -136,7 +136,7 @@ function dameFechaActual(){
 function valida_envia() {
 			
 	//nombre del concurso
-	if(document.addConcurso.nombreConcurso.value.length ==' ' || !/([a-zA-Z]\w*){5,20}/.test(document.addConcurso.nombreConcurso.value)){
+	if(document.addConcurso.nombreConcurso.value.length ==' ' || !/([a-zA-Z0-9]\w*){5,20}/.test(document.addConcurso.nombreConcurso.value)){
 		muestraEtiqueta('adv_nombre');
 		
 	}
@@ -275,7 +275,7 @@ function valida_envia() {
 						break;
 					}
 				}
-				if(inputsImage[elemento].value != 0 || imgPermitida == false){
+				if(imgPermitida == false){
 					muestraEtiqueta("adv_imagen"+numero_para_etiqueta);
 					return 0;
 					

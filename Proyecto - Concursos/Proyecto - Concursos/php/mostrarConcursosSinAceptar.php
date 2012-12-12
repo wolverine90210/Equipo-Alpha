@@ -152,7 +152,7 @@
 	echo "</div>
 	
 	<div style='text-align:center;'><br />
-	<input type='button' value='Regresar' onClick='history.back()' style='font-size:1.1 em; font-weight: bold;'>
+	<input type='button' value='Regresar a vista de administrador' onClick=\"location.href='../adminConcursos.php'\" style='font-size:1.1 em; font-weight: bold;'>
 	</div>
 	
 	</body>";
@@ -180,7 +180,7 @@
 		echo "</div>
 	
 		<div style='text-align:center;'><br />
-		<input type='button' value='Regresar' onClick='history.back()' style='font-size:1.1 em; font-weight: bold;'>
+		<input type='button' value='Regresar a vista de administrador' onClick=\"location.href='../adminConcursos.php'\" style='font-size:1.1 em; font-weight: bold;'>
 		</div>
 	
 		</body>";

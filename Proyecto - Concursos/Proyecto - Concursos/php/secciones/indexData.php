@@ -42,65 +42,66 @@
 			$datosImg[] = $filaImg;}
 	
 	
+	if(isset($datosImg)){
+		for($i=0; $i<count($datos); $i++){
 	
-	for($i=0; $i<count($datos); $i++){
 	
-	
-		echo "<section class='seccion'>";
+			echo "<section class='seccion'>";
 		
-		echo "<div class='concurso'>".$datos[$i]['nombreConcurso']."</div>";
+			echo "<div class='concurso'>".$datos[$i]['nombreConcurso']."</div>";
 		
-		for($k=0; $k<count($datosCat); $k++)
-			if($datosCat[$k]['idCategoria'] == $datos[$i]['categoria'])
-				$categoria = $datosCat[$k]['nom_Categoria'];
+			for($k=0; $k<count($datosCat); $k++)
+				if($datosCat[$k]['idCategoria'] == $datos[$i]['categoria'])
+					$categoria = $datosCat[$k]['nom_Categoria'];
 				
-		if($datos[$i]['dificultad'] == 1)
-			$dificultad = "B&aacutesica";
-		if($datos[$i]['dificultad'] == 2)
-			$dificultad = "Intermedia";
-		if($datos[$i]['dificultad'] == 3)
-			$dificultad = "Alta";			
+			if($datos[$i]['dificultad'] == 1)
+				$dificultad = "B&aacutesica";
+			if($datos[$i]['dificultad'] == 2)
+				$dificultad = "Intermedia";
+			if($datos[$i]['dificultad'] == 3)
+				$dificultad = "Alta";			
 			
 		
-		for($k=0; $k<count($datosImg); $k++)
-			if($datosImg[$k]['CONCURSO_idConcurso'] == $datos[$i]['idConcurso'])
-				$imagen = $datosImg[$k]['url_imagen'];
+			for($k=0; $k<count($datosImg); $k++)
+				if($datosImg[$k]['CONCURSO_idConcurso'] == $datos[$i]['idConcurso'])
+					$imagen = $datosImg[$k]['url_imagen'];
 
-		$imagen = (string)$imagen;
+			$imagen = (string)$imagen;
 		
-		if($dbpass == "root"){		
+			if($dbpass == "root"){		
+				$numFolder = (string)$datos[$i]['idConcurso'];
+				$string1 = "/var/www/Proyecto - Concursos/php/uploads/".$numFolder."/";
+				$string2 = "php/uploads/".$numFolder."/";
+				$imagen = str_replace($string1, $string2, $imagen);
+			}
+		
 			$numFolder = (string)$datos[$i]['idConcurso'];
-			$string1 = "/var/www/Proyecto - Concursos/php/uploads/".$numFolder."/";
-			$string2 = "php/uploads/".$numFolder."/";
+			$string1 = "/home/cc409/equipo-alpha/www/php/uploads/".$numFolder."/";
+			$string2 = "http://alanturing.cucei.udg.mx/equipo-alpha/php/uploads/".$numFolder."/";
 			$imagen = str_replace($string1, $string2, $imagen);
-		}
-		
-		$numFolder = (string)$datos[$i]['idConcurso'];
-		$string1 = "/home/cc409/equipo-alpha/www/php/uploads/".$numFolder."/";
-		$string2 = "http://alanturing.cucei.udg.mx/equipo-alpha/php/uploads/".$numFolder."/";
-		$imagen = str_replace($string1, $string2, $imagen);
 			
 				
-		echo "<div class='features'><div class='spec'>Categoría: </div><div class='spec_content'>".$categoria.
-		"</div> <div class='spec'> Dificultad: </div> <div class='spec_content'>".$dificultad.
-		"</div><div class='spec'> Inicia: </div> <div class='spec_content'>".$datos[$i]['fechaDeInicio'].
-		"</div> <div class='spec'> Termina: </div> <div class='spec_content'>".$datos[$i]['fechaDeFin'].
-		"</div> </div><br /><br /><br />";
+			echo "<div class='features'><div class='spec'>Categoría: </div><div class='spec_content'>".$categoria.
+			"</div> <div class='spec'> Dificultad: </div> <div class='spec_content'>".$dificultad.
+			"</div><div class='spec'> Inicia: </div> <div class='spec_content'>".$datos[$i]['fechaDeInicio'].
+			"</div> <div class='spec'> Termina: </div> <div class='spec_content'>".$datos[$i]['fechaDeFin'].
+			"</div> </div><br /><br /><br />";
 
 		
-		if(isset($imagen)){
-		echo "<div class='image'><img src='".$imagen."' alt='Poster'/></div>
-			<p>".$datos[$i]['descripcion']."</p><br />";	
+			if(isset($imagen)){
+			echo "<div class='image'><img src='".$imagen."' alt='Poster'/></div>
+				<p>".$datos[$i]['descripcion']."</p><br />";	
 			
-		}
+			}
 		
-		$idConc = $datos[$i]['idConcurso'];
+			$idConc = $datos[$i]['idConcurso'];
 								
-		echo "<div class=\"entrada\"><b>Entradas:</b> 6 </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConc."'\">Ver más...</a></b></div><br />";
+			echo "<div class=\"entrada\"><b>Entradas:</b> 6 </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConc."'\">Ver más...</a></b></div><br />";
 	
-		echo "</section>
-		<div class='sombra_seccion'></div>";		
+			echo "</section>
+			<div class='sombra_seccion'></div>";		
 		
+		}
 	}
 
 ?>

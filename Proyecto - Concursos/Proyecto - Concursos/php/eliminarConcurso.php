@@ -45,7 +45,7 @@
 		</html>
 		";
 		
-		@header("refresh: 4; url='../adminConcursos.php'");
+		@header("refresh: 4; url='mostrarConcursosSinAceptar.php'");
 
 	//Cierro la conexión
 	$conexion -> close();

@@ -223,12 +223,12 @@
 					if($datosUser[$k]['idUsuario'] == $datos['usuarioOrganizador'])
 						$creador = $datosUser[$k]['arrobaUsuario'];
 				
-				
-				if($datos[$i]['dificultad'] == 1)
+								
+				if($datos['dificultad'] == 1)
 					$dificultad = "B&aacutesica";
-				if($datos[$i]['dificultad'] == 2)
+				if($datos['dificultad'] == 2)
 					$dificultad = "Intermedia";
-				if($datos[$i]['dificultad'] == 3)
+				if($datos['dificultad'] == 3)
 					$dificultad = "Alta";			
 			
 		
