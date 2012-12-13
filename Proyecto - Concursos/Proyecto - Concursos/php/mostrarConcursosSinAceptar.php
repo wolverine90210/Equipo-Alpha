@@ -11,7 +11,7 @@
 	}
 	
 	
-	$query = "select idConcurso as 'ID de concurso', nombreConcurso as 'Nombre', hashtag as 'Hashtag de Twitter', dificultad as 'Dificultad', categoria as 'Categoria',fechaDeAlta as 'Fecha de Alta', fechaDeInicio as 'Fecha de inicio', descripcion as 'Descripcion', fechaDeFin as 'Fecha de fin', usuarioGanador as 'Usuario ganador', usuarioOrganizador as 'Usuario creador' from concurso where status != 2";
+	$query = "select idConcurso as 'ID de concurso', nombreConcurso as 'Nombre', hashtag as 'Hashtag de Twitter', dificultad as 'Dificultad', categoria as 'Categoria',fechaDeAlta as 'Fecha de Alta', fechaDeInicio as 'Fecha de inicio', descripcion as 'Descripcion', fechaDeFin as 'Fecha de fin', usuarioOrganizador as 'Usuario creador' from concurso where status != 2";
 	
 	$resultados = $conexion -> query($query);
 	
@@ -127,12 +127,6 @@
 		for($i=0; $i < count($datosCat);$i++){
 			if($datosCat[$i]['idCategoria'] == $valor)
 				echo '<td>',$datosCat[$i]['nom_Categoria'],'</td>';
-		}
-	}
-	else if($campo == 'Usuario ganador'){
-		for($i=0; $i < count($datosUsers);$i++){
-			if($datosUsers[$i]['idUsuario'] == $valor)
-				echo '<td>',$datosUsers[$i]['arrobaUsuario'],'</td>';
 		}
 	}
 	else if($campo == 'Usuario creador'){

@@ -40,9 +40,10 @@
 	if($imagenes -> num_rows >= 1){
 		while	($filaImg = $imagenes -> fetch_assoc())
 			$datosImg[] = $filaImg;}
+					
 	
 	
-	if(isset($datosImg)){
+	if(isset($datosImg) && isset($datos)){
 		for($i=0; $i<count($datos); $i++){
 	
 	
@@ -68,7 +69,7 @@
 
 			$imagen = (string)$imagen;
 		
-			if($dbuser == "root"){		
+			if($dbuser == "root"){
 				$numFolder = (string)$datos[$i]['idConcurso'];
 				$string1 = "/var/www/Proyecto - Concursos/php/uploads/".$numFolder."/";
 				$string2 = "php/uploads/".$numFolder."/";
@@ -95,13 +96,26 @@
 			}
 		
 			$idConc = $datos[$i]['idConcurso'];
+			$idUser = $datos[$i]['usuarioOrganizador'];
+			
+			/* ENTRADAS */
+			$query = "select count(*) as num from entrada where USUARIO_idUsuario = $idUser";
+			$entradas = $conexion -> query($query);
+			$numEntradas = $entradas -> fetch_array(MYSQLI_ASSOC);
+		
 								
-			echo "<div class=\"entrada\"><b>Entradas:</b> 6 </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConc."'\">Ver más...</a></b></div><br />";
+			echo "<div class=\"entrada\"><b>Entradas:</b> ". $numEntradas['num'] ." </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConc."'\">Ver más...</a></b></div><br />";
 	
 			echo "</section>
 			<div class='sombra_seccion'></div>";		
 		
 		}
+	}
+	else{
+		
+		echo "<section class='seccion' style='text-align:center'><p><h2>NO HAY CONCURSOS PARA MOSTRAR<h2></p></section>
+			<div class='sombra_seccion'></div>";
+	
 	}
 
 ?>

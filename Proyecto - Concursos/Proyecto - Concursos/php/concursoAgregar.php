@@ -54,6 +54,8 @@ $descripConcurso = $conexion -> real_escape_string($descripConcurso);
 
 
 $idUsuario = $organizador;
+//Bandera indicadora de adición o edición
+$flag = false;
 
 $query = "SET FOREIGN_KEY_CHECKS=0";
 $conexion -> query($query);
@@ -61,6 +63,8 @@ $conexion -> query($query);
 
 //Si ya existe el concurso entonces hacer update sino hacer insert
 if(isset($_REQUEST['idConcurso'])){ 
+	
+	$flag = true;
 	$idConcurso = $_REQUEST['idConcurso'];
 	
 	$query = "UPDATE concurso SET idConcurso = $idConcurso, nombreConcurso = '$nomConcurso', hashtag = '$hashtag', dificultad = $dificultad, categoria = $categoria, fechaDeAlta = '$fechaAlta', fechaDeInicio = '$fechaInicio', descripcion = '$descripConcurso', fechaDeFin = '$fechaFin', status = 1, motivos = 'falta aprobar', usuarioGanador = 960498034, usuarioOrganizador = '$idUsuario' where idConcurso=$idConcurso";
@@ -70,6 +74,7 @@ else{
 
 	//insertar el concurso con todos lo datos
 	$query = "INSERT INTO concurso VALUES ( null ,'$nomConcurso', '$hashtag', '$dificultad', '$categoria', '$fechaAlta', '$fechaInicio', '$descripConcurso', '$fechaFin', 1, 'falta revisar', 960498034, $idUsuario)";
+	
 }
 
 
@@ -123,6 +128,7 @@ function multiexplode ($delimiters,$string) {
 
 
 //mostrar un mensaje de confirmacion
+if($flag == false){
  echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
  <head>
  <meta charset='UTF-8' />
@@ -142,10 +148,41 @@ function multiexplode ($delimiters,$string) {
  -webkit-border-radius:7px;'>
 
  <h3><strong><p style='text-align:center'>Concurso agregado exitosamente.</p></strong></h3>
+ <p style='text-align:center'><img src='images/addIcon.png' width='128px' height='128px' 
+				alt='empty_folder_icon' /></p>
  </div>
  <br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
  </body>
  </html>
  ";
+ }
+ else{
+  echo "<!DOCTYPE html><html lang='es'><body style='background-color:#727272;'>
+ <head>
+ <meta charset='UTF-8' />
+ </head>
+ ﻿<br /><br /><br /><br />
+ <h1><strong><p style='color: white; text-align:center;'>Acción exitosa:</p></strong></h1>
+ <div style='clear:both;
+ background-color: #D5D7C6;
+ color: #1739AB;
+ font-weight: bold;
+ font-size: 1.7em;
+ text-align: center;
+ border-style: solid;
+ margin-top: 20px;
+ border-radius:7px;
+ -moz-border-radius:7px;
+ -webkit-border-radius:7px;'>
+
+ <h3><strong><p style='text-align:center'>Concurso editado exitosamente.</p></strong></h3>
+ <p style='text-align:center'><img src='images/editConc.png' width='128px' height='128px' 
+				alt='empty_folder_icon' /></p>
+ </div>
+ <br /><h2><strong><p style='color: white; text-align:center;'>En un momento será redirigido a la página anterior...</p></strong></h2>
+ </body>
+ </html>
+ ";
+ }
  @header('refresh: 4; url=javascript: history.go(-1)');
 ?>

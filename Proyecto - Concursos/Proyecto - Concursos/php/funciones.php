@@ -611,7 +611,7 @@ function eliminarConcurso($id){
 
 
 function dameIdDelUltimoConcursoAgregado(){
-			//Conectarse a la base de datos
+	//Conectarse a la base de datos
 	require("bd.inc");
 
 	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
@@ -625,13 +625,23 @@ function dameIdDelUltimoConcursoAgregado(){
 
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);
-
+	
 	//Cierro la conexión
-	$con -> close();
+	//$con -> close();
 
 	if($result -> num_rows == 1)
 		$datos = $result -> fetch_array(MYSQLI_ASSOC);
-	return $datos['idConcurso']+1;
+		//echo $datos['idConcurso']+1;
+		
+	//mysql_insert_id()
+	
+	$query = "SELECT AUTO_INCREMENT AS lastID FROM information_schema.tables WHERE TABLE_SCHEMA='cc409_equipo_alpha' AND TABLE_NAME='concurso';";
+	$res = $con -> query($query);
+	//if($res -> num_rows == 1)
+		$lastID = $res -> fetch_array(MYSQLI_ASSOC);
+	
+	
+	return $lastID['lastID'];//$datos['idConcurso']+1;
 	
 
 }
