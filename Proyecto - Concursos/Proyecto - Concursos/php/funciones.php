@@ -398,6 +398,35 @@ function dameArrobaDeUsuario($id){
 	
 }
 
+function dameAvatarDeUsuario($id){
+	//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select avatar from usuario where idUsuario=$id";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+	
+	//Convierto el resultado de mi consulta a un arreglo
+	if($result -> num_rows == 1)
+		$datos = $result -> fetch_array(MYSQLI_ASSOC);
+
+	return $datos["avatar"];
+	
+}
+
+
+
+
 function eliminarUsuario($id){
 
 	//Conectarse a la base de datos
@@ -639,6 +668,61 @@ function listarImagenes(){
 
 }
 
+function dameUrlsDeImagenesSubidas($id){
+	
+		//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+	
+	//Creo la consulta
+	$mi_query = "select url_imagen from imagenes where CONCURSO_idConcurso = $id";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+	
+	//Regreso la matriz
+	return $datos;
+	
+}
+
+function eliminarImagen($id){
+	
+	//Conectarse a la base de datos
+	require("bd.inc");
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "delete  from imagenes where idIMAGENES=$id";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+	
+	
+	
+}
+
 
 function dameEntradasDelConcurso($idConcurso){
 		
@@ -654,11 +738,12 @@ function dameEntradasDelConcurso($idConcurso){
 	
 
 	//buscar todas las entradas y ordernarlas por fecha ascendente
-	$query = "select entrada.idEntrada, entrada.fechaDeEnvio, entrada.descripEntrada,
-			 entrada.usuario_IdUsuario from entrada 
-			 inner join concurso_has_entrada 
-			 on entrada.idEntrada = concurso_has_entrada.Entrada_idEntrada 
-			  ORDER BY entrada.fechaDeEnvio asc";
+		$query = " select entrada.idEntrada, entrada.fechaDeEnvio, entrada.descripEntrada,entrada.usuario_IdUsuario 
+		from entrada 
+		inner join concurso_has_entrada 
+		on entrada.idEntrada = concurso_has_entrada.Entrada_idEntrada 
+		and concurso_has_entrada.concurso_IdConcurso = $idConcurso 
+		ORDER BY entrada.idEntrada desc";
 		
 	//Ejecutar el query
 	$result = $conexion -> query($query);

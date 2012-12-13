@@ -68,7 +68,7 @@
 
 			$imagen = (string)$imagen;
 		
-			if($dbpass == "root"){		
+			if($dbuser == "root"){		
 				$numFolder = (string)$datos[$i]['idConcurso'];
 				$string1 = "/var/www/Proyecto - Concursos/php/uploads/".$numFolder."/";
 				$string2 = "php/uploads/".$numFolder."/";

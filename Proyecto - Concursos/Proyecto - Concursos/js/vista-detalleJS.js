@@ -26,17 +26,15 @@ function valida_envia(){
 
 		
 		document.getElementById('guardarRT').click();
-		if (document.RTEDemo.rte1.value.length == 0) {
+		if (document.getElementById('valorRTE') == 0) {
 			muestraEtiqueta("adv_rteEditor");
 			return 0;
 		} else {
 			ocultaEtiqueta("adv_rteEditor");
-			muestraEtiqueta("ok_rteEditor");
-			//document.getElementById("valorRTE").value = document.RTEDemo.rte1.value;
-			//document.addConcurso.submit();
+			document.getElementById('confirm').click();
 			//guardarlo con ajax
 			guardarEntrada();
-			document.RTEDemo.rte1.value = "";
+			
 		}
 
 }

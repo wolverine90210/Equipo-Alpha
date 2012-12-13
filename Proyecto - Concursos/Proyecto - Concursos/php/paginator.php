@@ -81,7 +81,7 @@ foreach($concursos as $fila => $arr){
 						<input type="image" src="images/edit.png" width="30" height="30"/>
 					  </form>
 					  </td>';	
-					 
+					 $idConcurso =$valor;
 				break;
 				
 			case 'nombreConcurso':
@@ -123,7 +123,12 @@ foreach($concursos as $fila => $arr){
 		}
 
 	}
-	echo '<td><img src="images/magni.png" width="50" height="50"></td>';	
+	echo 	'<td>
+					  <form action="vista-detalle.php" method="post">
+						<input type="hidden" name="id" value="',$idConcurso,'" />
+						<input type="image" src="images/fder.png" width="30" height="30" />
+					  </form>
+				  </td>';	
 	echo '</tr>';
 }
 echo '</tbody>';

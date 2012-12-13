@@ -84,7 +84,7 @@
 	    
 
 	    $code = $tmhOAuth->request('POST', $tmhOAuth->url('1/statuses/update'), array(
-		'status' => '¡Hola Twitter¡ Enviando desde Equipo-Alpha Concursos.'
+		'status' => 'ï¿½Hola Twitterï¿½ Enviando desde Equipo-Alpha Concursos.'
 	    ));
 
 	    if ($code == 200) {

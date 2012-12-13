@@ -1,8 +1,7 @@
 <?php 
 session_start();
-
+if(isset($_REQUEST['id']))
 $idConcurso = $_REQUEST['id'];
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,17 +18,108 @@ $idConcurso = $_REQUEST['id'];
 		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
 		<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" language="javascript"></script>
+		<script src="jquery/jquery-1.8.1.min.js" type="text/javascript" language="javascript"></script>
 		<script src="jquery/jquery.effects.core.js" type="text/javascript" language="javascript"></script>
 		<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="cbrte/html2xhtml.min.js"></script>
 		<script type="text/javascript" src="cbrte/richtext_compressed.js"></script>
 		<script type="text/javascript" src="js/vista-detalleJS.js"></script>
-		<script type="text/javascript" language="javascript">
+		
+		<!-- load jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+        <!-- load Galleria -->
+        <script src="js/galleria-1.2.8.min.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.purr.js"></script>
+		<script type="text/javascript">
+		
 			$(document).ready(function(e) {
+				
 				$('#site-name h1').show('fast')
-			$('#menu-l li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});	
+				$('#menu-l li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop(false,true).animate({'color':'#FFF'},200)});
+				
+				// Load the classic theme
+				Galleria.loadTheme('js/galleria.classic.min.js');
+		
+				// Initialize Galleria
+				Galleria.run('#galleria');
+					
+				
 			});
 		</script>	
+		
+		<script type="text/javascript" src="./purr-example/jquery.js"></script>
+   	<script type="text/javascript" src="./purr-example/jquery.purr.js"></script>
+			<script type="text/javascript">
+   		$( document ).ready( function ()
+			{
+				$( '#confirm' ).click( function () 
+					{
+						var notice = '<div class="notice">'
+								  + '<div class="notice-body">' 
+									  + '<img src="./purr-example/info.png" alt="" />'
+									  + '<h3>Entrada Agregada</h3>'
+								  + '</div>'
+								  + '<div class="notice-bottom">'
+								  + '</div>'
+							  + '</div>';
+							  
+						$( notice ).purr(
+							{
+								usingTransparentPNG: true
+							}
+						);
+						
+						return false;
+					}
+				);
+
+			}
+		);
+   	</script>
+	
+	<style type="text/css">
+	
+		
+		#purr-container {
+			position: fixed;
+			top: 0;
+			right: 0;
+		}
+		
+		.notice {
+			position: relative;
+			width: 324px;
+		}
+			.notice .close	{position: absolute; top: 12px; right: 12px; display: block; width: 18px; height: 17px; text-indent: -9999px; background: url(./purr-example/purrClose.png) no-repeat 0 10px;}
+		
+		.notice-body {
+			min-height: 50px;
+			padding: 22px 22px 0 22px;
+			background: url(./purr-example/purrTop.png) no-repeat left top;
+			color: #f9f9f9;
+		}
+			.notice-body img	{width: 50px; margin: 0 10px 0 0; float: left;}
+			.notice-body h3	{margin: 0; font-size: 1.1em;}
+			.notice-body p		{margin: 5px 0 0 60px; font-size: 0.8em; line-height: 1.4em;}
+		
+		.notice-bottom {
+			height: 22px;
+			background: url(./purr-example/purrBottom.png) no-repeat left top;
+		}
+	</style>
+	
+		 <style>
+            .content{color:#777;font:12px/1.4 "helvetica neue",arial,sans-serif;width:620px;margin:20px auto;}
+            a {color:#22BCB9;text-decoration:none;}
+            .cred{margin-top:20px;font-size:11px;}
+
+            /* This rule is read by Galleria to define the gallery height: */
+            #galleria{height:620px}
+
+        </style>
+
 		<script type="text/javascript">
     		 var disqus_developer = 1; // this would set it to developer mode
      	</script>
@@ -45,6 +135,7 @@ $idConcurso = $_REQUEST['id'];
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
+       
          
    		<title>Vista de Detalle</title>
 </head>
@@ -65,7 +156,7 @@ $idConcurso = $_REQUEST['id'];
 			?>
 	
 			<div id="site-name">
-				<h1 style="display:none; ">Concursos</h1>
+				<h1>Concursos</h1>
 			</div>
 		
 		   <nav id="menu-r">
@@ -95,6 +186,8 @@ $idConcurso = $_REQUEST['id'];
 							 $dificultad = "Avanzada";
 							 
 						$categoria = buscarPorIdCategoria($datosConcurso['categoria']);
+						$ganador = dameArrobaDeUsuario($datosConcurso['usuarioGanador']);
+						$avatar = dameAvatarDeUsuario($datosConcurso['usuarioGanador']);
 						//$imagenPrincial = dameImagenDeConcurso('2');//poner por request
 				?>
 	  			<div id="letras">
@@ -111,15 +204,39 @@ $idConcurso = $_REQUEST['id'];
 	  				 </div>	
     			<section class="seccion">
     				<a id="TituloConcurso"><?=$datosConcurso['nombreConcurso']?></a>
-   					<a href="https://twitter.com/" id="hashtagTwitter"><?=$datosConcurso['hashtag']?></a>
-	 				<p style="text-align:center;"><img src="images/template/poster.png" width="700" height="800" alt="Poster"/></p>    
+   					<a href="https://twitter.com/search?q=" id="hashtagTwitter"><?=$datosConcurso['hashtag']?></a>
+   					
+   					<!--Hacer la paginación de lo que resulte de hacer la query de listar todas las
+	 					imagenes del concurso-->
+
+	 					  <div id="galleria">
+							<?php $misUrls = dameUrlsDeImagenesSubidas($idConcurso);
+							
+							foreach ($misUrls as $fila => $arr) {
+								foreach ($arr as $campo => $valor) {
+									$findme   = 'php';
+									$pos = strpos($valor, $findme);
+									$valorUrl = substr($valor, $pos,strlen($valor));
+									//echo $valorUrl;
+									
+									//$valorUrl = "php/uploads/23/manzana-amarilla.jpg";
+									echo "<a href=\"$valorUrl\">
+				                <img src=\"$valorUrl\"  alt=\"Poster\"/>
+				            	</a>";
+								}
+
+							}
+						?>
+				            	
+        				</div>
+ 
     				<p><?=$datosConcurso['descripcion']?></p>    
     			</section>
     			<div class="sombra_seccion"></div>
     			
 				<section class="seccion">
 					
-					<label>Agregar nueva entrada</label>
+					<label class = "titulos">Agregar nueva entrada</label>
 					<label class="div_error" id="adv_rteEditor" style="display: none">Escriba una entrada</label>
 					<label id="ok_rteEditor" style="display: none">Entrada agregada correctamente</label>
 					<div style="margin-left:20%">
@@ -132,6 +249,8 @@ $idConcurso = $_REQUEST['id'];
 								
 								var botonGuardar = document.getElementById("botonSubmit");
 								botonGuardar.style.display = 'block';
+								document.getElementById("valorRTE").value = document.RTEDemo.rte1.value;
+								document.RTEDemo.rte1.value = "";
 								//alert(document.RTEDemo.rte1.value);
 								//change the following line to true to submit form
 								return false;
@@ -167,7 +286,9 @@ $idConcurso = $_REQUEST['id'];
 							rte1.build();
 						</script>
 						<div style="clear:both"> </div>	
-						<input id="guardarRT" class="botonGuardar" type="submit" style="display:none" name="submit"  value="Guardar" />
+						<input id="guardarRT" class="botonGuardar" id="bot" type="submit" style="display:none" name="submit"  value="Guardar" />
+						<a id="confirm" style="display:none" href="#show">Regular</a>
+						<input type="text" style="display:none" id="valorRTE" />
 					</form>
 					<a  id="botonSubmit" class="button" style="float:right" onclick="valida_envia()">Guardar</a>
 		    		<div style="clear:both"> </div>		
@@ -177,21 +298,26 @@ $idConcurso = $_REQUEST['id'];
  
     			<p id="titleGanador">Ganador: </p>
     			<section id="enviarEntrada">
-    				<a href="http://www.google.com" class="aroba">@levhita</a>  
-					<div class="fechaEnvio"><p class="tituloEnvio">Enviado:</p><a href="http://www.google.com" > 23/09/12</a></div>
-    				<p class="imageDeAroba"><img  src="http://lorempixel.com/80/80" alt="Poster"/></p>  
+    				<a href="http://www.google.com" class="aroba"><?=$ganador?></a>  
+					<div class="fechaEnvio"><p class="tituloEnvio">Enviado:</p><a href="http://www.google.com" > -----</a></div>
+    				<p class="imageDeAroba"><img  src="<?=$avatar?>" alt="Poster" width="80" height="80"/></p>  
 					<p id="texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ae Aldus PageMaker including versions of Lorem Ipsum.</p>             
     			</section>
     			<div class="sombra_seccion"></div>	
 
 				<a id="titleEntrada">Entradas: </a>
 				
+				
 			<?php 
 				require_once("php/funciones.php");
-			$idConcurso = 2;
+			echo $idConcurso;
 			$entradas = dameEntradasDelConcurso($idConcurso);
 			
-			//Obtener los titulos
+			if(!isset($entradas)){
+				echo "<label>No hay entradas. Sé el primero en agregar 1.</label>";
+			}
+			else {
+				//Obtener los titulos
 			$fila = $entradas[0];
 			$titulos = array_keys($fila);
 			echo '<thead><tr>';
@@ -223,6 +349,7 @@ $idConcurso = $_REQUEST['id'];
 						case 'usuario_IdUsuario':
 						$usuarioId = $valor;
 						$arroba = dameArrobaDeUsuario($usuarioId);
+						$avatar = dameAvatarDeUsuario($usuarioId);
 						break;
 					}
 			
@@ -231,7 +358,7 @@ $idConcurso = $_REQUEST['id'];
 					"<section class=\"seccion-g\">
 	    				<a href=\"https://twitter.com/$arroba\" target=\"_blank\" class=\"aroba\">$arroba</a>  
 						<div class=\"fechaEnvio\"><p class=\"tituloEnvio\">Enviado:</p><a href=\"http://alanturing.cucei.udg.mx/equipo-alpha/calendario.php\" > $fechaNueva</a></div>
-	    				<p class=\"imageDeAroba\"><img  src=\"http://lorempixel.com/80/80\" alt=\"Poster\"/></p>  
+	    				<p class=\"imageDeAroba\"><img  src=\"$avatar\" alt=\"Poster\" width=\"80\" height=\"80\"/></p>  
 						<p class=\"comentarioEntrada\">$descripcion</p>             
    					</section>";
 				echo '</tr>';
@@ -239,7 +366,10 @@ $idConcurso = $_REQUEST['id'];
 			echo '</tbody>';
 			echo '</table>';
 				
-		?>	
+	
+				
+			}
+				?>	
    		</article>
      
         

@@ -42,6 +42,7 @@
 	<script type="text/javascript" src='js/altaConcursoJS.js'></script>
 	<link href="css/general.css" type="text/css" rel="stylesheet" />
 	<link href="css/estiloAltaConcurso.css" type="text/css" rel="stylesheet" />
+	<link href="css/estiloTablaImagenes.css" type="text/css" rel="stylesheet" />
 	<link href="css/select2.css" type="text/css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
@@ -222,7 +223,7 @@
 				    foreach($arr as $campo => $valor){
 					if($campo == 'idCategoria'){
 						
-					if(strcmp($valor, $categoria) ==0)
+					if(strcmp($valor, $categoria) == 0)
 						$cad1 = "<option value=".$valor." selected=selected>"; 
 					
 					else
@@ -244,11 +245,11 @@
 				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>
 				<label class="div_error" id="adv_fechaInicioMal" style="display: none">Inserta una fecha de inicio a partir del dia de mañana</label>
 				<p class="subtitulos">Fecha Inicio:</p>	
-<input type="text" id="datepicker" value="<?= $fechaInicio; ?>" name="fechaInicio" class="calendario">
+<input type="text" id="datepicker" value="<?= date('d-m-Y', strtotime($fechaInicio)); ?>" name="fechaInicio" class="calendario">
  				<p class="subtitulos">Fecha Fin:</p>
 				<label class="div_error" id="adv_fechaFin" style="display: none">Seleccione un fecha</label>
 				<label class="div_error" id="adv_fechaFinMal" style="display: none">Inserta una fecha de fin partir del dia de mañana</label>				
-<input type="text" id="datepicker2" value="<?= $fechaFin; ?>" name="fechaFin" class="calendario">
+<input type="text" id="datepicker2" value="<?= date('d-m-Y', strtotime($fechaFin));?>" name="fechaFin" class="calendario">
 
  				<!--Fecha de creacion hidden -->
  				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
@@ -260,45 +261,89 @@
 			
 		    <p class = "titulos">Este concurso es organizado por: </p>
 		    <div class="organizadorConcurso">
-		    	<div id="imgAroba"><img  src="http://lorempixel.com/120/120" alt="Poster"/></div>
+		    	<?php 
+					$arrobaUsuario = dameArrobaDeUsuario($usuarioOrganizador);
+					$avatar = dameAvatarDeUsuario($usuarioOrganizador);
+				
+				?>
+		    	<div id="imgAroba"><img  src="<?=$avatar?>" alt="Poster" width="120" height="120" /></div>
 		    	
-<!-- checar con el loguin de TWITTER -->	    	
-		    	<a href="" id="aroba" name ="organizador"><?= $usuarioOrganizador; ?></a> 
-<!--  para llevarme el id del concurso por POST -->
-				<input  type="text"  id="idConcurso" name ="idConcurso" value="<?= $idConcurso; ?>" style="display:none"/>
-		    	<input  type="text"  id="organizador" name ="organizador" value="<?= $usuarioOrganizador; ?>" style="display:none"/>
-	
- 
+					    	
+		    	<a href="" id="aroba" name ="organizador"><?= $arrobaUsuario; ?></a> 
+			<!--  para llevarme el id del concurso por POST -->
+				<input  type="hidden"  id="idConcurso" name ="idConcurso" value="<?= $idConcurso; ?>"/>
+		    	<input  type="hidden"  id="organizador" name ="organizador" value="<?= $usuarioOrganizador; ?>"/>
+ 				<!-- Aqui pongo el valor del RTE para mandarlo por post -->
+					<input  type="hidden"  id="valorRTE" name ="descripcion" style="display:none" />
 		    	<div style="clear:both"> </div>
 		    </div>
 		    
 			<div style="clear:both"> </div>	
 			
+			
+			
+			</form>
+						
+			<!--listar todas la imagenes Ponerlas en una tabla-->
+
+				
+			<!-- termina el listar todas las imagenes subidas al servidor
+			
+<!-- MODULO DE IMAGENES-->	
+<table id="tablaDeRutas"  width="100%" border="1">
+						<caption style="color:#FFFFFF">Imágenes agregadas</caption>
+						<tr>
+							<th>Ruta</th>
+						</tr>
+						<?php $misUrls = dameUrlsDeImagenesSubidas($idConcurso);
+
+				foreach ($misUrls as $fila => $arr) {
+					foreach ($arr as $campo => $valor) {
+						$findme   = 'php';
+						$pos = strpos($valor, $findme);
+						$valorUrl = substr($valor, $pos,strlen($valor));
+						echo $valorUrl;
+						/*echo "<tr class=\"even\"><td>
+						$valor
+						</td> </tr>
+						";*/
+					}
+
+				}
+			?>
+			</table>
 			<p class="titulos">Agregar imagen(es)</p>
 			<label class="div_error" id="adv_imagen1" style="display: none">Suba una archivo de imagen</label>
-			<fieldset id="campoField">
-				<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
-				<input id="imagenUp1" name="cargarImagen[]" type="file" accept="image/*" required="required" />
-				<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
-			</fieldset>
-			
-			<!-- Aqui pongo el valor del RTE para mandarlo por post -->
-			<input  type="text"  id="valorRTE" name ="descripcion" value="" style="display:none" />
-			
-			<button type="submit" value="enviar" hidden="hidden" class="show-example">Enviar</button>
+			<form action="php/imagenesAgregar.php" method="post" enctype="multipart/form-data"> 
+				<fieldset id="campoField" style="width:50">
+					<label class="subtitulos" for="imagen">IMAGEN&nbsp;</label>
+					<input id="imagenUp1"  type="file" name="file[]" accept="image/*" required="required" />
+					<input type="button" id="img1" value="Agregar +" onclick="crearCampos(this)" />
+					<button type="submit" class="botonSimg">Subir imágenes</button> 
+				</fieldset>
 			</form>
 			
+			<br />
+
+			<div style="clear:both"> </div>
+			
+			
+		<div style="clear:both"> </div>	
+			
+<!-- TERMINA MODULO DE IMAGENES-->
+			
+<!-- Comienza modulo de descripcion -->
+		<div id="richText">
 			<p class="titulos">Agregue una descripción para el concurso</p>
 			<p id="tit-proposito"class="subtitulos" style="text-align: center">(de que se va a tratar)</p>
 			<label class="div_error" id="adv_rteEditor" style="display: none">Ingrese una descripción para el concurso</label>
-			<div id="richText">
-			<form name="RTEDemo"  method="post" onsubmit="return submitForm();">
+			
+			<form name="RTEDemo" method="post" onsubmit="return submitForm();">
 				<script  type="text/javascript">
 					function submitForm() {
 						//make sure hidden and iframe values are in sync for all rtes before submitting form
 						updateRTEs();
 						var datosEditor = document.RTEDemo.rte1.value;
-						console.log("esto es lo del editor"+datosEditor);
 						var botonGuardar = document.getElementById("botonSubmit");
 						botonGuardar.style.display = 'block';
 						//alert(document.RTEDemo.rte1.value);
@@ -312,7 +357,7 @@
 				<script  type="text/javascript">
 					//build new richTextEditor
 					var rte1 = new richTextEditor('rte1');
-					rte1.html = "<?php echo $descripcion; ?>";
+					rte1.html = '<?= $descripcion; ?>';
 		
 					//enable all commands 
 					rte1.cmdFormatBlock = true;
@@ -360,17 +405,20 @@
 					rte1.build();
 				</script>
 				<div style="clear:both"> </div>	
-			<label>No olvide guardar los cambios</label>
-			<input id="guardarRT" class="botonGuardar" type="submit" name="submit"  value="Guardar" />
+			<input class="botonGuardar" type="submit" id="guardarRT" name="submit"  style="display: none"value="Guardar" />
+			<br />
+			<a class="botonSubmit" id="botonSubmit" onclick="valida_envia()"> </a>
 		</form>
 	  </div>	
 	<div style="clear:both"> </div>	
 	</section>
 	<div class="sombra_seccion"> </div>
 	</article>
-	<footer > 
-		<a class="botonSubmit" id="botonSubmit" class="show-example" style="display:none" onclick="valida_envia()"> </a>
-	</footer>
+	
+<!--Termina modulo de descripcion -->
+		
+			
+			
 </body>
 </html>
 

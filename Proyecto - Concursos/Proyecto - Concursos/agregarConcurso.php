@@ -211,7 +211,7 @@
 			    <div id="imgAroba"><img  src = "<?=$_SESSION['access_token']['avatar']?>" alt="Poster" width="120" height="120" /></div>	
 			    <a href="https://twitter.com/<?= $_SESSION['access_token']['screen_name'] ?>" target="_blank" id = "aroba" name = "organizador"  ><?= '@'.$_SESSION['access_token']['screen_name'] ?> </a> 
 			    <!--Para pasarlo por post el id del usuario organizador-->
-			    <input  type="text"  id="organizador" name ="organizador" value="<?= $_SESSION['access_token']['id']; ?>" style="display:none"/>  
+			    <input  type="hidden" id="organizador" name ="organizador" value="<?= $_SESSION['access_token']['id']; ?>"/>  
 			    <div style="clear:both"> </div>
 		    </div>
 			
@@ -220,7 +220,7 @@
 			<input  type="text" id="linksDeTabla" style="display:none" name ="linksDeTabla"  />
 			
 			<!-- Aqui pongo el valor del RTE para mandarlo por post -->
-			<input  type="text"  id="valorRTE" name ="descripcion" style="display:none" />
+			<input  type="hidden"  id="valorRTE" name ="descripcion"/>
 	</form>
 	
 		
@@ -330,7 +330,7 @@
 				<div style="clear:both"> </div>	
 			<input class="botonGuardar" type="submit" id="guardarRT" name="submit"  style="display: none"value="Guardar" />
 			<br />
-			<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="valida_envia()"> </a>
+			<a class="botonSubmit" id="botonSubmit" onclick="valida_envia()"> </a>
 		</form>
 	  </div>	
 	<div style="clear:both"> </div>	
