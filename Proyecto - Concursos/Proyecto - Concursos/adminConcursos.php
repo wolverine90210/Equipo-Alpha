@@ -561,15 +561,15 @@
 						echo '<td>',$datosCat[$i]['nom_Categoria'],'</td>';
 				}
 			}
-			else if($campo == 'Usuario creador'){
+			else if($campo == 'Ganador'){
 				for($i=0; $i < count($datosUsers);$i++){
 					if($datosUsers[$i]['idUsuario'] == $valor)
 						echo '<td>',$datosUsers[$i]['arrobaUsuario'],'</td>';
 				}
 			}
-			else if($campo == 'Ganador'){
+			else if($campo == 'Usuario creador'){
 				for($i=0; $i < count($datosUsers);$i++){
-					if($datosUsers[$i]['usuarioGanador'] == $valor)
+					if($datosUsers[$i]['idUsuario'] == $valor)
 						echo '<td>',$datosUsers[$i]['arrobaUsuario'],'</td>';
 				}
 			}
