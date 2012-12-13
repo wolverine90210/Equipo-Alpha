@@ -62,7 +62,6 @@ session_start();
 	
 	</header>
 	
-
 	<section class="seccion" id="contenidoTabla">
 		
 		<?php include('php/paginator.php')?>
