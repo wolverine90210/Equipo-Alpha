@@ -306,3 +306,26 @@ function Pagina(nropagina,idConcurso){
 	//el valor por la url ?pag=nropagina
 	ajax.send(null)
 }
+
+
+function PaginaIndex(nropagina){
+	//donde se mostrará los registros
+	divContenido = document.getElementById('contenido');
+	
+	ajax=nuevoAjax();
+	//uso del medoto GET
+	//indicamos el archivo que realizará el proceso de paginar
+	//junto con un valor que representa el nro de pagina
+	ajax.open("GET", "php/secciones/indexData.php?pag="+nropagina);
+	divContenido.innerHTML= '<img src="images/cargando.gif">';
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			//mostrar resultados en esta capa
+			divContenido.innerHTML = ajax.responseText
+		}
+	}
+	//como hacemos uso del metodo GET
+	//colocamos null ya que enviamos 
+	//el valor por la url ?pag=nropagina
+	ajax.send(null)
+}

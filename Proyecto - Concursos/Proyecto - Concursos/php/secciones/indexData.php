@@ -2,6 +2,8 @@
 
 //Nos conectamos a la base de datos y obtenemos el usuario
 	require_once('bd.inc');
+	echo "<script type=\"text/javascript\" src=\"js/ajax.js\"></script>";
+	echo "<link href=\"css/general.css\" type=\"text/css\" rel=\"stylesheet\" />";
 	$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
 
 	if($conexion->connect_error){
@@ -9,9 +11,23 @@
 		die("Por el momento no se puede acceder al gestor de la BD");
 
 	}
+
+	$RegistrosAMostrar=5;
+
+	//estos valores los recibo por GET
+	if(isset($_GET['pag'])){
+		$RegistrosAEmpezar=($_GET['pag']-1)*$RegistrosAMostrar;
+		$PagAct=$_GET['pag'];
+	//caso contrario los iniciamos
+	}else{
+		$RegistrosAEmpezar=0;
+		$PagAct=1;
+	
+	}
+
 	
 	
-	$query = "select * from concurso";
+	$query = "select * from concurso LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
 				
 	$resultados = $conexion -> query($query);
 				
@@ -118,6 +134,35 @@
 			<div class='sombra_seccion'></div>";		
 		
 		}
+
+			//Creo la consulta
+			$mi_query = "select * from concurso";
+		
+			//Ejecuto mi consulta
+			$result = $conexion -> query($mi_query);
+			
+			$NroRegistros = $result -> num_rows;
+
+			$PagAnt=$PagAct-1;
+			$PagSig=$PagAct+1;
+			$PagUlt=$NroRegistros/$RegistrosAMostrar;
+
+			//verificamos residuo para ver si llevar� decimales
+			$Res=$NroRegistros%$RegistrosAMostrar;
+			// si hay residuo usamos funcion floor para que me
+			// devuelva la parte entera, SIN REDONDEAR, y le sumamos
+			// una unidad para obtener la ultima pagina
+			if($Res>0) $PagUlt=floor($PagUlt)+1;
+
+			//desplazamiento
+			
+			echo "<footer id=\"paginacion\">";
+			echo "<a onclick=\"PaginaIndex('1')\">Primero</a> ";
+			if($PagAct>1) echo "<a id=\"anterior\"  onclick=\"PaginaIndex('$PagAnt')\">Anterior</a> ";
+			echo "<strong>Página ".$PagAct." de ".$PagUlt."</strong>";
+			if($PagAct<$PagUlt)  echo " <a id=\"siguiente\" onclick=\"PaginaIndex('$PagSig')\">Siguiente</a> ";
+			echo "<a onclick=\"PaginaIndex('$PagUlt')\">Ultimo</a>";
+			echo "</footer>";
 	}
 	else{
 		

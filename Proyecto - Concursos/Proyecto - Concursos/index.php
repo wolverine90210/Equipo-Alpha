@@ -19,6 +19,8 @@
 	<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" ></script>
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
+	<link href="css/pagination.css" type="ttext/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" >
 			 $(document).ready(function(e) {
 				$('#site-name h1').show('fast')
@@ -69,11 +71,11 @@
 		?>			
 			
 			
-			
+		<div id="contenido">
 		<?php
 						include('php/secciones/indexData.php');
 		?>
-								
+			</div>					
 		
 
 	</article>
@@ -83,7 +85,7 @@
 	<footer id="paginacion">
 		
 			<?php
-						include('php/secciones/antSig.html');
+						//include('php/secciones/antSig.html');
 						include('php/secciones/copyright.html');
 			?>
 	</footer>
