@@ -4,7 +4,7 @@
 al servidor de mysql*/
 	$dbhost = 'localhost';
 	$db = 'cc409_equipo_alpha';
-	$dbuser = 'root';
-	$dbpass = 'root';
+	$dbuser = 'equipo-alpha';
+	$dbpass = 'cj2cYhULyJXjmsaE';
 
 ?>
