@@ -7,7 +7,7 @@ $uploaded = 0;
 $message = array();
 
 $idConcurso = dameIdDelUltimoConcursoAgregado();
-$misRutas="";
+$misRutas;
 $contador = 1;
 function mkdir_recursive($pathname, $mode) {
 	is_dir(dirname($pathname)) || mkdir_recursive(dirname($pathname), $mode);
@@ -51,7 +51,7 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 					//echo "El fichero $nombre_fichero existe";
 				} else {
 					//si no existe la carpeta la creo y le doy permisos
-					if (!mkdir_recursive($nombre_fichero, 0775, true)) {
+					if (!mkdir_recursive($nombre_fichero, 0777, true)) {
 						$mens = $_FILES["file"]["name"][$i] . 'hubo problemas al crear el archivo';
 
 						if (isset($misRutas))
@@ -69,7 +69,7 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 				//Si el archivo ya existe se muestra el mensaje de error
 				if (file_exists($rutaDestino)) {
 					//echo $_FILES["file"]["name"][$i] . " ya existe. ";
-					$mens = $_FILES["file"]["name"][$i] . " ya se encuentra almacenada.";
+					$mens = $_FILES["file"]["name"][$i];
 					$misRutas = $misRutas . $_FILES["file"]["name"][$i] . '@' . $mens . '|';
 					$contador++;
 
@@ -101,20 +101,20 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 
 					//Obtengo el alto de la imagen que cargue
 					$alto_original = imagesy($imagen_original);
-					/*
+					
 					 //SI QUEREMOS UN ANCHO FINAL FIJO, calculamos el ALTO de forma proporcionada
 					 $ancho_final = 250;
 
 					 //Ancho final en pixeles
-					 $alto_final = ($ancho_final / $ancho_original) * $alto_original;*/
+					 $alto_final = ($ancho_final / $ancho_original) * $alto_original;
 
 					//SI CONOCEMOS UN ALTO FINAL FIJO, calculamos el ANCHO de forma proporcionada
 
 					//Para usar este caso, comentar las dos lineas anteriores, y descomentar las dos siguientes a este comentario
 
-					$alto_final = 450;
+				/*	$alto_final = 450;
 					//Alto final en pixeles
-					$ancho_final = ($alto_final / $alto_original) * $ancho_original;
+					$ancho_final = ($alto_final / $alto_original) * $ancho_original;*/
 
 					//Creo una imagen vacia, con el alto y el ancho que tendrá la imagen redimensionada
 					$imagen_redimensionada = imagecreatetruecolor($ancho_final, $alto_final);

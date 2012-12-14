@@ -27,7 +27,7 @@
 
 	
 	
-	$query = "select * from concurso LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
+	$query = "select * from concurso order by `fechaDeAlta` desc LIMIT $RegistrosAEmpezar, $RegistrosAMostrar";
 				
 	$resultados = $conexion -> query($query);
 				

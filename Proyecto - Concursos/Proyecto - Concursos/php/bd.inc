@@ -5,6 +5,6 @@ al servidor de mysql*/
 	$dbhost = 'localhost';
 	$db = 'cc409_equipo_alpha';
 	$dbuser = 'root';
-	$dbpass = 'root';
+	$dbpass = '1234';
 
 ?>
