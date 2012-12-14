@@ -172,6 +172,7 @@
 				<option value="3">Rechazado</option>
 			</select>
 			</form>
+			<a href="misConcursos.php">Ver más detalles de mis concursos</a>
 			
 	 </div>
 	<div id="extra"></div>

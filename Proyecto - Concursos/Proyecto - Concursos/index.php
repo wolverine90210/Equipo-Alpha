@@ -19,7 +19,6 @@
 	<link href="css/auth-buttons.css" type="text/css" rel="stylesheet" />
 	<script src="jquery/jquery-1.7.2.min.js" type="text/javascript" ></script>
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
-	<link href="css/pagination.css" type="ttext/css" rel="stylesheet" />
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" >
 			 $(document).ready(function(e) {

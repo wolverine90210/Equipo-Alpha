@@ -150,20 +150,12 @@ session_start();
  				<input type="text" id="datepicker3" style="display:none" name="fechaAlta">
  				<a class="botonSubmit" id="botonSubmit" class="show-example" onclick="buscarConcursosPorFechas()"> </a>
 			</div>
-
-			<label  class="subtitulos" id="sta">Seleccione un status</label><br />
-			<select name="statusConcurso" id="statusConcurso" onChange="buscarConcursosPorStatus()">
-				<option value="0">Selecciona...</option>
-				<option value="1">Pendiente</option>
-				<option value="2">Aceptado</option>
-				<option value="3">Rechazado</option>
-			</select>
-			
+	
 			</section>
 			<div style="clear:both;height:50px;"> </div>	
 			</form>
 			<label></label>
-			<a style="color:#FFFFFF" onclick="listarMisEntradas(960498032)">Ver mis entradas realizadas</a>
+			<a style="color:#FFFFFF"  ononclick="listarMisEntradas(<?php $_SESSION['access_token']['id']?>)">Ver mis entradas realizadas</a>
 
 	  </div>	
 	<div style="clear:both"> </div>	
