@@ -84,7 +84,7 @@ function listarConcursosCuenta($status, $id){
 		die("Por el momento no se puede acceder al gestor de la base de datos");
 
 	//Creo la consulta
-	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status, usuarioOrganizador from concurso where status=$status && usuarioOrganizador=$id";
+	$mi_query = "select idConcurso, NombreConcurso as 'Nombre', hashtag as 'Hashtag', dificultad as 'Dificultad', categoria as 'Categoria', status as 'Status', usuarioOrganizador as 'Creador' from concurso where status=$status && usuarioOrganizador=$id";
 
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);
@@ -100,7 +100,12 @@ function listarConcursosCuenta($status, $id){
 	}
 
 	//Regreso la matriz
-	return $datos;
+	if(isset($datos))
+		return $datos;
+		else{
+			$datos[] = "";
+			return;
+			}
 
 }
 

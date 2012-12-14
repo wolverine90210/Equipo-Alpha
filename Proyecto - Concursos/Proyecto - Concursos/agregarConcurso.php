@@ -130,6 +130,10 @@
 			</script>
 	    </nav>
 	</header>
+	
+	
+	<?php if(isset($_SESSION['access_token']['id'])): ?>
+	
 	<article class="articulo">
 		<section class="seccion">
 		<form name="addConcurso"  action="php/concursoAgregar.php" method="post" enctype="multipart/form-data">			
@@ -377,5 +381,17 @@
 	<footer > 
 		
 	</footer>
+	
+	
+	<?php endif; ?>
+	
+	<?php if(!isset($_SESSION['access_token']['id'])): ?>	
+	<div class="clear"></div>
+	<section class='seccion' style='text-align:center'><p><h2>NO TIENES LOS PERMISOS PARA ESTAR AQUÍ, INICIA SESIÓN PRIMERO...<h2></p></section>
+		<div class='sombra_seccion'></div>
+	<?php endif; ?>
+		
+	
+	
 </body>
 </html>

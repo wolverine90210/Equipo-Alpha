@@ -86,7 +86,10 @@
 			</script>
 		
 	   </nav>
-
+	
+	<?php if(isset($_SESSION['access_token']['id'])): ?>
+	<?php if($_SESSION['access_token']['id'] == 960498032 || $_SESSION['access_token']['id'] == 984327331 || 
+		$_SESSION['access_token']['id'] == 302412674 || $_SESSION['access_token']['id'] == 199881655): ?>
 	
 	<h1>Administración de concursos</h1>
 	<div class="cont" style="float:right;"><a class="boton1" href="agregarConcurso.php"><span>enviar</span></a></div>
@@ -606,8 +609,7 @@
 		
 	</article>
 	<div class="clear"></div>
-	
-	
+
 	
 	<footer id="paginacion">
 		
@@ -618,6 +620,22 @@
 		?>
 		
 	</footer>
+	<?php endif; ?>
+	<?php endif; ?>
+	
+	<?php if(!isset($_SESSION['access_token']['id'])): ?>	
+		
+	<section class='seccion' style='text-align:center'><p><h2>NO TIENES LOS PERMISOS PARA ESTAR AQUÍ, INICIA SESIÓN PRIMERO...<h2></p></section>
+		<div class='sombra_seccion'></div>
+	<?php endif; ?>
+		
+	<?php if (isset($_SESSION['access_token']['id']) && $_SESSION['access_token']['id'] != 960498032 && $_SESSION['access_token']['id'] != 984327331 && $_SESSION['access_token']['id'] != 302412674 && $_SESSION['access_token']['id'] != 199881655): ?>
+	
+	<section class='seccion' style='text-align:center'><p><h2>NO TIENES LOS PERMISOS PARA ESTAR AQUÍ<h2></p></section>
+		<div class='sombra_seccion'></div>
+	
+	<?php endif; ?>
+	
 	
 </body>
 
