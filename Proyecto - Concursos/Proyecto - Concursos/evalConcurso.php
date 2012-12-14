@@ -268,9 +268,17 @@
 				echo "<div id='div_content'>";
 			
 				}
+				
+			
+				$idUser = $datos['usuarioOrganizador'];
+			
+				/* ENTRADAS */
+				$query = "select count(*) as num from entrada where USUARIO_idUsuario = $idUser";
+				$entradas = $conexion -> query($query);
+				$numEntradas = $entradas -> fetch_array(MYSQLI_ASSOC);
+				
 								
-				echo "<div class='entrada'><b>Entradas:</b> 6 </div><div class='ver_mas'><b><a href='vista-detalle.php'>
-				Ver más...</a></b></div><br /><p id='pCont'>".$datos['descripcion']."</p></div><br />";	
+				echo "<div class=\"entrada\"><b>Entradas:</b> ". $numEntradas['num'] ." </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConcurso."'\">Ver más...</a></b></div><br />";	
 				
 				echo "<div class='features'><div class='spec_envia'> Enviado por: </div><div class='remitente'>
 				<p id='pEnvia'>".$creador."</p></div></div>

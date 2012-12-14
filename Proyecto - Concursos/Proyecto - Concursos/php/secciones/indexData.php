@@ -105,8 +105,13 @@
 			$query = "select count(*) as num from entrada where USUARIO_idUsuario = $idUser";
 			$entradas = $conexion -> query($query);
 			$numEntradas = $entradas -> fetch_array(MYSQLI_ASSOC);
+			
+			$query = "select arrobaUsuario as arroba from usuario where idUsuario = $idUser";
+			$usuario = $conexion -> query($query);
+			$arrobaUser = $usuario -> fetch_array(MYSQLI_ASSOC);
 		
-								
+			
+			echo "<p><strong>Enviado por:  ".$arrobaUser['arroba']."</strong></p>";
 			echo "<div class=\"entrada\"><b>Entradas:</b> ". $numEntradas['num'] ." </div><div class=\"ver_mas\"><b><a href=\"vista-detalle.php?id='".$idConc."'\">Ver más...</a></b></div><br />";
 	
 			echo "</section>
