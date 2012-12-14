@@ -21,19 +21,19 @@ function mostrarRich() {
 
 }
 
-function valida_envia(){
+function valida_envia(idConcurso){
 	 //validar editor
 
 		
 		document.getElementById('guardarRT').click();
-		if (document.getElementById('valorRTE') == 0) {
+		if (document.getElementById('valorRTE').value == 0) {
 			muestraEtiqueta("adv_rteEditor");
 			return 0;
 		} else {
 			ocultaEtiqueta("adv_rteEditor");
 			document.getElementById('confirm').click();
 			//guardarlo con ajax
-			guardarEntrada();
+			guardarEntrada(idConcurso,document.getElementById('valorRTE').value);
 			
 		}
 
@@ -65,11 +65,12 @@ function nuevoAjax()
 }
 
 
-function guardarEntrada(){
+function guardarEntrada(idConcurso,valorRTE){
 	//Obtengo del formulario el campo del tipo de usuario
 	//para poder hacer la consulta filtrada
-	entrada = document.RTEDemo.rte1.value;
-	idConcurso= 2;
+	var entrada = valorRTE;
+	console.log(entrada);
+	console.log(idConcurso);
 	var fecha = new Date();
 	var fechaActual = (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
 

@@ -71,9 +71,9 @@ $Res=$NroRegistros%$RegistrosAMostrar;
 if($Res>0) $PagUlt=floor($PagUlt)+1;
 
 //desplazamiento
-echo "<a onclick=\"Pagina('1')\">Primero</a> ";
+echo "<footer id=\"paginacion\">";
 if($PagAct>1) echo "<a onclick=\"Pagina('$PagAnt',$idConcurso)\">Anterior</a> ";
 echo "<strong>Pagina ".$PagAct."/".$PagUlt."</strong>";
 if($PagAct<$PagUlt)  echo " <a onclick=\"Pagina('$PagSig',$idConcurso)\">Siguiente</a> ";
-echo "<a onclick=\"Pagina('$PagUlt',$idConcurso)\">Ultimo</a>";
+echo "</footer>";
 ?>

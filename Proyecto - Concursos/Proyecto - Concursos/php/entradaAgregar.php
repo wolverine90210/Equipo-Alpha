@@ -11,7 +11,7 @@ if ($conexion->connect_error) {
 	. $conexion->connect_error);
 }
 
-//print_r($_REQUEST);
+print_r($_REQUEST);
 
 //Obtener mis variables del formulario
 $entrada = $_REQUEST['entrada'];

@@ -75,28 +75,7 @@ $idConcurso = $_REQUEST['id'];
 						return false;
 					}
 				);
-				
-		$("paginate").live("click", function(){
-		$("#content").html("<div align='center'><img src='images/cargando.gif'/></div>");
-			
-			var pagina=$(this).attr("data");
-			var idConcurso="<?php echo $_REQUEST['id']; ?>"
-			var cadena="page="+pagina+"idConcurso="+idConcurso;
-	
-			$.ajax({
-            			type:"GET",
-            			url:"php/paginacionEntradas.php",
-            			data:cadena,
-            			success:function(data)
-            			{
-                				$("#content").fadeIn(1000).html(data);
-            			}
-        			});
-    		});
 	}); 
-
-			}
-		);
    	</script>
    	
    	<style type=”text/css”>
@@ -350,7 +329,7 @@ text-decoration:none;
 						<a id="confirm" style="display:none" href="#show">Regular</a>
 						<input type="text" style="display:none" id="valorRTE" />
 					</form>
-					<a  id="botonSubmit" class="button" style="float:right" onclick="valida_envia()">Guardar</a>
+					<a  id="botonSubmit" class="button" style="float:right" onclick="valida_envia(<?= $idConcurso?>)">Guardar</a>
 		    		<div style="clear:both"> </div>		
 		    		</div>	
 		    	</section>
@@ -445,11 +424,13 @@ text-decoration:none;
 			if($Res>0) $PagUlt=floor($PagUlt)+1;
 
 			//desplazamiento
+			echo "<footer id=\"paginacion\">";
 			echo "<a onclick=\"Pagina('1')\">Primero</a> ";
 			if($PagAct>1) echo "<a onclick=\"Pagina('$PagAnt',$idConcurso)\">Anterior</a> ";
 			echo "<strong>Pagina ".$PagAct."/".$PagUlt."</strong>";
 			if($PagAct<$PagUlt)  echo " <a onclick=\"Pagina('$PagSig',$idConcurso)\">Siguiente</a> ";
 			echo "<a onclick=\"Pagina('$PagUlt',$idConcurso)\">Ultimo</a>";
+			echo "</footer>";
 			 }
 			 
 			 /*
