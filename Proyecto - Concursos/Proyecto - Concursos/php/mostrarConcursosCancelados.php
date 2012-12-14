@@ -95,7 +95,7 @@
 	</form>*/
 	
 	echo '<td>
-	<a href="editarConcurso-Admin.php?id=',$valor,'">
+	<a href="concursoEditar.php?id=',$valor,'">
 	<img src="../images/edit.gif" />
 	</a>
 	<a href="eliminarConcurso.php?id=',$valor,'">

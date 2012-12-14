@@ -170,7 +170,7 @@ function valida_envia() {
 
 
 	//select categoria
-	if (document.getElementById("e1").selectedIndex == 0 ) { 
+	if (document.getElementById("categoria").selectedIndex == 0 ) {
 		muestraEtiqueta("adv_categoria");
 	} 
 	else

@@ -11,7 +11,7 @@
 	}
 	
 	
-	$query = "select * from concurso limit 10";
+	$query = "select * from concurso";
 				
 	$resultados = $conexion -> query($query);
 				
@@ -66,8 +66,11 @@
 			for($k=0; $k<count($datosImg); $k++)
 				if($datosImg[$k]['CONCURSO_idConcurso'] == $datos[$i]['idConcurso'])
 					$imagen = $datosImg[$k]['url_imagen'];
-
+			
+			if(isset($imagen)){
+			
 			$imagen = (string)$imagen;
+
 		
 			if($dbuser == "root"){
 				$numFolder = (string)$datos[$i]['idConcurso'];
@@ -80,7 +83,7 @@
 			$string1 = "/home/cc409/equipo-alpha/www/php/uploads/".$numFolder."/";
 			$string2 = "http://alanturing.cucei.udg.mx/equipo-alpha/php/uploads/".$numFolder."/";
 			$imagen = str_replace($string1, $string2, $imagen);
-			
+			}
 				
 			echo "<div class='features'><div class='spec'>Categoría: </div><div class='spec_content'>".$categoria.
 			"</div> <div class='spec'> Dificultad: </div> <div class='spec_content'>".$dificultad.

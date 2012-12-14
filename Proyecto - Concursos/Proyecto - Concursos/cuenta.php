@@ -164,8 +164,8 @@
 	<article class="articulo">
 		<section class="seccion">
 			<form name="addConcurso" method="get" action="php/concursoAgregar.php">	
-			<h2>Seleccione el tipo de concursos que desea ver</h2>		
-			<select name="statusConcurso" id="statusConcurso" onChange="buscarCuenta()">
+			<h2>Seleccione el tipo de concursos que desea ver</h2>
+			<select name="statusConcurso" id="statusConcurso" onChange="buscarCuenta(<?= $_SESSION['access_token']['id']; ?>)">
 				<option value="0">Selecciona...</option>
 				<option value="1">Pendiente</option>
 				<option value="2">Aceptado</option>

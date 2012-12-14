@@ -24,9 +24,11 @@ if(isset($_REQUEST["status"]))
 
 	$concursos  = listarConcursosPorStatus($_REQUEST["status"]);
 
-else if(isset($_REQUEST["status2"]))
+else if(isset($_REQUEST["status2"]) && isset($_REQUEST["id"])){
 
-	$concursos  = listarConcursosCuenta($_REQUEST["status2"]);
+	$concursos  = listarConcursosCuenta($_REQUEST["status2"], $_REQUEST["id"]);
+	
+	}
 	
 else if(isset($_REQUEST["fi"]) && isset($_REQUEST["ff"]) )
 

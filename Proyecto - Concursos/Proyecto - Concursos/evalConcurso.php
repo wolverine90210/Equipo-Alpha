@@ -308,7 +308,7 @@
 				</form>
 				</div>
 			
-				<input type="button" id="bEditar" name="bEditar" value="Editar" onClick="editContest()" class="button"/>
+				<input type="button" id="bEditar" name="bEditar" value="Editar" onClick="location.href='php/concursoEditar.php?id=<?=$idConcurso?>'" class="button"/>
 			</div>
 			<div class="clear"></div>
 			</fieldset>
@@ -334,7 +334,7 @@
 				</form>
 				</div>
 			
-				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="location.href='php/concursoEditar.php?id=<?=$idConcurso?>'" class="button"/>
 				
 				
 				<!-- Formulario para registrar ganador -->
@@ -402,7 +402,7 @@
 				</form>
 				</div>
 			
-				<input type="button" id="bEditar" name="editar" value="Editar" onClick="editContest()" class="button"/>
+				<input type="button" id="bEditar" name="editar" value="Editar" onClick="location.href='php/concursoEditar.php?id=<?=$idConcurso?>'" class="button"/>
 			</div>
 			<div class="clear"></div>
 			</fieldset>
@@ -517,24 +517,15 @@
 				<div style="width:350px;float:left;">
 				
 				<label for="categoria">Categoría: </label>
-					<select id="e1" selected="selected" name="categoria[]">
-					<option value="SeleccioneUna">Seleccione una</option>			
-					<?php
-					//Cargar el archivo de funciones
-					require_once("php/funciones.php");
-					$categorias = buscarCategorias();
-					$fila = $categorias[0];
-					foreach($categorias as $fila => $arr){
-						//Todos los campos de cada fila
-					    foreach($arr as $campo => $valor){
-						if($campo == 'idCategoria')
-						$cad1 = "<option value=".$valor.">";
-						else if($campo == 'nom_Categoria')
-						echo $cad1.$valor.'</option>';
-						}
-					     }
-					?>
-					</select>
+				
+				<!-- CATEGORÍAS -->
+					<div id="catego">
+						<select id="sel" onChange="fillSelect()">
+							<option value="select" selected>Select one</option>
+							<option>CARGAR CATEGORÍAS</option>
+						</select>
+					</div>
+					
 				</div><br />
 				&nbsp &nbsp &nbsp &nbsp
 				<div style="float:right">

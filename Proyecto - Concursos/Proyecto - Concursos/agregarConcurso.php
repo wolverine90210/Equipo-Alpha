@@ -94,6 +94,10 @@
 			}); 
 	});
 		</script>
+		
+		<!-- AJAX -->
+		<script type="text/Javascript" src="js/ajax.js"></script>
+		
 		<noscript>Tu navegador no soporta Javascript</noscript>	
 		<script> function dameFecha(){ return new Date();}</script>
 </head>
@@ -155,6 +159,36 @@
 					<br />
 				</div>
 			</div>
+			
+			<?php if ($_SESSION['access_token']['id'] == 960498032 || $_SESSION['access_token']['id'] == 984327331 || $_SESSION['access_token']['id'] == 302412674 || $_SESSION['access_token']['id'] == 199881655) : ?>
+				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
+				<!-- CATEGORÍAS -->
+				<label for="categoria">Categoría: </label>
+					<div id="catego" style="display:inline">
+						<select id="sel" onChange="fillSelect()">
+							<option value="select" selected>Seleccione una:</option>
+							<option>CARGAR CATEGORÍAS</option>
+						</select>
+					</div><input type="button" value="Recargar categorías" onClick="fillSelect()">
+					
+				</div><br />	
+				&nbsp &nbsp &nbsp &nbsp
+				<div style="">
+				<label for="nueva_cat">Nueva categoría: </label>
+				<input type="text" id="new_cat" name="new_cat" />
+				<input type="button" id="acceptCat" name="acceptCat" value="Aceptar" onClick="addCat()" />
+				</div>
+				
+				<div id="error_categoria" class="div_error">
+					<p>¡Seleccione una categoría para el concurso!</p>
+				</div>
+				
+				<div id="error_nueva_categoria" class="div_error">
+					<p>¡Escriba una categoría nueva y válida para el concurso (menor a 20 caracteres)! Procure no repetirlas. </p>
+				</div>
+								
+				<?php elseif ($_SESSION['access_token']['id'] != 960498032 && $_SESSION['access_token']['id'] != 984327331 && $_SESSION['access_token']['id'] != 302412674 && $_SESSION['access_token']['id'] != 199881655): ?>
+			
 			<div id="categoriaWrapper">
 				<label class="div_error" id="adv_categoria" style="display: none">Seleccione una categoría</label>
 				<label  class="subtitulos" id="categoria">Seleccione una categoría</label>
@@ -187,6 +221,7 @@
 				?>
 				</select>
 			</div>
+			<?php endif; ?>
 			
 			<div id="fechaInicial">
 				<label class="div_error" id="adv_fechaInicio" style="display: none">Seleccione un fecha</label>

@@ -72,7 +72,7 @@ function listarConcursosPorStatus($status){
 	
 }
 
-function listarConcursosCuenta($status){
+function listarConcursosCuenta($status, $id){
 
 	//Conectarse a la base de datos
 	require("bd.inc");
@@ -84,7 +84,7 @@ function listarConcursosCuenta($status){
 		die("Por el momento no se puede acceder al gestor de la base de datos");
 
 	//Creo la consulta
-	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status from concurso where status = $status";
+	$mi_query = "select idConcurso, NombreConcurso as Nombre, Hashtag, Dificultad, Categoria, status, usuarioOrganizador from concurso where status=$status && usuarioOrganizador=$id";
 
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);

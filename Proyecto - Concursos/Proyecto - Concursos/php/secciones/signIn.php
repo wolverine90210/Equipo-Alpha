@@ -48,6 +48,10 @@
 			echo "<script type='text/javascript'>$(document).ready(function(e){ $('#adminButton').show();
 			$('#accountButton').show();});</script>";				
 			}
+			else{
+			echo "<script type='text/javascript'>$(document).ready(function(e){ 
+			$('#accountButton').show();});</script>";
+			}
 		
 		//Nos conectamos a la base de datos y obtenemos el usuario
 		require_once('php/bd.inc');

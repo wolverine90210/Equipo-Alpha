@@ -62,7 +62,6 @@ function checkStatus(){
 function fillSelect(){
 
 	var selectLangs = document.getElementById("e1");
-	
 	var ajax = nuevoAjax();
 	
 	ajax.open("GET", "php/fillSelectLangs.php?="+selectLangs, true); 
@@ -70,8 +69,8 @@ function fillSelect(){
 	ajax.onreadystatechange=function(){
 	
 		if(ajax.readyState == 4){
-			document.getElementById("catego").outerHTML = ajax.responseText;
 			document.getElementById("sel").style.display = "none";
+			document.getElementById("catego").outerHTML = ajax.responseText;
 		}
 	}
 
@@ -118,7 +117,7 @@ function addCat(){
 					var cat = document.createTextNode(text);
 					var opt = document.createElement("option");
 					opt.appendChild(cat);
-					select.appendChild(opt);					
+					select.appendChild(opt);
 					
 					document.getElementById("new_cat").value = "";
 				}
@@ -155,7 +154,7 @@ function buscarConcursosPorStatus(){
 	ajax.send(null);
 }
 
-function buscarCuenta(){
+function buscarCuenta(id){
 	//Obtengo del formulario el campo del tipo de usuario
 	//para poder hacer la consulta filtrada
 	statusSeleccionado = document.getElementById("statusConcurso").value;
@@ -165,7 +164,7 @@ function buscarCuenta(){
 
 	//Mando a abrir en el servidor el archivo de php que
 	//consulta la lista de usuario
-	ajax.open("GET", "php/listaConcursos.php?status2="+statusSeleccionado, true);
+	ajax.open("GET", "php/listaConcursos.php?status2="+statusSeleccionado+"&id="+id, true);
 
 	//Acciones para los distintos estados de mi conexión
 	//ajax
