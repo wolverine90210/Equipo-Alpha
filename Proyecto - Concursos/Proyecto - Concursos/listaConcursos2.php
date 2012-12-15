@@ -90,7 +90,10 @@ foreach($concursos as $fila => $arr){
 						<input type="image" src="images/edit2.png" />
 					  </form>
 					  </td>';	
-				break;	
+				break;
+				case 'DescripConcurso':
+				echo '';	
+				break;
 			case 'categoria':
 				$valor = buscarPorCategoria($valor);
 				echo '<td>',$valor["nom_Categoria"],'</td>';
