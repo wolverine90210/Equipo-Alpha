@@ -13,7 +13,7 @@
 
 	//Creo la consulta
 	$mi_query = "select idConcurso as id, nombreConcurso as title, fechaDeInicio as start, fechaDeFin as end, '' as url  
-				 from concurso";
+				 from concurso where status=2";
 	//Ejecuto mi consulta
 	$result = $con -> query($mi_query);
 
