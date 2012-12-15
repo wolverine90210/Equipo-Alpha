@@ -25,12 +25,25 @@
 	<script src="jquery/jquery.effects.core.js" type="text/javascript" ></script>
 	
 	<script type="text/javascript" src="js/adminConcursosJS.js"></script>
+
+
+	<!-- load jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+        <!-- load Galleria -->
+        <script src="js/galleria-1.2.8.min.js"></script>
 	
 	<script type="text/javascript" >
 			 $(document).ready(function(e) {
 				$('#site-name h1').show('fast')
 			$('#menu-r li a').hover(function(){$(this).stop(false,true).animate({'color':'#F33'},500)},function(){$(this).stop
 			(false,true).animate({'color':'#FFF'},200)});	
+
+			// Load the classic theme
+			Galleria.loadTheme('js/galleria.classic.min.js');
+	
+			// Initialize Galleria
+			Galleria.run('#galleria');
 			});
 		
 	</script>	
@@ -42,6 +55,16 @@
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
     <link type="text/css" href="css/ui-darkness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
 	<script type="text/javascript" src="js/jquery.purr.js"></script>
+
+	 <style>
+            .content{color:#777;font:12px/1.4 "helvetica neue",arial,sans-serif;width:620px;margin:20px auto;}
+            a {color:#22BCB9;text-decoration:none;}
+            .cred{margin-top:20px;font-size:11px;}
+
+            /* This rule is read by Galleria to define the gallery height: */
+            #galleria{height:620px}
+
+        </style>
 	
 	 	<script type="text/javascript" >
 	 jQuery(function($) {
@@ -159,7 +182,7 @@
 		
 			<?php
 				require_once('bd.inc');
-				
+				require_once('php/funciones.php');
 				$conexion = new mysqli($dbhost, $dbuser, $dbpass, $db);
 
 				if($conexion->connect_error){
@@ -233,7 +256,7 @@
 			
 		
 				for($k=0; $k<count($datosImg); $k++)
-					if($datosImg[$k]['CONCURSO_idConcurso'] == $datos['idConcurso'])
+					if($datosImg[$k]['CONCURSO_idConcurso'] == $datos['idConcurso']){
 						$imagen = $datosImg[$k]['url_imagen'];
 							
 				$imagen = (string)$imagen;
@@ -249,7 +272,7 @@
 				$string1 = "/home/cc409/equipo-alpha/www/php/uploads/".$numFolder."/";
 				$string2 = "http://alanturing.cucei.udg.mx/equipo-alpha/php/uploads/".$numFolder."/";
 				$imagen = str_replace($string1, $string2, $imagen);
-			
+				}
 				
 				echo "<div class='features'><div class='spec'>Categoría: </div><div class='spec_content'>".$categoria.
 				"</div> <div class='spec'> Dificultad: </div> <div class='spec_content'>".$dificultad.
@@ -262,12 +285,26 @@
 
 		
 				if(isset($imagen)){
-				echo "<div class='image'><img src='".$imagen."' alt='Poster'/></div>
+					echo "<div id=\"galleria\">";
+						 $misUrls = dameUrlsDeImagenesSubidas($idConcurso);
+							foreach ($misUrls as $fila => $arr) {
+								foreach ($arr as $campo => $valor) {
+									$findme   = 'php';
+									$pos = strpos($valor, $findme);
+									$valorUrl = substr($valor, $pos,strlen($valor));
+									echo "<div class='image'><img src='".$valorUrl."' alt='Poster'/></div>
 					<p>";	
-				
+
+					echo "</div>";
 				echo "<div id='div_content'>";
+								}
+
+							}
+
+				
 			
 				}
+	
 				
 			
 				$idUser = $datos['usuarioOrganizador'];
