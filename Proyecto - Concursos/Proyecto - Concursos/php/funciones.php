@@ -33,6 +33,36 @@ function listarConcursos(){
 	return $datos;
 }
 
+function listarConcursos2(){
+	//Conectarse a la base de datos
+	require("bd.inc");
+
+	$con = new mysqli($dbhost, $dbuser, $dbpass, $db);
+	
+	//Validar que no genere error la conexión
+	if($con -> connect_error)
+		die("Por el momento no se puede acceder al gestor de la base de datos");
+
+	//Creo la consulta
+	$mi_query = "select nombreConcurso as Nombre, hashtag as Hashtag, dificultad as Dificultad, categoria as Categoria, fechaDeInicio as Inicio, fechaDeFin as Fin, status as Status, usuarioOrganizador as Organizador, usuarioGanador as Ganador from concurso";
+
+	//Ejecuto mi consulta
+	$result = $con -> query($mi_query);
+
+	//Cierro la conexión
+	$con -> close();
+
+	//Convierto el resultado de mi consulta a una matriz
+	if($result -> num_rows >= 1){
+		//Por cada fila obtengo un arreglo
+		while($fila = $result -> fetch_assoc())
+			$datos[] = $fila;
+	}
+	
+	//Regreso la matriz
+	return $datos;
+}
+
 /**
  * 
  * @return array $datos

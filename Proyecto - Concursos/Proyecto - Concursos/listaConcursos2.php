@@ -58,7 +58,7 @@ if(isset($_REQUEST["status"]))
 	//echo 'Entro';
 	$concursos  = listarConcursosPorStatus($_REQUEST["status"]);	
 else 
-	$concursos = listarConcursos();
+	$concursos = listarConcursos2();
 //Recorro mi arreglo para dibujar la tabla
 echo '<table border="1">';
 //Obtener los titulos
@@ -79,42 +79,27 @@ foreach($concursos as $fila => $arr){
 	//Todos los campos de cada fila
 	foreach($arr as $campo => $valor){
 		switch($campo){
-			case 'idConcurso':
-				echo '<td>
-					  <form action="php/concursoEliminar.php" method="post">
-						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/eliminar2.png" />
-					  </form>
-					  <form action="php/concursoEditar.php" method="post">
-						<input type="hidden" name="id" value="',$valor,'" />
-						<input type="image" src="images/edit2.png" />
-					  </form>
-					  </td>';	
-				break;
-				case 'DescripConcurso':
-				echo '';	
-				break;
-			case 'categoria':
+			case 'Categoria':
 				$valor = buscarPorCategoria($valor);
 				echo '<td>',$valor["nom_Categoria"],'</td>';
 				break;	
-			case 'dificultad':
+			case 'Dificultad':
 				if($valor == 1) $valor = 'Básica';
 				else if($valor == 2)  $valor = 'Intermedia';
 				else if($valor == 3)  $valor = 'Avanzada';
 				echo '<td>',$valor,'</td>';
 				break;	
-			case 'status':
+			case 'Status':
 				if($valor == 1) $valor = 'Pendiente';
 				else if($valor == 2)  $valor = 'Aceptado';
 				else if($valor == 3)  $valor = 'Rechazado';
 				echo '<td>',$valor,'</td>';	
 				break;	
-			case 'usuarioGanador':
+			case 'Ganador':
 				$valor = buscarPorIdGanador($valor);
 				echo '<td>',$valor["arrobaUsuario"],'</td>';
 				break;	
-			case 'usuarioOrganizador':
+			case 'Organizador':
 				$valor = buscarPorIdOrganizador($valor);
 				echo '<td>',$valor["arrobaUsuario"],'</td>';
 				break;
