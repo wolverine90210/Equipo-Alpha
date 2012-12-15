@@ -398,6 +398,8 @@
 						<select id="e1" selected="selected" name="ganador[]">
 						<option value="SeleccioneUna">Seleccione un usuario</option>
 				
+			
+			
 						<?php
 						//Cargar el archivo de funciones
 						require_once("php/funciones.php");
